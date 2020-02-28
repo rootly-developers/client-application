@@ -6,8 +6,8 @@ class SignUpPage extends Component {
     constructor(){
         super();
         this.state = {
-            firstName: '',
-            lastName: ''
+            email: '',
+            password: ''
         }
         this.handleSubmit = this.handleSubmit.bind(this);
     }
@@ -15,9 +15,9 @@ class SignUpPage extends Component {
     handleSubmit(e) {
         e.preventDefault();
         
-        axios.post('http://localhost:8080', {
-            firstName: this.state.firstName,
-            lastName: this.state.lastName
+        axios.post('http://localhost:8080/signup', {
+            email: this.state.email,
+            password: this.state.password
         })
         .then((res) => {console.log(res)})
     }
@@ -28,22 +28,22 @@ class SignUpPage extends Component {
                 <h1>SignUp Page</h1>
                 <form onSubmit={this.handleSubmit}>
                     <input
-                        className="firstNameInput"
+                        className="emailInput"
                         autoComplete="off"
                         type="text"
-                        name="firstName"
-                        placeholder="First Name"
-                        value={this.state.firstName}
-                        onChange={(e) => this.setState({firstName: e.target.value})}
+                        name="email"
+                        placeholder="Email"
+                        value={this.state.email}
+                        onChange={(e) => this.setState({email: e.target.value})}
                     />
                     <input
-                        className="lastNameInput"
+                        className="passwordInput"
                         autoComplete="off"
                         type="text"
-                        name="lasttName"
-                        placeholder="Last Name"
+                        name="password"
+                        placeholder="password"
                         value={this.state.lastName}
-                        onChange={(e) => this.setState({lastName: e.target.value})}
+                        onChange={(e) => this.setState({password: e.target.value})}
                     />
                     <button type="submit" className="save-button">Submit</button>
                 </form>
