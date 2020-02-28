@@ -8,6 +8,7 @@ import ProfilePage from './Components/ProfilePage'
 import CreateEventPage from './Components/CreateEventPage'
 import EventDetailsPage from './Components/EventDetailsPage'
 import MyEventPage from './Components/MyEventPage'
+import SignUpPage from './Components/SignUpPage'
 
 class App extends Component {
   constructor() {
@@ -26,6 +27,7 @@ class App extends Component {
               <li><Link to={'/profile'} className="nav-link">Profile</Link></li>
               <li><Link to={'/events/new'} className="nav-link">Create Event</Link></li>
               <li><Link to={'/myevents'} className="nav-link">My Event Page</Link></li>
+              <li><Link to={'/signup'} className="nav-link">Sign Up</Link></li>
             </ul>
           </nav>
           <Switch>
@@ -36,6 +38,7 @@ class App extends Component {
             <Route exact path='/events/new' component={CreateEventPage} />
             <Route exact path='/events/:id' component={EventDetailsPage} />
             <Route exact path='/myevents' component={MyEventPage}/>
+            <Route exact path='/signup' component={SignUpPage}/>
           </Switch>
         </div>
       </Router>
