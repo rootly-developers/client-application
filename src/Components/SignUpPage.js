@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { useHistory } from 'react-router-dom';
+import SubmitButton from './SubmitButton.js'
 import axios from "axios";
 import './styles/SignUpPage.css'
 
@@ -9,24 +11,13 @@ class SignUpPage extends Component {
             email: '',
             password: ''
         }
-        this.handleSubmit = this.handleSubmit.bind(this);
-    }
-    
-    handleSubmit(e) {
-        e.preventDefault();
-        
-        axios.post('http://localhost:8080/signup', {
-            email: this.state.email,
-            password: this.state.password
-        })
-        .then((res) => {console.log(res)})
     }
 
     render() {
         return(
             <div>
                 <h1>SignUp Page</h1>
-                <form onSubmit={this.handleSubmit}>
+                <form>
                     <input
                         className="emailInput"
                         autoComplete="off"
@@ -45,7 +36,7 @@ class SignUpPage extends Component {
                         value={this.state.lastName}
                         onChange={(e) => this.setState({password: e.target.value})}
                     />
-                    <button type="submit" className="save-button">Submit</button>
+                    <SubmitButton email={this.state.email} password={this.state.password}/>
                 </form>
             </div>
         );
