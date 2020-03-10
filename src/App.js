@@ -9,39 +9,25 @@ import CreateEventPage from './Components/CreateEventPage'
 import EventDetailsPage from './Components/EventDetailsPage'
 import MyEventPage from './Components/MyEventPage'
 import SignUpPage from './Components/SignUpPage'
+import NavBar from './Components/NavBar'
+import {
+  MDBContainer
+  } from "mdbreact";
 
 class App extends Component {
   constructor() {
     super();
+    this.state = {
+    };
   }
 
   render() {
     return(
-      <Router>
-        <div>
-          <nav>
-            <ul>
-              <li><Link to={'/'} className="nav-link"> Home </Link></li>
-              <li><Link to={'/login'} className="nav-link">Login</Link></li>
-              <li><Link to={'/events'} className="nav-link">Events</Link></li>
-              <li><Link to={'/profile'} className="nav-link">Profile</Link></li>
-              <li><Link to={'/events/new'} className="nav-link">Create Event</Link></li>
-              <li><Link to={'/myevents'} className="nav-link">My Event Page</Link></li>
-              <li><Link to={'/signup'} className="nav-link">Sign Up</Link></li>
-            </ul>
-          </nav>
-          <Switch>
-            <Route exact path='/' component={LandingPage} />
-            <Route exact path='/login' component={LoginPage} />
-            <Route exact path='/events' component={EventListPage} />
-            <Route exact path='/profile' component={ProfilePage}/>
-            <Route exact path='/events/new' component={CreateEventPage} />
-            <Route exact path='/events/:id' component={EventDetailsPage} />
-            <Route exact path='/myevents' component={MyEventPage}/>
-            <Route exact path='/signup' component={SignUpPage}/>
-          </Switch>
-        </div>
-      </Router>
+      <div id="bootstrap-override">
+        <MDBContainer fluid>
+          <NavBar/>
+        </MDBContainer>
+      </div>
     );
   }
 }
