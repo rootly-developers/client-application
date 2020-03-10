@@ -1,0 +1,22 @@
+#bootstrap-override .navbar-expand-md {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  #bootstrap-override .navbar-collapse {
+    flex-grow: 0;
+    padding-right: 25%;
+  }
+  
+  #bootstrap-override .blue {
+    background-color: #190078 !important;
+    border-radius:  0px 0px 26px 26px;
+  }
+  
+  #bootstrap-override .navbar-brand {
+    padding-left: 20%;
+  }
+  
+  #bootstrap-override .navbar-collapse .nav-item {
+    padding: 5px;
+  }
