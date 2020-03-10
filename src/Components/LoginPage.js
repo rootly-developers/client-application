@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { MDBInput } from 'mdbreact';
 import axios from "axios";
 import './styles/LoginPage.css'
 
@@ -23,29 +24,32 @@ class LoginPage extends Component {
     }
 
     render() {
+        {console.log(this.props.location)}
         return(
-            <div>
-                <h1>Login Page</h1>
-                <form onSubmit={this.handleSubmit}>
-                <input
-                    className="emailInput"
-                    autoComplete="off"
-                    type="text"
-                    name="email"
-                    placeholder="Email"
-                    value={this.state.email}
-                    onChange={(e) => this.setState({email: e.target.value})}
-                />
-                <input
-                    className="passwordInput"
-                    autoComplete="off"
-                    type="text"
-                    name="password"
-                    placeholder="password"
-                    value={this.state.lastName}
-                    onChange={(e) => this.setState({password: e.target.value})}
-                />
-                <button type="submit" className="save-button">Submit</button>
+            <div id="login-page">
+                <form onSubmit={this.handleSubmit} id="login-form">
+                    <h1>Login</h1>
+                    <div className="grey-text">
+                    <MDBInput
+                        className="emailInput"
+                        autoComplete="off"
+                        type="text"
+                        name="email"
+                        label="Email"
+                        value={this.state.email}
+                        onChange={(e) => this.setState({email: e.target.value})}
+                    />
+                    <MDBInput
+                        className="passwordInput"
+                        autoComplete="off"
+                        type="text"
+                        name="password"
+                        label="Password"
+                        value={this.state.lastName}
+                        onChange={(e) => this.setState({password: e.target.value})}
+                    />
+                    <button type="submit" className="save-button">Submit</button>
+                    </div>
                 </form>
             </div>
         );
