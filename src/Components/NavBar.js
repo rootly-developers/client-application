@@ -12,6 +12,7 @@ import CreateEventPage from '../Components/CreateEventPage'
 import EventDetailsPage from '../Components/EventDetailsPage'
 import MyEventPage from '../Components/MyEventPage'
 import SignUpPage from '../Components/SignUpPage'
+import VerifyPage from '../Components/VerifyPage'
 import './styles/NavBar.css'
 
 class NavBar extends Component {
@@ -72,6 +73,7 @@ render() {
             <Route exact path='/events/:id' component={EventDetailsPage} />
             <Route exact path='/myevents' component={MyEventPage}/>
             <Route exact path='/signup' component={SignUpPage}/>
+            <Route exact path='/verify' component={VerifyPage}/>
           </Switch>
     </Router>
     );
