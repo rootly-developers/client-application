@@ -24,7 +24,7 @@ class App extends Component {
   render() {
     return(
       <div id="bootstrap-override">
-        <MDBContainer fluid>
+        <MDBContainer fluid id="app-container">
           <NavBar/>
         </MDBContainer>
       </div>
