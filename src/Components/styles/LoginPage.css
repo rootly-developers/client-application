@@ -1,0 +1,9 @@
+#bootstrap-override #login-form {
+    padding-top: 4em;
+    width: 40%;
+    margin: auto;
+}
+
+#bootstrap-override #login-form h1 {
+    text-align: center;
+}
