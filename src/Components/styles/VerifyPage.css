@@ -1,0 +1,15 @@
+#app-container #verify-page {
+    margin-top: 10em;
+}
+
+#verify-page h1 {
+    text-align: center;
+    margin-bottom: 0.5em;
+    font-size: 5rem;
+    font-weight: 600;
+}
+
+#verify-page p {
+    text-align: center;
+    font-size: 3rem;
+}
