@@ -1,4 +1,14 @@
 
-#bootstrap-override {
+#app-container {
   font-family: 'Red Hat Display';
+  padding: 0;
+}
+
+#app-container h1, h2, h3 {
+  color: #190078;
+}
+
+#app-container #email-signup-btn {
+  background-color: #6202EE !important;
+  border-radius: 200px;
 }
