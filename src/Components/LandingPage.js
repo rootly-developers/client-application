@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { MDBInput, MDBBtn, MDBRow, MDBCol, MDBContainer } from "mdbreact";
+import SubmitButton from './SubmitButton.js';
 import axios from 'axios';
 import './styles/LandingPage.css'
 
@@ -7,7 +8,7 @@ class LandingPage extends Component {
     constructor(){
         super();
         this.state = {
-            msg: ""
+            email: ""
         }
     }
 
@@ -22,11 +23,17 @@ class LandingPage extends Component {
                         </div>
                     </MDBCol>
                     <MDBCol size="6">
-                        <div id="email-signup">
+                        <form id="email-signup">
                             <h3>Your UW Email</h3>
-                            <MDBInput label="Email" />
-                            <MDBBtn id="email-signup-btn">Go!</MDBBtn>
-                        </div>
+                            <MDBInput 
+                                label="Email"
+                                type="text"
+                                value={this.state.email}
+                                onChange={(e) => this.setState({email: e.target.value})}
+                            />
+                            <SubmitButton id="email-signup-btn" email={this.state.email} type={"landingPage"}></SubmitButton>
+                            {/* <MDBBtn id="email-signup-btn">Go!</MDBBtn> */}
+                        </form>
                     </MDBCol>
                 </MDBRow>
 
@@ -35,7 +42,7 @@ class LandingPage extends Component {
                         <h2 id="section-2-h2">In a new city? Explore it with fellow students!</h2>
                     </MDBCol>
                     <MDBCol size="7">
-                        <img src="section-2-image.jpg"></img>
+                        <img src="section-2-image.jpg" id="section-2-img"></img>
                     </MDBCol>
                 </MDBRow>
 
