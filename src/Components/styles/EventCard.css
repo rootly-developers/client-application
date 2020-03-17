@@ -1,0 +1,18 @@
+.event-card {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    width: 80%;
+    height: 100%;
+    margin: auto;
+  }
+  
+  .event-card p {
+    margin-top: 0.5rem;
+  }
+  
+  .event-card img {
+    width: 25%;
+    height: 100%;
+  }

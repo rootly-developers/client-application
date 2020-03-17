@@ -7,14 +7,23 @@
     padding-top: 4em;
 }
 
+#landingpage-section-1 #landingpage-header-col {
+    flex: 0 0 45%;
+}
+
 #landingpage-header {
-    width: 60%;
+    width: 90%;
 }
 
 #landingpage h1 {
     color: #190078;
     font-weight: 600;
     font-size: 60px;
+}
+
+#landingpage-header h3 {
+    margin-bottom: 1.5em;
+    color: #333333;
 }
 
 #email-signup {
@@ -30,7 +39,7 @@
     padding-top: 10%;
     padding-bottom: 5%;
     color: #190078;
-    font-weight: 590;
+    font-weight: 600;
 }
 
 #email-signup .md-form {
@@ -61,16 +70,6 @@
     height: 100%;
 }
 
-.event-card {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
-    width: 85%;
-    height: 100%;
-    margin: auto;
-}
-
 #make-event-btn {
     height: 30px;
     text-align: center;
@@ -81,20 +80,16 @@
     background-color: #6202EE !important;
 }
 
-.event-card p {
-    margin-top: 0.5rem;
-}
-
-.event-card img {
-    width: 25%;
-    height: 100%;
-}
-
 #event-card-description {
     margin-left: 2rem;
     margin-right: 2rem;
 }
 
-#landingpage .col-10 {
+#landingpage .col-12 {
     margin-bottom: 3rem;
+}
+
+#landingpage .md-addon {
+    border-bottom: 1.3px solid #190078;
+    color: #190078;
 }

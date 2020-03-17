@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { useHistory } from 'react-router-dom';
-import SubmitButton from './SubmitButton.js'
+import SignUpBtn from './SignUpBtn.js';
+
+import {  MDBInput, MDBBtn, MDBRow, MDBCol, MDBContainer } from "mdbreact";
 import axios from "axios";
 import './styles/SignUpPage.css'
 
@@ -8,37 +10,74 @@ class SignUpPage extends Component {
     constructor(){
         super();
         this.state = {
-            email: '',
-            password: ''
+            firstName: '',
+            lastName: '',
+            password: '',
+            passwordVerify: '',
+            city: ""
         }
     }
 
     render() {
         return(
-            <div>
-                <h1>SignUp Page</h1>
+            <MDBContainer id="signup-page">
+                <h1>New to the club huh?</h1>
                 <form>
-                    <input
-                        className="emailInput"
-                        autoComplete="off"
-                        type="text"
-                        name="email"
-                        placeholder="Email"
-                        value={this.state.email}
-                        onChange={(e) => this.setState({email: e.target.value})}
-                    />
-                    <input
-                        className="passwordInput"
-                        autoComplete="off"
-                        type="text"
-                        name="password"
-                        placeholder="password"
-                        value={this.state.lastName}
-                        onChange={(e) => this.setState({password: e.target.value})}
-                    />
-                    <SubmitButton email={this.state.email} password={this.state.password}/>
+                    <MDBRow>
+                        <MDBCol size="6">
+                            <MDBInput 
+                                label="First Name:"
+                                type="text"
+                                value={this.state.firstName}
+                                onChange={(e) => this.setState({firstName: e.target.value})}
+                            />
+                        </MDBCol>
+
+                        <MDBCol size="6">
+                            <MDBInput 
+                                label="Password:"
+                                type="password"
+                                value={this.state.password}
+                                onChange={(e) => this.setState({password: e.target.value})}
+                            />
+                        </MDBCol>
+                    </MDBRow>
+
+                    <MDBRow>
+                        <MDBCol size="6">
+                            <MDBInput 
+                                label="Last Name:"
+                                type="text"
+                                value={this.state.lastName}
+                                onChange={(e) => this.setState({lastName: e.target.value})}
+                            />
+                        </MDBCol>
+                        <MDBCol size="6">
+                            <MDBInput 
+                                label="Re-type Password:"
+                                type="password"
+                                value={this.state.passwordVerify}
+                                onChange={(e) => this.setState({passwordVerify: e.target.value})}
+                            />
+                        </MDBCol>
+                    </MDBRow>
+
+                    <MDBRow>
+                        <MDBCol size="6">
+                                <MDBInput 
+                                    label="City based in:"
+                                    type="text"
+                                    value={this.state.city}
+                                    onChange={(e) => this.setState({city: e.target.value})}
+                                />
+                        </MDBCol>
+
+                        <MDBCol size="6" id="signup-btn-col">
+                            <SignUpBtn text="SIGN UP" id="signup-btn" email={this.props.location.email} password={this.state.password}/>
+                        </MDBCol>
+                    </MDBRow>
                 </form>
-            </div>
+            </MDBContainer>
         );
     }
 }

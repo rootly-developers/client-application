@@ -12,3 +12,12 @@
   background-color: #6202EE !important;
   border-radius: 200px;
 }
+
+#app-container .form-control {
+  border-bottom: 1.3px solid #190078;
+}
+
+#app-container label {
+  color: #3700B3;
+  font-weight: 600;
+}

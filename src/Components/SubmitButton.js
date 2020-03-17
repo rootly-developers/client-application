@@ -13,31 +13,25 @@ const SubmitButton = (props) => {
     if(type == "landingPage") {
       path = `/users/exists?email=${props.email}`;
     }
-    else if(type == "signup") {
-      path = '`/signup?email=${props.email}`';
-    }
-    // let { email, password } = props;
-    // console.log(email);
     axios.get(`http://localhost:8080${path}`)
     .then((res) => {
         if (res.status == 200) {
             console.log(res);
             let redirectPath = "";
-            if(type == "landingPage" && res.exists) {
+            if(type == "landingPage" && !res.data.exists) {
               redirectPath = "/signup";
             }
-            else if (type == "signup") {
-              redirectPath = '/verify';
+            else if (type == "landingPage" && res.data.exists) {
+              redirectPath = "/login"
             }
-            history.push({pathname: '/verify', email: "mickey@uwaterloo.ca"})
-            // history.push({pathname: '/login', isVerified: true});
+            history.push({pathname: redirectPath, email: props.email})
         }
     })
   }
 
   return (
     <MDBBtn id={props.id} type="submit" onClick={handleClick}>
-      Go!
+      {props.text}
     </MDBBtn>
   );
 }

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { MDBInput } from 'mdbreact';
+import { MDBInput, MDBContainer } from 'mdbreact';
+import SignInBtn from './SignInBtn';
 import axios from "axios";
 import './styles/LoginPage.css'
 
@@ -24,12 +25,10 @@ class LoginPage extends Component {
     }
 
     render() {
-        {console.log(this.props.location)}
         return(
-            <div id="login-page">
+            <MDBContainer id="login-page">
+                <h1>Sign in</h1>
                 <form onSubmit={this.handleSubmit} id="login-form">
-                    <h1>Login</h1>
-                    <div className="grey-text">
                     <MDBInput
                         className="emailInput"
                         autoComplete="off"
@@ -42,16 +41,15 @@ class LoginPage extends Component {
                     <MDBInput
                         className="passwordInput"
                         autoComplete="off"
-                        type="text"
+                        type="password"
                         name="password"
                         label="Password"
                         value={this.state.lastName}
                         onChange={(e) => this.setState({password: e.target.value})}
                     />
-                    <button type="submit" className="save-button">Submit</button>
-                    </div>
+                    <SignInBtn email={this.state.email} password={this.state.password}/>
                 </form>
-            </div>
+            </MDBContainer>
         );
     }
 }
