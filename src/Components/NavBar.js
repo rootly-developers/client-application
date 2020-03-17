@@ -65,16 +65,16 @@ render() {
         </MDBCollapse>
       </MDBNavbar>
       <Switch>
-            <Route exact path='/' component={LandingPage} />
-            <Route exact path='/login' component={LoginPage} />
-            <Route exact path='/events' component={EventListPage} />
-            <Route exact path='/profile' component={ProfilePage}/>
-            <Route exact path='/events/new' component={CreateEventPage} />
-            <Route exact path='/events/:id' component={EventDetailsPage} />
-            <Route exact path='/myevents' component={MyEventPage}/>
-            <Route exact path='/signup' component={SignUpPage}/>
-            <Route exact path='/verify' component={VerifyPage}/>
-          </Switch>
+        <Route exact path='/' component={LandingPage} />
+        <Route exact path='/login' component={LoginPage} />
+        <Route exact path='/events' component={EventListPage} />
+        <Route exact path='/profile' component={ProfilePage}/>
+        <Route exact path='/events/new' component={CreateEventPage} />
+        <Route exact path='/events/:id' component={EventDetailsPage} />
+        <Route exact path='/myevents' component={MyEventPage}/>
+        <Route exact path='/signup' component={SignUpPage}/>
+        <Route exact path='/verify' component={VerifyPage}/>
+      </Switch>
     </Router>
     );
   }

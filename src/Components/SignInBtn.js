@@ -30,7 +30,7 @@ const SignInBtn = (props) => {
 
   return (
     <MDBBtn id="signin-btn" type="submit" onClick={handleClick}>
-      Go!   
+      Go! 
     </MDBBtn>
   );
 }

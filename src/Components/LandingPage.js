@@ -38,7 +38,7 @@ class LandingPage extends Component {
                         </form>
                     </MDBCol>
                 </MDBRow>
-                
+
                 <MDBRow>
                     <MDBCol size="5">
                         <h2 id="section-2-h2">In a new city? Explore it with fellow students!</h2>
@@ -48,8 +48,17 @@ class LandingPage extends Component {
                     </MDBCol>
                 </MDBRow>
 
-                <EventCard title="Rockclimbing at Phil's" description="No one has made this event yet...It could be you!"/>
-                <EventCard title="Bubble Tea at Icon" description="No one has made this event yet...It could be you!"/>
+                <MDBRow>
+                    <MDBCol size="12">
+                        <EventCard title="Rockclimbing at Phil's" description="No one has made this event yet...It could be you!" sample={true}/>
+                    </MDBCol>
+                </MDBRow>
+
+                <MDBRow>
+                    <MDBCol size="12">
+                        <EventCard title="Bubble Tea at Icon" description="No one has made this event yet...It could be you!" sample={true}/>
+                    </MDBCol>
+                </MDBRow>
         </MDBContainer>
         );
     }
