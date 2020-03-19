@@ -32,6 +32,7 @@ class LoginPage extends Component {
                     <MDBInput
                         className="emailInput"
                         autoComplete="off"
+                        icon="envelope"
                         type="text"
                         name="email"
                         label="Email"
@@ -43,6 +44,7 @@ class LoginPage extends Component {
                         autoComplete="off"
                         type="password"
                         name="password"
+                        icon="lock"
                         label="Password"
                         value={this.state.lastName}
                         onChange={(e) => this.setState({password: e.target.value})}
