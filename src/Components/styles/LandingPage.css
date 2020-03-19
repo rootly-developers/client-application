@@ -12,7 +12,7 @@
 }
 
 #landingpage-header {
-    width: 90%;
+    width: 100%;
 }
 
 #landingpage h1 {
@@ -30,7 +30,8 @@
     width: 350px;
     height: 232px; 
     background: #F2E7FE;
-    box-shadow: 0px 0px 20px #B9B9B9;
+    box-shadow: 0px 0px 20px #B9B9B9, 3px 3px #FF6584;
+    border-radius: 1em;
     text-align: center;
     float: left;
 }
@@ -58,16 +59,16 @@
     color: #190078;
     font-weight: 600;
     font-size: 40px;
-    width: 60%;
+    width: 70%;
 }
 
-#landingpage .col-6, .col-5, .col-7 {
+#landingpage .landingpage-section {
     margin-bottom: 8em;
 }
 
 #section-2-img {
-    width: 80%;
-    height: 100%;
+    width: 440px;
+    height: 320px;
 }
 
 #make-event-btn {
@@ -85,9 +86,9 @@
     margin-right: 2rem;
 }
 
-#landingpage .col-12 {
+/* #landingpage .col-12 {
     margin-bottom: 3rem;
-}
+} */
 
 #landingpage .md-addon {
     border-bottom: 1.3px solid #190078;

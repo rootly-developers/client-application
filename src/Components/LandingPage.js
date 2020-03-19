@@ -16,7 +16,7 @@ class LandingPage extends Component {
     render() {
         return(
             <MDBContainer id="landingpage">
-                <MDBRow id="landingpage-section-1">
+                <MDBRow id="landingpage-section-1" className="landingpage-section">
                     <MDBCol size="6" id="landingpage-header-col">
                         <div id="landingpage-header">
                             <h1>Welcome to Rootly.</h1>
@@ -39,12 +39,12 @@ class LandingPage extends Component {
                     </MDBCol>
                 </MDBRow>
 
-                <MDBRow>
+                <MDBRow className="landingpage-section">
                     <MDBCol size="5">
                         <h2 id="section-2-h2">In a new city? Explore it with fellow students!</h2>
                     </MDBCol>
                     <MDBCol size="7">
-                        <img src="section-2-image.jpg" id="section-2-img"></img>
+                        <img src="section-2-image.jpg" id="section-2-img" className="img-fluid"></img>
                     </MDBCol>
                 </MDBRow>
 
