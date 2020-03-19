@@ -62,13 +62,37 @@
     width: 70%;
 }
 
-#landingpage .landingpage-section {
+#section-3-h2 {
+    color: #190078;
+    font-weight: 600;
+    font-size: 40px;
+    width: 60%;
+}
+
+#section-4-h2 {
+    color: #190078;
+    font-weight: 600;
+    font-size: 40px;
+    width: 60%;
+}
+
+#landingpage .col-6, .col-5, .col-7, .landingpage-section {
     margin-bottom: 8em;
 }
 
 #section-2-img {
     width: 440px;
     height: 320px;
+}
+
+#section-3-img {
+    width: 80%;
+    height: 100%;
+}
+
+#section-4-img {
+    width: 80%;
+    height: 100%;
 }
 
 #make-event-btn {
