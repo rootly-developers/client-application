@@ -52,7 +52,7 @@ class LandingPage extends Component {
 
                 <MDBRow>
                     <MDBCol size="7">
-                        <img src="section-3-image.jpg" id="section-3-img"></img>
+                        <img src="section-3-image.jpg" className="img-fluid"></img>
                     </MDBCol>
                     <MDBCol size="5">
                         <h2 id="section-3-h2">Discover a cool event? Find someone with similar interests!</h2>
@@ -66,7 +66,7 @@ class LandingPage extends Component {
                         <h2 id="section-4-h2">Want to throw a board game night? Invite someone new!</h2>
                     </MDBCol>
                     <MDBCol size="7">
-                        <img src="section-4-image.jpg" id="section-4-img"></img>
+                        <img src="section-4-image.jpg" className="img-fluid"></img>
                     </MDBCol>
                 </MDBRow>
 
