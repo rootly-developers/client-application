@@ -48,21 +48,29 @@ class LandingPage extends Component {
                     </MDBCol>
                 </MDBRow>
 
+                <EventCard title="Rockclimbing at Phil's" description="No one has made this event yet...It could be you!"/>
+
                 <MDBRow>
-                    <MDBCol size="12">
-                        <EventCard title="Rockclimbing at Phil's" description="No one has made this event yet...It could be you!" sample={true}
-                                   src="https://images.unsplash.com/photo-1564769662533-4f00a87b4056?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"
-                        />
+                    <MDBCol size="7">
+                        <img src="section-3-image.jpg" id="section-3-img"></img>
+                    </MDBCol>
+                    <MDBCol size="5">
+                        <h2 id="section-3-h2">Discover a cool event? Find someone with similar interests!</h2>
                     </MDBCol>
                 </MDBRow>
 
+                <EventCard title="Hunt a Goose with Matlab" description="No one has made this event yet...It could be you!"/>
+
                 <MDBRow>
-                    <MDBCol size="12">
-                        <EventCard title="Bubble Tea at Icon" description="No one has made this event yet...It could be you!" sample={true}
-                                   src="https://assets.epicurious.com/photos/5953ca064919e41593325d97/6:4/w_620%2Ch_413/bubble_tea_recipe_062817.jpg"
-                        />
+                    <MDBCol size="5">
+                        <h2 id="section-4-h2">Want to throw a board game night? Invite someone new!</h2>
+                    </MDBCol>
+                    <MDBCol size="7">
+                        <img src="section-4-image.jpg" id="section-4-img"></img>
                     </MDBCol>
                 </MDBRow>
+
+                <EventCard title="Bubble Tea at Icon" description="No one has made this event yet...It could be you!"/>
         </MDBContainer>
         );
     }
