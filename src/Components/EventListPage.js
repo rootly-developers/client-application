@@ -6,8 +6,52 @@ import './styles/EventListPage.css'
 class EventListPage extends Component {
     constructor(){
         super();
+        this.state = {
+            events: [
+                {
+                    "id": 2,
+                    "organizerid": "yewrNHUjMTa7IAfbXsObfQJOzJB3",
+                    "status": "ACTIVE",
+                    "title": "San Francisco",
+                    "description": "Co-op hangout at SF",
+                    "address": "Splunk @ SF",
+                    "city": "boston",
+                    "starttime": "+158365-11-11T08:00:00.000Z",
+                    "endtime": "+158375-11-11T08:00:00.000Z",
+                    "attendees": 4,
+                    "maxattendees": 9,
+                    "created": "2020-03-16T03:12:20.337Z",
+                    "lastupdated": "2020-03-16T03:12:20.337Z"
+                },
+                {
+                    "id": 1,
+                    "organizerid": "yewrNHUjMTa7IAfbXsObfQJOzJB3",
+                    "status": "ACTIVE",
+                    "title": "Board Games Night!",
+                    "description": "Avalon at Games on Tap",
+                    "address": "Google @ SF",
+                    "city": "boston",
+                    "starttime": "+158365-11-11T08:00:00.000Z",
+                    "endtime": "+158375-11-11T08:00:00.000Z",
+                    "attendees": 7,
+                    "maxattendees": 9,
+                    "created": "2020-03-16T03:11:52.198Z",
+                    "lastupdated": "2020-03-16T03:11:52.198Z"
+                }
+            ]        
+        }
     }
     render() {
+        const events = this.state.events;
+        let eventCards = events.map(events => {
+            return <MDBRow>
+                        <MDBCol size="12">
+                            <EventCard title={events.title} description={events.description} 
+                                       attendees={events.attendees} maxAttendees={events.maxattendees}
+                            />
+                        </MDBCol>
+                    </MDBRow>
+        });
         return(
             <div id="eventlist-page">
                 <div id="fill"></div>
@@ -38,12 +82,7 @@ class EventListPage extends Component {
                             </MDBCol>
                         </MDBRow>
 
-                        <MDBRow>
-                            <MDBCol size="12">
-                                <EventCard title="Board Games Night!" description="Avalon at Games on Tap"/>
-                            </MDBCol>
-                        </MDBRow>
-                        
+                        { eventCards }
                     </div>
                 </MDBContainer>
             </div>
