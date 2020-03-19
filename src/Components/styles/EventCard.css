@@ -54,3 +54,12 @@
 .eventcard-title {
   font-weight: 600;
 }
+  
+  .event-card p {
+    margin-top: 0.5rem;
+  }
+
+  #make-event-btn {
+    margin: auto;
+    width: 25%;
+  }
