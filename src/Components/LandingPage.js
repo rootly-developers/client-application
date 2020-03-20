@@ -14,8 +14,8 @@ class LandingPage extends Component {
     }
 
     render() {
-        const textColSize = 7;
-        const imgColSize = 5;
+        const textColSize = 5;
+        const imgColSize = 7;
         const cardColSize = 12;
         return(
             <MDBContainer id="landingpage">
@@ -58,7 +58,7 @@ class LandingPage extends Component {
                 </MDBRow>
 
                 <MDBRow className="section-margin">
-                    <MDBCol size={{imgColSize}}>
+                    <MDBCol size={imgColSize}>
                         <img src="section-3-image.jpg" className="img-fluid" id="section-3-img"></img>
                     </MDBCol>
                     <MDBCol size={textColSize}>
