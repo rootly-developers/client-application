@@ -1,8 +1,9 @@
 .event-card {
-    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    /* box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24); */
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
     width: 75%;
-    height: 95%;
+    height: 100%;
     margin: 0 auto;
     margin-bottom: 0 !important;
     border-radius: 5px;
@@ -31,9 +32,11 @@
   margin: 0 auto;
 }
 
-.event-card .eventcard-btn-col, .eventcard-attendees-col, .eventcard-content-col {
+.eventcard-btn-col, .eventcard-attendees-col, .eventcard-content-col {
   display: flex;
   align-items: center;
+  padding-top: 1.5rem !important;
+  padding-bottom: 1.5rem !important;
 }
 
 .eventcard-attendees-col {
@@ -43,4 +46,8 @@
 
 .eventcard-content {
   padding-left: 1em;
+}
+
+.eventcard-title {
+  font-weight: 600;
 }

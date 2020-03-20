@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
 import './styles/EventDetailsPage.css'
 
 class EventDetailsPage extends Component {
@@ -7,7 +8,15 @@ class EventDetailsPage extends Component {
     }
     render() {
         return(
-            <h1>EventDetails Page</h1>
+            <div className="app-page">
+                <div id="fill"></div>
+                <MDBContainer>
+                    <h1>Rock Climbing</h1>
+                    <div className="page-body">
+
+                    </div>
+                </MDBContainer>
+            </div>
         );
     }
 }
