@@ -48,7 +48,19 @@ class LandingPage extends Component {
                     </MDBCol>
                 </MDBRow>
 
+<<<<<<< HEAD
                 <EventCard title="Rockclimbing at Phil's" description="No one has made this event yet...It could be you!"/>
+=======
+                <br></br>
+
+                <MDBRow>
+                    <MDBCol size="12">
+                        <EventCard title="Rockclimbing at Phil's" description="No one has made this event yet...It could be you!" sample={true}/>
+                    </MDBCol>
+                </MDBRow>
+
+                <br></br>
+>>>>>>> add spacing and fix image dimensions
 
                 <MDBRow>
                     <MDBCol size="7">
@@ -59,7 +71,19 @@ class LandingPage extends Component {
                     </MDBCol>
                 </MDBRow>
 
+<<<<<<< HEAD
                 <EventCard title="Hunt a Goose with Matlab" description="No one has made this event yet...It could be you!"/>
+=======
+                <br></br>
+
+                <MDBRow>
+                    <MDBCol size="12">
+                        <EventCard title="Hunt a Goose with Matlab" description="No one has made this event yet...It could be you!" sample={true}/>
+                    </MDBCol>
+                </MDBRow>
+>>>>>>> add spacing and fix image dimensions
+
+                <br></br>
 
                 <MDBRow>
                     <MDBCol size="5">
@@ -70,7 +94,18 @@ class LandingPage extends Component {
                     </MDBCol>
                 </MDBRow>
 
+<<<<<<< HEAD
                 <EventCard title="Bubble Tea at Icon" description="No one has made this event yet...It could be you!"/>
+=======
+                <br></br>
+
+                <MDBRow>
+                    <MDBCol size="12">
+                        <EventCard title="Bubble Tea at Icon" description="No one has made this event yet...It could be you!" sample={true}/>
+                    </MDBCol>
+                </MDBRow>
+
+>>>>>>> add spacing and fix image dimensions
         </MDBContainer>
         );
     }
