@@ -74,11 +74,15 @@
     color: #190078;
     font-weight: 600;
     font-size: 40px;
-    width: 100%;
+    width: 70%;
 }
 
-#landingpage .col-6, .col-5, .col-7, .landingpage-section {
+#landingpage .col-6, .col-5, .col-7 {
     margin-bottom: 8em;
+}
+
+#landingpage .landingpage-section {
+    margin-bottom: 16em;
 }
 
 #section-2-img {
@@ -121,4 +125,9 @@
 
 #email-signup {
     float: right;
+}
+
+.section-margin {
+    margin-bottom: 10rem;
+    margin-top: 10rem;
 }
