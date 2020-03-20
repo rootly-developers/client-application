@@ -66,7 +66,7 @@ class LandingPage extends Component {
                     </MDBCol>
                 </MDBRow>
 
-                <MDBRow>
+                <MDBRow className="section-margin">
                     <MDBCol size={cardColSize}>
                         <EventCard title="Hunt a Goose with Matlab" description="No one has made this event yet...It could be you!" sample={true} location="landing-page"/>
                     </MDBCol>
