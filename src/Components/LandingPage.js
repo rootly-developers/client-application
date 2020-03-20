@@ -44,7 +44,7 @@ class LandingPage extends Component {
 
                 <MDBRow className="section-margin">
                     <MDBCol size={textColSize}>
-                        <h2 id="section-2-h2">In a new city? Explore it with fellow students!</h2>
+                        <h2 id="text-section-2" className="text-section">In a new city? Explore it with fellow students!</h2>
                     </MDBCol>
                     <MDBCol size={imgColSize}>
                         <img src="section-2-image.jpg" className="img-fluid" id="section-2-img"></img>
@@ -62,7 +62,7 @@ class LandingPage extends Component {
                         <img src="section-3-image.jpg" className="img-fluid" id="section-3-img"></img>
                     </MDBCol>
                     <MDBCol size={textColSize}>
-                        <h2 id="section-3-h2">Discover a cool event? Find someone with similar interests!</h2>
+                        <h2 id="text-section-3" className="text-section">Discover a cool event? Find someone with similar interests!</h2>
                     </MDBCol>
                 </MDBRow>
 
@@ -74,7 +74,7 @@ class LandingPage extends Component {
 
                 <MDBRow className="section-margin">
                     <MDBCol size={textColSize}>
-                        <h2 id="section-4-h2">Want to throw a board game night? Invite someone new!</h2>
+                        <h2 id="text-section-4" className="text-section">Want to throw a board game night? Invite someone new!</h2>
                     </MDBCol>
                     <MDBCol size={imgColSize}>
                         <img src="section-4-image.jpg" className="img-fluid" id="section-4-img"></img>

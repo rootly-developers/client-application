@@ -55,25 +55,22 @@
     border-radius: 200px;
 }
 
-#section-2-h2 {
+.text-section{
     color: #190078;
     font-weight: 600;
     font-size: 2.7rem;
+}
+
+#text-section-2 {
     width: 60%;
 }
 
-#section-3-h2 {
-    color: #190078;
-    font-weight: 600;
-    font-size: 2.7rem;
+#text-section-3 {
     width: 100%;
     float: right;
 }
 
-#section-4-h2 {
-    color: #190078;
-    font-weight: 600;
-    font-size: 2.7rem;
+#text-section-4 {
     width: 70%;
 }
 
