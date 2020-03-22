@@ -55,20 +55,45 @@
     border-radius: 200px;
 }
 
-#section-2-h2 {
+.landingpage-section {
+    margin-bottom: 16em;
+}
+
+.text-section {
     color: #190078;
     font-weight: 600;
-    font-size: 40px;
+    font-size: 2.7rem;
+}
+
+#text-section-2 {
     width: 70%;
 }
 
-#landingpage .landingpage-section {
+#text-section-3 {
+    width: 100%;
+    float: right;
+}
+
+#text-section-4 {
+    width: 100%;
+}
+
+#landingpage .col-6, .col-5, .col-7 {
     margin-bottom: 8em;
+}
+
+#landingpage .landingpage-section {
+    margin-bottom: 16em;
 }
 
 #section-2-img {
     width: 440px;
     height: 320px;
+    float: right;
+}
+
+#section-4-img {
+    float: right;
 }
 
 #make-event-btn {
@@ -93,4 +118,13 @@
 #landingpage .md-addon {
     border-bottom: 1.3px solid #190078;
     color: #190078;
+}
+
+#email-signup {
+    float: right;
+}
+
+.section-margin {
+    margin-bottom: 10rem;
+    margin-top: 10rem;
 }

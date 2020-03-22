@@ -5,8 +5,9 @@ import './styles/EventCard.css'
 const EventCard = (props) => {
     let btnMsg = props.sample ? "MAKE EVENT":"JOIN";
     let attendeesMsg = props.attendees ? (props.attendees + "/" + props.maxAttendees):""; 
+    let eventCardClass = "event-card " + props.location;
     return (
-        <MDBRow className="event-card">
+        <MDBRow className={eventCardClass}>
             <MDBCol size="3">
                 <img className="img-fluid" src={props.src}></img>
             </MDBCol>
