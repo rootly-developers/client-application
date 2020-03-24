@@ -56,7 +56,7 @@
 }
 
 .landingpage-section {
-    margin-bottom: 16em;
+    margin-bottom: 8em;
 }
 
 .text-section {
@@ -76,14 +76,6 @@
 
 #text-section-4 {
     width: 100%;
-}
-
-#landingpage .col-6, .col-5, .col-7 {
-    margin-bottom: 8em;
-}
-
-#landingpage .landingpage-section {
-    margin-bottom: 16em;
 }
 
 #section-2-img {
@@ -111,10 +103,6 @@
     margin-right: 2rem;
 }
 
-/* #landingpage .col-12 {
-    margin-bottom: 3rem;
-} */
-
 #landingpage .md-addon {
     border-bottom: 1.3px solid #190078;
     color: #190078;
@@ -125,6 +113,6 @@
 }
 
 .section-margin {
-    margin-bottom: 10rem;
-    margin-top: 10rem;
+    margin-bottom: 5rem;
+    margin-top: 5rem;
 }
