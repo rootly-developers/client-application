@@ -70,7 +70,7 @@ class LandingPage extends Component {
                 <MDBRow className="section-margin">
                     <MDBCol size={CARD_COL_SIZE}>
                         <EventCard title="Hunt a Goose with Matlab" description="No one has made this event yet...It could be you!" sample={true} location="landing-page"
-                                   src="https://assets.epicurious.com/photos/5953ca064919e41593325d97/6:4/w_620%2Ch_413/bubble_tea_recipe_062817.jpg"/>
+                                   src="https://www.independent.org/images/article_featured/2019/coding_laptop_1200x675.jpg"/>
                     </MDBCol>
                 </MDBRow>
 
@@ -85,7 +85,8 @@ class LandingPage extends Component {
 
                 <MDBRow className="section-margin">
                     <MDBCol size={CARD_COL_SIZE}>
-                        <EventCard title="Bubble Tea at Icon" description="No one has made this event yet...It could be you!" sample={true} location="landing-page"/>
+                        <EventCard title="Bubble Tea at Icon" description="No one has made this event yet...It could be you!" sample={true} location="landing-page"
+                                   src="https://assets.epicurious.com/photos/5953ca064919e41593325d97/6:4/w_620%2Ch_413/bubble_tea_recipe_062817.jpg"/>
                     </MDBCol>
                 </MDBRow>
 
