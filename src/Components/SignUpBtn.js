@@ -13,8 +13,16 @@ const SignUpBtn = (props) => {
     })
     .then((res) => {
         console.log(res);
-        if (res.status == 200) {
-            history.push({pathname: "/verify", email: props.email})
+        if (res.status === 200) {
+          axios.post(`http://localhost:8080/users`, {
+            firstName: props.email, lastName: props.password, city: props.city
+          })
+          .then((res) => {
+              console.log(res);
+              if (res.status == 200) {
+                  history.push({pathname: "/verify", email: props.email})
+              }
+          })
         }
     })
   }

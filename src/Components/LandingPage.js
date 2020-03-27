@@ -37,7 +37,9 @@ class LandingPage extends Component {
                                 value={this.state.email}
                                 onChange={(e) => this.setState({email: e.target.value})}
                             />
-                            <SubmitButton id="email-signup-btn" email={this.state.email} type={"landingPage"} text="GO!"></SubmitButton>
+                            <SubmitButton id="email-signup-btn" email={this.state.email + "@uwaterloo.ca"}
+                                          type={"landingPage"} text="GO!">
+                            </SubmitButton>
                         </form>
                     </MDBCol>
                 </MDBRow>

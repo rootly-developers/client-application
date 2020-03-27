@@ -19,6 +19,7 @@ class SignUpPage extends Component {
     }
 
     render() {
+        let { firstName, lastName, password, city } = this.state;
         return(
             <MDBContainer id="signup-page">
                 <h1>New to the club huh?</h1>
@@ -73,7 +74,11 @@ class SignUpPage extends Component {
                         </MDBCol>
 
                         <MDBCol size="6" id="signup-btn-col">
-                            <SignUpBtn text="SIGN UP" id="signup-btn" email={this.props.location.email} password={this.state.password}/>
+                            <SignUpBtn text="SIGN UP" id="signup-btn" 
+                                       email={this.props.location.email} password={password}
+                                       firstName={firstName} lastName={lastName}
+                                       city={city}
+                            />
                         </MDBCol>
                     </MDBRow>
                 </form>
