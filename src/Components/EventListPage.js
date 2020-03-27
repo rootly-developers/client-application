@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
 import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
 import EventCard from './EventCard.js'
+import ChangeRegionDropDown from './ChangeRegionDropDown.js'
 import './styles/EventListPage.css'
 
 class EventListPage extends Component {
     constructor(){
         super();
         this.state = {
+            location: "Seattle",
             events: []    
         }
+        this.handleChangeRegion = this.handleChangeRegion.bind(this);
     }
-    
+
     componentDidMount() {
         this.setState({
             events: [
@@ -49,6 +52,11 @@ class EventListPage extends Component {
         ]    
         });
     }
+
+    handleChangeRegion(e) {
+        this.setState({ location: e.target.innerHTML })
+    }
+
     render() {
         const events = this.state.events;
         let eventCards = events.map((events, i) => {
@@ -65,12 +73,12 @@ class EventListPage extends Component {
             <div className="app-page" id="eventlist-page">
                 <div id="fill"></div>
                 <MDBContainer>
-                    <h1>Seattle</h1>
+                    <h1>{this.state.location}</h1>
                     <div className="page-body">
                         <MDBRow>
                             <MDBCol size="12">
                                 <div id="eventlist-toolbar">
-                                    <h4>Change Region</h4>
+                                    <ChangeRegionDropDown onclick={this.handleChangeRegion}/>
                                     <div id="eventlist-right-btns">
                                         <h4>Newest</h4>
                                         <h4>Upcoming</h4>
