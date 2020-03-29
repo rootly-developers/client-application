@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
+import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody } from "mdbreact";
 import EventCard from './EventCard.js'
 import ChangeRegionDropDown from './ChangeRegionDropDown.js'
 import './styles/EventListPage.css'
@@ -22,7 +22,7 @@ class EventListPage extends Component {
                 "organizerid": "yewrNHUjMTa7IAfbXsObfQJOzJB3",
                 "status": "ACTIVE",
                 "title": "San Francisco",
-                "description": "Co-op hangout at SF",
+                "description": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident et accusamus iusto odio dignissimos et dolorum fuga.",
                 "address": "Splunk @ SF",
                 "city": "boston",
                 "starttime": "+158365-11-11T08:00:00.000Z",
@@ -60,52 +60,54 @@ class EventListPage extends Component {
     render() {
         const events = this.state.events;
         let eventCards = events.map((events, i) => {
-            return <MDBRow>
-                        <MDBCol size="12">
-                            <EventCard title={events.title} description={events.description} 
-                                       attendees={events.attendees} maxAttendees={events.maxattendees}
-                                       src={events.imgSrc} key={i}
-                            />
-                        </MDBCol>
-                    </MDBRow>
+            return <div>
+                        <MDBRow>
+                            <MDBCol size="12">
+                                <EventCard title={events.title} description={events.description} 
+                                        attendees={events.attendees} maxAttendees={events.maxattendees}
+                                        src={events.imgSrc} key={i}
+                                />
+                            </MDBCol>
+                        </MDBRow>
+                    </div>
         });
         return(
             <div className="app-page" id="eventlist-page">
                 <div id="fill"></div>
-                <MDBContainer>
-                    <h1>{this.state.location}</h1>
-                    <div className="page-body">
-                        <MDBRow>
-                            <MDBCol size="12">
-                                <div id="eventlist-toolbar">
-                                    <ChangeRegionDropDown onclick={this.handleChangeRegion}/>
-                                    <div id="eventlist-right-btns">
-                                        <h4>Newest</h4>
-                                        <h4>Upcoming</h4>
-                                    </div>
+                <div id="eventlist-main">
+                <h1 id="event-list-header">{this.state.location}</h1>
+                <MDBCardBody className="page-body">
+                    <MDBRow>
+                        <MDBCol size="12">
+                            <div id="eventlist-toolbar">
+                                <ChangeRegionDropDown onclick={this.handleChangeRegion}/>
+                                <div id="eventlist-right-btns">
+                                    <h4>Newest</h4>
+                                    <h4>Upcoming</h4>
                                 </div>
-                            </MDBCol>
-                        </MDBRow>
+                            </div>
+                        </MDBCol>
+                    </MDBRow>
 
-                        <MDBRow>
-                            <MDBCol size="12">
-                                <EventCard title="Rockclimbing at Phil's" description="No one has made this event yet...It could be you!"  sample={true}
-                                           src="https://images.unsplash.com/photo-1564769662533-4f00a87b4056?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"
-                                />
-                            </MDBCol>
-                        </MDBRow>
+                    <MDBRow>
+                        <MDBCol size="12">
+                            <EventCard title="Rockclimbing at Phil's" description="No one has made this event yet...It could be you!"  sample={true}
+                                        src="https://images.unsplash.com/photo-1564769662533-4f00a87b4056?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"
+                            />
+                        </MDBCol>
+                    </MDBRow>
 
-                        <MDBRow>
-                            <MDBCol size="12">
-                                <EventCard title="Bubble Tea at Icon" description="No one has made this event yet...It could be you!" sample={true}
-                                           src="https://assets.epicurious.com/photos/5953ca064919e41593325d97/6:4/w_620%2Ch_413/bubble_tea_recipe_062817.jpg"
-                                />
-                            </MDBCol>
-                        </MDBRow>
+                    <MDBRow>
+                        <MDBCol size="12">
+                            <EventCard title="Bubble Tea at Icon" description="No one has made this event yet...It could be you!" sample={true}
+                                        src="https://assets.epicurious.com/photos/5953ca064919e41593325d97/6:4/w_620%2Ch_413/bubble_tea_recipe_062817.jpg"
+                            />
+                        </MDBCol>
+                    </MDBRow>
 
-                        { eventCards }
-                    </div>
-                </MDBContainer>
+                    { eventCards }
+                </MDBCardBody>
+                </div>
             </div>
         );
     }

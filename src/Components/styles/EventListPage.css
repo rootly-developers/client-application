@@ -31,3 +31,25 @@
 #eventlist-right-btns h4 {
     margin-left: 1em;
 }
+
+#card-override {
+    width: 75%;
+    margin: auto;
+    border: 1px solid #CCCCCC !important;
+    border-radius: 20px !important;
+}
+
+#cardbody-override {
+    width: 75%;
+    margin: auto;
+}
+
+#event-list-header {
+    margin-top: 5rem;
+    margin-left: 4rem;
+}
+
+#eventlist-main {
+    width: 75%;
+    margin: auto;
+}
