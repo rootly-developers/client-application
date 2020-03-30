@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import { MDBContainer, MDBRow, MDBCol } from "mdbreact";
-import './styles/EventDetailsPage.css'
+import { MDBRow, MDBCol, MDBCardBody, MDBInput, MDBBtn } from "mdbreact";
+import Post from './Post.js'
+import './styles/EventDetailsPage.css';
 
 class EventDetailsPage extends Component {
     constructor(){
@@ -9,13 +10,72 @@ class EventDetailsPage extends Component {
     render() {
         return(
             <div className="app-page">
-                <div id="fill"></div>
-                <MDBContainer>
-                    <h1>Rock Climbing</h1>
-                    <div className="page-body">
+                <div className="app-page-fill"></div>
+                <div className="app-main-section" id="event-details-main">
+                    <div id="event-details-header">
+                        <h1 className="app-page-header">Rock Climbing</h1>
+                        <MDBBtn id="leave-event-btn">LEAVE EVENT</MDBBtn>
+                    </div>     
+                    <MDBCardBody className="page-body" id="event-details-body">
+                        <MDBRow>
+                            <MDBCol size="7">
+                                <p id="event-details-description">
+                                Sed ut perspiciatiste velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"Sed ut perspiciatiste velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"Sed ut perspiciatiste velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
+                                </p>
+                            </MDBCol>
+                        </MDBRow>
 
-                    </div>
-                </MDBContainer>
+                        <MDBRow>
+                            <MDBCol size="2">
+                                <h3>Host:</h3>
+                                <img src="default-avatar.jpg" className="default-avatar"></img>
+                            </MDBCol>
+
+                            <MDBCol size="5">
+                                <h3>Attendees: 7/8</h3>
+                                <img src="default-avatar.jpg" className="default-avatar"></img>
+                                <img src="default-avatar.jpg" className="default-avatar"></img>
+                                <img src="default-avatar.jpg" className="default-avatar"></img>
+                                <img src="default-avatar.jpg" className="default-avatar"></img>
+                            </MDBCol>
+
+                            <MDBCol size="2"></MDBCol>
+                            
+                            <MDBCol size="3">
+                                <h3 id="event-details-date">7:30 - 9:30pm</h3>
+                                <h4 id="event-details-address">100 Waterloo way, Denver Colorado</h4>
+                            </MDBCol>
+                        </MDBRow>
+
+                        <h2 id="discussion-header">Discussion</h2>
+
+                        <MDBRow id="post-message-bar">
+                            <MDBCol size="10">
+                                <MDBInput label="Some text..." />
+                            </MDBCol>
+
+                            <MDBCol size="2">
+                                <MDBBtn id="post-btn">POST</MDBBtn>
+                            </MDBCol>
+                        </MDBRow>
+
+                        <Post user="EventHelper" date="8:00pm Jan 21"
+                              message="Hey Guys! Like for Attendance!"
+                        />
+
+                        <Post user="Darren Cheung" date="8:00pm Jan 21"
+                              message="Greyhound divisively hello coldly wonderfully marginally far..."
+                        />
+
+                        <Post user="Darren Cheung" date="8:00pm Jan 21"
+                              message="Greyhound divisively hello coldly wonderfully marginally far..."
+                        />
+
+                        <Post user="Darren Cheung" date="8:00pm Jan 21"
+                              message="Greyhound divisively hello coldly wonderfully marginally far..."
+                        />
+                    </MDBCardBody>
+                </div>
             </div>
         );
     }

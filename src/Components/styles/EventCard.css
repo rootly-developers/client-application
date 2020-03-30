@@ -27,11 +27,12 @@
   padding: 0;
 }
 
-.event-card img {
-}
-
-.event-card .eventcard-btn {
-  margin: 0 auto;
+.eventcard-btn {
+  margin: auto;
+  text-align: center;
+  border-radius: 2rem;
+  letter-spacing: 1px;
+  background-color: #6202EE !important;
 }
 
 .eventcard-btn-col, .eventcard-attendees-col, .eventcard-content-col {
@@ -59,13 +60,4 @@
   
 .event-card p {
   margin-top: 0.5rem;
-}
-
-strong {
-  font-weight: 600;
-}
-
-#make-event-btn {
-  margin: auto;
-  width: 45%;
 }
