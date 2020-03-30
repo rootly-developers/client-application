@@ -21,6 +21,11 @@
     width: 65%;
 }
 
+.event-details-user-icons {
+    width: 60px;
+    height: 60px;
+}
+
 #event-details-main h1 {
     font-size: 3rem;
 }
@@ -28,6 +33,7 @@
 #event-details-date {
     font-weight: 600;
     text-align: right;
+    font-size: 2rem;
 }
 
 #event-details-address {

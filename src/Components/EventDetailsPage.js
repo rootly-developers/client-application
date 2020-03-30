@@ -28,15 +28,15 @@ class EventDetailsPage extends Component {
                         <MDBRow>
                             <MDBCol size="2">
                                 <h3>Host:</h3>
-                                <img src="default-avatar.jpg" className="default-avatar"></img>
+                                <img src="default-avatar.jpg" className="event-details-user-icons"></img>
                             </MDBCol>
 
                             <MDBCol size="5">
                                 <h3>Attendees: 7/8</h3>
-                                <img src="default-avatar.jpg" className="default-avatar"></img>
-                                <img src="default-avatar.jpg" className="default-avatar"></img>
-                                <img src="default-avatar.jpg" className="default-avatar"></img>
-                                <img src="default-avatar.jpg" className="default-avatar"></img>
+                                <img src="default-avatar.jpg" className="event-details-user-icons"></img>
+                                <img src="default-avatar.jpg" className="event-details-user-icons"></img>
+                                <img src="default-avatar.jpg" className="event-details-user-icons"></img>
+                                <img src="default-avatar.jpg" className="event-details-user-icons"></img>
                             </MDBCol>
 
                             <MDBCol size="2"></MDBCol>
