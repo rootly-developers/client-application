@@ -29,7 +29,7 @@ render() {
   let active = this.state.active;
   return (
     <Router>
-      <MDBNavbar color="blue" dark expand="md">
+      <MDBNavbar color="blue" dark expand="md" fixed="top" id="nav-bar">
         <MDBNavbarBrand>
           <strong className="white-text">Rootly</strong>
         </MDBNavbarBrand>
