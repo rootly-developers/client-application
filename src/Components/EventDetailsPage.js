@@ -6,8 +6,30 @@ import './styles/EventDetailsPage.css';
 class EventDetailsPage extends Component {
     constructor(){
         super();
+        this.state = {
+            messageInput: "",
+            posts: []
+        }
+        this.handlePostClick = this.handlePostClick.bind(this);
     }
+
+    handlePostClick() {
+        const posts = this.state.posts.slice();
+        posts.push({message: this.state.messageInput});
+        this.setState({posts: posts, messageInput: ""});
+    }
+
     render() {
+        const posts = this.state.posts;
+        let postCards = posts.map((post, i) => {
+            return  <MDBRow>
+                        <MDBCol size="12">
+                            <Post user="Darren Cheung" date="8:00pm Jan 21"
+                                  message={post.message} key={i}
+                            />
+                        </MDBCol>
+                     </MDBRow>
+        });
         return(
             <div className="app-page">
                 <div className="app-page-fill"></div>
@@ -51,11 +73,15 @@ class EventDetailsPage extends Component {
 
                         <MDBRow id="post-message-bar">
                             <MDBCol size="10">
-                                <MDBInput label="Some text..." />
+                                <MDBInput 
+                                    label="Some text..."
+                                    value={this.state.messageInput}
+                                    onChange={(e) => this.setState({messageInput: e.target.value})}
+                                />
                             </MDBCol>
 
                             <MDBCol size="2">
-                                <MDBBtn id="post-btn">POST</MDBBtn>
+                                <MDBBtn id="post-btn" onClick={this.handlePostClick}>POST</MDBBtn>
                             </MDBCol>
                         </MDBRow>
 
@@ -74,6 +100,8 @@ class EventDetailsPage extends Component {
                         <Post user="Darren Cheung" date="8:00pm Jan 21"
                               message="Greyhound divisively hello coldly wonderfully marginally far..."
                         />
+
+                        {postCards}
                     </MDBCardBody>
                 </div>
             </div>
