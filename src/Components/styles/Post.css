@@ -1,0 +1,60 @@
+.post {
+    font-family: "Roboto";
+    margin-bottom: 2rem;
+}
+
+.post-img {
+    width: 60px;
+    height: 60px;
+}
+
+.post-user {
+    font-weight: 600;
+    margin: 0 1rem 0 0;
+}
+
+.post-top-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    margin-bottom: 0.35rem;
+}
+
+.hand-icon {
+    width: 30px !important;
+    margin-right: 0.5rem;
+}
+
+.post-date {
+    margin: 0;
+    font-size: 0.95rem;
+}
+
+.post-message {
+    color: gray;
+}
+
+.message-icon {
+    width: 45px;
+    height: 45px;
+    margin-right: 1rem;
+}
+
+.post-right-bar {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.thumb-count {
+    margin: 0;
+    font-weight: bold;
+    color: #757575;
+    font-size: 1.2rem;
+    margin-right: 2rem;
+    margin-left: 1rem;
+}
+
+.post-main-section, .post-right-bar {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.12);
+}

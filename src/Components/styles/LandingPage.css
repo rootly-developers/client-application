@@ -88,16 +88,6 @@
     float: right;
 }
 
-#make-event-btn {
-    height: 30px;
-    text-align: center;
-    padding: 0.3rem;
-    padding-left: 1rem;
-    padding-right: 1rem;
-    border-radius: 1rem;
-    background-color: #6202EE !important;
-}
-
 #event-card-description {
     margin-left: 2rem;
     margin-right: 2rem;
