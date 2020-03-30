@@ -19,7 +19,7 @@ const Post = (props) => {
                 </MDBRow>
 
                 <MDBRow>
-                    <MDBCol size="8">
+                    <MDBCol size="12">
                         <p className="post-message">{props.message}</p>
                     </MDBCol>
                 </MDBRow>
