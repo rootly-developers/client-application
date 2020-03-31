@@ -60,22 +60,20 @@ class EventListPage extends Component {
     render() {
         const events = this.state.events;
         let eventCards = events.map((events, i) => {
-            return <div>
-                        <MDBRow>
-                            <MDBCol size="12">
-                                <EventCard title={events.title} description={events.description} 
-                                        attendees={events.attendees} maxAttendees={events.maxattendees}
-                                        src={events.imgSrc} key={i}
-                                />
-                            </MDBCol>
-                        </MDBRow>
-                    </div>
+            return  <MDBRow>
+                        <MDBCol size="12">
+                            <EventCard title={events.title} description={events.description} 
+                                    attendees={events.attendees} maxAttendees={events.maxattendees}
+                                    src={events.imgSrc} key={i}
+                            />
+                        </MDBCol>
+                     </MDBRow>
         });
         return(
             <div className="app-page" id="eventlist-page">
                 <div className="app-page-fill"></div>
                 <div className="app-main-section">
-                    <h1 id="event-list-header">{this.state.location}</h1>
+                    <h1 className="app-page-header">{this.state.location}</h1>
                     <MDBCardBody className="page-body">
                         <MDBRow>
                             <MDBCol size="12">
