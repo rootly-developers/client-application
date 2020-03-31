@@ -1,0 +1,31 @@
+#create-page #create-form {
+    background: #fafcfe;
+    padding: 1rem 3rem;
+    box-shadow: 0 0 20px #B9B9B9, 4px 4px #FF6584;
+    border-radius: 1rem;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#create-form .md-form {
+    width: 80%;
+}
+
+#create-page {
+    margin-top: 4em;
+    width: 60%;
+}
+
+#create-page h1 {
+    font-weight: 600;
+    font-size: 3.5rem;
+}
+
+#create-event {
+    background-color: #6202EE !important;
+    border-radius: 200px;
+}
+
+
