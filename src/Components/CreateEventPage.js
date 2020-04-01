@@ -28,6 +28,7 @@ class CreateEventPage extends Component {
             address: this.state.address,
             city: this.state.city,
             link: this.state.link
+            // this should have more data but not sure what to do yet for elements that exist only in mdb pro (select/datepicker/timepicker)
         })
         .then((res) => {console.log(res)})
     }
@@ -84,7 +85,7 @@ class CreateEventPage extends Component {
                         label="Cross-post Link"
                         onChange={(e) => this.setState({link: e.target.value})}
                     />
-                    <SubmitButton id="create-event" text="Submit" eventName={this.state.eventName} exDescription={this.state.exDescription} 
+                    <SubmitButton id="create-event" text="Submit" type={"createEvent"} eventName={this.state.eventName} exDescription={this.state.exDescription} 
                     inDescription={this.state.inDescription} address={this.state.address} city={this.state.city} link={this.state.link}
                     />
                 </form>
