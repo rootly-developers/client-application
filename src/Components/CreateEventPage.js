@@ -21,7 +21,7 @@ class CreateEventPage extends Component {
         return(
             <MDBContainer id="create-page">
                 <h1>Make Event</h1>
-                <form onSubmit={this.handleSubmit} id="create-form">
+                <form id="create-form">
                     <MDBInput
                         className="textField"
                         autoComplete="off"
