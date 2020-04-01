@@ -9,9 +9,8 @@ class CreateEventPage extends Component {
         super();
         this.state = {
             eventName: '',
-            ex_description: '',
-            in_description: '',
-            ex_description: '',
+            exDescription: '',
+            inDescription: '',
             address: '',
             city: '',
             link: ''
@@ -22,7 +21,7 @@ class CreateEventPage extends Component {
     handleSubmit(e) {
         e.preventDefault();
 
-        axios.post('http://localhost:8080/events/new', {
+        axios.post('http://localhost:8080/events/', {
             email: this.state.email,
             password: this.state.password
         })
@@ -45,17 +44,17 @@ class CreateEventPage extends Component {
                         className="textField"
                         autoComplete="off"
                         type="text"
-                        name="ex_description"
+                        name="exDescription"
                         label="External Description"
-                        onChange={(e) => this.setState({ex_description: e.target.value})}
+                        onChange={(e) => this.setState({exDescription: e.target.value})}
                     />
                     <MDBInput
                         className="textField"
                         autoComplete="off"
                         type="text"
-                        name="in_description"
+                        name="inDescription"
                         label="Internal Description"
-                        onChange={(e) => this.setState({in_description: e.target.value})}
+                        onChange={(e) => this.setState({inDescription: e.target.value})}
                     />
                     <MDBInput
                         className="textField"
@@ -81,8 +80,8 @@ class CreateEventPage extends Component {
                         label="Cross-post Link"
                         onChange={(e) => this.setState({link: e.target.value})}
                     />
-                    <SubmitButton id="create-event" text="Submit" eventName={this.state.eventName} ex_description={this.state.ex_description} 
-                    in_description={this.state.in_description} address={this.state.address} city={this.state.city} link={this.state.link}
+                    <SubmitButton id="create-event" text="Submit" eventName={this.state.eventName} exDescription={this.state.exDescription} 
+                    inDescription={this.state.inDescription} address={this.state.address} city={this.state.city} link={this.state.link}
                     />
                 </form>
             </MDBContainer>
