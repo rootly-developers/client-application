@@ -22,8 +22,12 @@ class CreateEventPage extends Component {
         e.preventDefault();
 
         axios.post('http://localhost:8080/events/', {
-            email: this.state.email,
-            password: this.state.password
+            eventName: this.state.eventName,
+            exDescription: this.state.exDescription,
+            inDescription: this.state.inDescription,
+            address: this.state.address,
+            city: this.state.city,
+            link: this.state.link
         })
         .then((res) => {console.log(res)})
     }
