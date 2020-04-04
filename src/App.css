@@ -11,6 +11,10 @@
   --white: #ffffff;
 }
 
+h1 {
+  font-size: 4rem;
+}
+
 #app-container {
   font-family: 'Red Hat Display';
   padding: 0;

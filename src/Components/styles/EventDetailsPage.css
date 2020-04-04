@@ -26,10 +26,6 @@
     height: 60px;
 }
 
-#event-details-main h1 {
-    font-size: 3rem;
-}
-
 #event-details-date {
     font-weight: 600;
     text-align: right;
