@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
-import { useHistory } from 'react-router-dom';
-import SignUpBtn from './SignUpBtn.js';
+import SubmitButton from './SubmitButton.js'
 
-import {  MDBInput, MDBBtn, MDBRow, MDBCol, MDBContainer } from "mdbreact";
+import {  MDBInput, MDBRow, MDBCol, MDBContainer } from "mdbreact";
 import axios from "axios";
 import './styles/SignUpPage.css'
 
@@ -16,10 +15,33 @@ class SignUpPage extends Component {
             passwordVerify: '',
             city: ""
         }
+        this.handleSignUpRequest = this.handleSignUpRequest.bind(this);
+    }
+
+    handleSignUpRequest() {
+        const {firstName, lastName, password, city} = this.state;
+        return new Promise((resolve, reject) => {
+            axios.post(`http://localhost:8080/signup`, {
+                email: this.props.email, password: password
+            })
+            .then((res) => {
+                console.log(res);
+                if (res.status === 200) {
+                  axios.post(`http://localhost:8080/users`, {
+                    firstName: firstName, lastName: lastName, city: city
+                  })
+                  .then((res) => {
+                      console.log(res);
+                      if (res.status == 200) {
+                          resolve({redirectPath: "/verify", params: {email: this.props.location.email}});
+                      }
+                  })
+                }
+            })
+        })
     }
 
     render() {
-        let { firstName, lastName, password, city } = this.state;
         return(
             <MDBContainer id="signup-page">
                 <h1>New to the club huh?</h1>
@@ -74,11 +96,7 @@ class SignUpPage extends Component {
                         </MDBCol>
 
                         <MDBCol size="6" id="signup-btn-col">
-                            <SignUpBtn text="SIGN UP" id="signup-btn" 
-                                       email={this.props.location.email} password={password}
-                                       firstName={firstName} lastName={lastName}
-                                       city={city}
-                            />
+                            <SubmitButton id="signup-btn" text="SIGN UP" handleAPICall={this.handleSignUpRequest} />
                         </MDBCol>
                     </MDBRow>
                 </form>

@@ -11,6 +11,23 @@ class LandingPage extends Component {
         this.state = {
             email: ""
         }
+        this.handleAPICall = this.handleAPICall.bind(this);
+    }
+
+    handleAPICall() {
+        const email = this.state.email + "@uwaterloo.ca";
+        return new Promise((resolve, reject) => {
+            axios.get(`http://localhost:8080/users/exists?email=${email}`)
+            .then((res) => {    
+                if (res.status == 200) {
+                    let redirectPath = res.data.exists ? "/login":"/signup";
+                    resolve({redirectPath, params: { email: email } });
+                } 
+                else {
+                    reject("Error");
+                }
+            })
+        })
     }
 
     render() {
@@ -37,9 +54,7 @@ class LandingPage extends Component {
                                 value={this.state.email}
                                 onChange={(e) => this.setState({email: e.target.value})}
                             />
-                            <SubmitButton id="email-signup-btn" email={this.state.email + "@uwaterloo.ca"}
-                                          type={"landingPage"} text="GO!">
-                            </SubmitButton>
+                            <SubmitButton id="email-signup-btn"  text="GO!" handleAPICall={this.handleAPICall}/>
                         </form>
                     </MDBCol>
                 </MDBRow>

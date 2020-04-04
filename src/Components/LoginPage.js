@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { MDBInput, MDBContainer } from 'mdbreact';
-import SignInBtn from './SignInBtn';
+import SubmitButton from './SubmitButton';
 import axios from "axios";
 import './styles/LoginPage.css'
 
@@ -11,24 +11,36 @@ class LoginPage extends Component {
             email: '',
             password: ''
         }
-        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleLoginRequest = this.handleLoginRequest.bind(this);
     }
 
-    handleSubmit(e) {
-        e.preventDefault();
-
-        axios.post('http://localhost:8080/login', {
-            email: this.state.email,
-            password: this.state.password
+    handleLoginRequest() {
+        let { email, password } = this.state;
+        return new Promise((resolve, reject) => {
+            axios({
+                method: 'get',
+                url: "http://localhost:8080/users/verify",
+                headers: {
+                  'Content-Type': 'application/json',
+                  'email': email,
+                  'password': password
+                },
+              })
+              .then((res) => {
+                if (res.status == 200) {
+                    const redirectPath = res.data.isVerified ? "/events":"/verify";
+                    resolve({ redirectPath: redirectPath, params: { email: email }});
+                }
+              })
         })
-        .then((res) => {console.log(res)})
+
     }
 
     render() {
         return(
             <MDBContainer id="login-page">
                 <h1>Sign in</h1>
-                <form onSubmit={this.handleSubmit} id="login-form">
+                <form id="login-form">
                     <MDBInput
                         className="emailInput"
                         autoComplete="off"
@@ -49,7 +61,7 @@ class LoginPage extends Component {
                         value={this.state.lastName}
                         onChange={(e) => this.setState({password: e.target.value})}
                     />
-                    <SignInBtn email={this.state.email} password={this.state.password}/>
+                    <SubmitButton id="signin-btn" text="GO!" handleAPICall={this.handleLoginRequest} />
                 </form>
             </MDBContainer>
         );
