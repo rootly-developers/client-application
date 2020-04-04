@@ -1,7 +1,6 @@
 import { useHistory } from "react-router-dom";
-import React, { useEffect } from 'react';
+import React from 'react';
 import {MDBBtn} from "mdbreact";
-import axios from "axios";
 
 const SubmitButton = (props) => {
   let history = useHistory();

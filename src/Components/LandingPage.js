@@ -21,7 +21,7 @@ class LandingPage extends Component {
             .then((res) => {    
                 if (res.status == 200) {
                     let redirectPath = res.data.exists ? "/login":"/signup";
-                    resolve({redirectPath, params: { email: email, text: "helloworld" } });
+                    resolve({redirectPath, params: { email: email } });
                 } 
                 else {
                     reject("Error");
