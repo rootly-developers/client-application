@@ -6,7 +6,7 @@
 }
 
 #signup-page #signup-btn {
-    background-color: #6202EE !important;
+    background-color: var(--saturatedpurple) !important;
     border-radius: 2rem;
     width: 200px;
     letter-spacing: 0.75px;

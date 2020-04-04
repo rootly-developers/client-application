@@ -16,7 +16,7 @@
 }
 
 #landingpage h1 {
-    color: #190078;
+    color: var(--darkpurple);
     font-weight: 600;
     font-size: 60px;
 }
@@ -29,8 +29,8 @@
 #email-signup {
     width: 350px;
     height: 232px; 
-    background: #F2E7FE;
-    box-shadow: 0px 0px 20px #B9B9B9, 3px 3px #FF6584;
+    background: var(--lightpurple);
+    box-shadow: 0px 0px 20px #B9B9B9, 3px 3px var(--pink);
     border-radius: 1em;
     text-align: center;
     float: left;
@@ -39,7 +39,7 @@
 #email-signup h3 {
     padding-top: 10%;
     padding-bottom: 5%;
-    color: #190078;
+    color: var(--darkpurple);
     font-weight: 600;
 }
 
@@ -51,7 +51,7 @@
 }
 
 #email-signup-btn {
-    background-color: #6202EE !important;
+    background-color: var(--saturatedpurple) !important;
     border-radius: 200px;
 }
 
@@ -60,7 +60,7 @@
 }
 
 .text-section {
-    color: #190078;
+    color: var(--darkpurple);
     font-weight: 600;
     font-size: 2.7rem;
 }
@@ -94,8 +94,8 @@
 }
 
 #landingpage .md-addon {
-    border-bottom: 1.3px solid #190078;
-    color: #190078;
+    border-bottom: 1.3px solid var(--darkpurple);
+    color: var(--darkpurple);
 }
 
 #email-signup {

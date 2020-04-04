@@ -9,7 +9,7 @@
   }
   
   #bootstrap-override .blue {
-    background-color: #190078 !important;
+    background-color: var(--darkpurple) !important;
     border-radius:  0px 0px 26px 26px;
   }
   

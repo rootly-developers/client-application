@@ -1,7 +1,7 @@
 #login-page #login-form {
-    background: #F2E7FE;
+    background: var(--lightpurple);
     padding: 1rem 3rem;
-    box-shadow: 0 0 20px #B9B9B9, 4px 4px #FF6584;
+    box-shadow: 0 0 20px #B9B9B9, 4px 4px var(--pink);
     border-radius: 1rem;
     margin-top: 2rem;
     display: flex;
@@ -24,7 +24,7 @@
 }
 
 #login-page #signin-btn {
-    background-color: #6202EE !important;
+    background-color: var(--saturatedpurple) !important;
     border-radius: 3rem;
     width: 100px;
 }
