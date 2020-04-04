@@ -96,7 +96,7 @@ class SignUpPage extends Component {
                         </MDBCol>
 
                         <MDBCol size="6" id="signup-btn-col">
-                            <SubmitButton id="signup-btn" text="SIGN UP" handleAPICall={this.handleSignUpRequest} />
+                            <SubmitButton className="btn" id="signup-btn" text="SIGN UP" handleAPICall={this.handleSignUpRequest} />
                         </MDBCol>
                     </MDBRow>
                 </form>
