@@ -16,10 +16,11 @@
 }
 
 #profile-page .app-main-section {    
-    padding-top: 10rem;
+    padding-top: 12rem;
 }
 
 #profile-page .avatar{
+    margin-top: 5rem;
     border-radius: 50%;
     height: 15rem;
     display: block;
@@ -28,7 +29,7 @@
 }
 
 #profile-page .description {
-    padding: 6rem 15rem 2rem 15rem;
+    padding: 10rem 15rem 2rem 15rem;
 }
 
 #profile-page .utilities {
@@ -36,11 +37,7 @@
     padding: 0rem 0rem 4rem 0rem;
 }
 
-#profile-page .row{   
+#profile-page .row{
     display: flex;
-    justify-content: center;}
-
-#profile-page .btn{
-    background-color: #6202EE !important;
-    border-radius: 3rem;
+    justify-content: center;
 }

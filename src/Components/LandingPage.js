@@ -54,7 +54,7 @@ class LandingPage extends Component {
                                 value={this.state.email}
                                 onChange={(e) => this.setState({email: e.target.value})}
                             />
-                            <SubmitButton id="email-signup-btn"  text="GO!" handleAPICall={this.handleAPICall}/>
+                            <SubmitButton className="btn" id="email-signup-btn"  text="GO!" handleAPICall={this.handleAPICall}/>
                         </form>
                     </MDBCol>
                 </MDBRow>
