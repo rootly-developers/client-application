@@ -12,7 +12,7 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 80%;
+    width: 92%;
     margin: auto;
     color: var(--mediumpurple);
 }
@@ -24,6 +24,10 @@
 
 #eventlist-right-btns h4 {
     margin-left: 1em;
+}
+
+#eventlist-right-btns p {
+    margin-right: 1em;
 }
 
 

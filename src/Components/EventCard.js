@@ -20,7 +20,7 @@ const EventCard = (props) => {
             </MDBCol>
 
             <MDBCol size="1" className="eventcard-attendees-col">
-                <p>{attendeesMsg}</p>
+                <h4>{attendeesMsg}</h4>
             </MDBCol>
 
             <MDBCol size="3" className="eventcard-btn-col">

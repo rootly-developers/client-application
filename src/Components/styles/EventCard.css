@@ -8,8 +8,8 @@
   margin: 0 auto;
   margin-bottom: 0 !important;
   border-radius: 5px;
-  border: 1px solid #CCCCCC;
-  background-color: var(--white);
+  border-bottom: 1px solid #CCCCCC;
+  background-color: var(--lightgray);
 }
 
 .landing-page {
@@ -17,7 +17,7 @@
 }
 
 .event-card:hover {
-    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
+  box-shadow: 0 14px 28px rgba(0,0,0,0.25), 0 10px 10px rgba(0,0,0,0.22);
 }
 
 .event-card .col-3 {
@@ -41,19 +41,22 @@
 }
 
 .eventcard-attendees-col {
+  font-family: "Roboto";
   color: var(--darkpurple);
-  font-weight: 600;
+  font-weight: lighter;
   text-align: center;
   display: flex;
   justify-content: center;
 }
 
 .eventcard-content {
+  font-family: "Roboto";
+  color: black;
   padding-left: 1em;
 }
 
 .eventcard-title {
-  color: var(--darkpurple);
+  font-family: "Roboto";
 }
   
 .event-card p {

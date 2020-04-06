@@ -80,8 +80,8 @@ class EventListPage extends Component {
                                 <div id="eventlist-toolbar">
                                     <ChangeRegionDropDown onclick={this.handleChangeRegion}/>
                                     <div id="eventlist-right-btns">
-                                        <h4>Newest</h4>
-                                        <h4>Upcoming</h4>
+                                        <p>Newest</p>
+                                        <p>Upcoming</p>
                                     </div>
                                 </div>
                             </MDBCol>
