@@ -26,6 +26,7 @@ class EventDetailsPage extends Component {
                         <MDBCol size="12">
                             <Post user="Darren Cheung" date="8:00pm Jan 21"
                                   message={post.message} key={i}
+                                  threadType="message"
                             />
                         </MDBCol>
                      </MDBRow>
@@ -87,19 +88,27 @@ class EventDetailsPage extends Component {
 
                         <Post user="EventHelper" date="8:00pm Jan 21"
                               message="Hey Guys! Like for Attendance!"
+                              threadType="message"
                         />
 
                         <Post user="Darren Cheung" date="8:00pm Jan 21"
                               message="Greyhound divisively hello coldly wonderfully marginally far..."
+                              threadType="message"
                         />
 
                         <Post user="Darren Cheung" date="8:00pm Jan 21"
                               message="Greyhound divisively hello coldly wonderfully marginally far..."
+                              threadType="message"
                         />
 
                         <Post user="Darren Cheung" date="8:00pm Jan 21"
                               message="Greyhound divisively hello coldly wonderfully marginally far..."
+                              threadType="message"
                         />
+
+                        <Post action="Lulu L. has joined the event" threadType="action" />
+
+                        <Post action="Mickey D. has joined the event" threadType="action"/>
 
                         {postCards}
                     </MDBCardBody>
