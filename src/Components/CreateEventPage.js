@@ -22,8 +22,8 @@ class CreateEventPage extends Component {
             <div className="app-page" id="createevent-page">
                 <div className="app-page-fill"></div>
                 <div className="app-main-section">
+                    <h1 className="app-page-header">Make Event</h1>
                     <MDBContainer id="create-page">
-                        <div class="h5">Make Event</div>
                         <form id="create-form">
                             <MDBRow>
                                <MDBCol size="3">

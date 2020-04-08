@@ -6,7 +6,7 @@
     margin-top: 2rem;
     display: flex;
     flex-direction: column;
-    vertical-align: middle;
+    /* vertical-align: middle; */
     /* align-items: center; */
 }
 
