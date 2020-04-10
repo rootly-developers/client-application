@@ -19,11 +19,11 @@ class CreateEventPage extends Component {
 
     render() {
         return(
-            <div className="app-page" id="createevent-page">
+            <div className="app-page" id="create-page">
                 <div className="app-page-fill"></div>
                 <div className="app-main-section">
                     <h1 className="app-page-header">Make Event</h1>
-                    <MDBContainer id="create-page">
+                    <MDBContainer id="create-page-container">
                         <form id="create-form">
                             <MDBRow>
                                <MDBCol size="3">

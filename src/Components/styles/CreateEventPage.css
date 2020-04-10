@@ -1,4 +1,4 @@
-#create-page #create-form {
+#create-page-container #create-form {
     background: #fafcfe;
     padding: 1rem 3rem;
     box-shadow: 0 0 20px #B9B9B9, 4px 4px #FF6584;
@@ -14,14 +14,15 @@
     width: 80%;
 }
 
-#create-page {
-    margin-top: 4em;
+#create-page-container {
+    margin-top: 1em;
     width: 80%;
 }
 
 #create-page h1 {
     font-weight: 600;
     font-size: 3.5rem;
+    margin-left: 12rem;
 }
 
 #create-event {
