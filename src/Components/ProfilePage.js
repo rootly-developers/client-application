@@ -26,8 +26,8 @@ class ProfilePage extends Component {
                         <MDBRow>
                                 <div className="description">
                                     <h2><b>{this.state.name}</b></h2>
-                                    <h4>{this.state.socialMedia}</h4>
                                     <h4>{this.state.program}</h4>
+                                    <h4>{this.state.socialMedia}</h4>
                                     <p>{this.state.biography}</p>
                                 </div>
                         </MDBRow>

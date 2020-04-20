@@ -23,7 +23,7 @@ class EventListPage extends Component {
                 "organizerid": "yewrNHUjMTa7IAfbXsObfQJOzJB3",
                 "status": "ACTIVE",
                 "title": "San Francisco",
-                "description": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident et accusamus iusto odio dignissimos et dolorum fuga.",
+                "description": "At vero eos et et quas molestias excepturi sint oiusto odio dignissimos et dolorum fuga.",
                 "address": "Splunk @ SF",
                 "city": "boston",
                 "starttime": "+158365-11-11T08:00:00.000Z",
