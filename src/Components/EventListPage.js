@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody } from "mdbreact";
 import EventCard from './EventCard.js'
+import Images from "../images.js"
 import ChangeRegionDropDown from './ChangeRegionDropDown.js'
 import './styles/EventListPage.css'
 
@@ -31,7 +32,7 @@ class EventListPage extends Component {
                 "maxattendees": 9,
                 "created": "2020-03-16T03:12:20.337Z",
                 "lastupdated": "2020-03-16T03:12:20.337Z",
-                "imgSrc": "https://mdbootstrap.com/img/Photos/Others/images/34.jpg"
+                "imgSrc": Images.events.adventure
             },
             {
                 "id": 1,
@@ -47,7 +48,7 @@ class EventListPage extends Component {
                 "maxattendees": 9,
                 "created": "2020-03-16T03:11:52.198Z",
                 "lastupdated": "2020-03-16T03:11:52.198Z",
-                "imgSrc": "https://mk0peerspacerest2v8e.kinstacdn.com/wp-content/uploads/play-3978841_1280-1200x600.jpg"
+                "imgSrc": Images.events.coffee
             }
         ]    
         });
@@ -90,7 +91,7 @@ class EventListPage extends Component {
                         <MDBRow>
                             <MDBCol size="12">
                                 <EventCard title="Rockclimbing at Phil's" description="No one has made this event yet...It could be you!"  sample={true}
-                                            src="https://images.unsplash.com/photo-1564769662533-4f00a87b4056?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"
+                                            src={Images.events.theatre}
                                 />
                             </MDBCol>
                         </MDBRow>
@@ -98,7 +99,7 @@ class EventListPage extends Component {
                         <MDBRow>
                             <MDBCol size="12">
                                 <EventCard title="Bubble Tea at Icon" description="No one has made this event yet...It could be you!" sample={true}
-                                            src="https://assets.epicurious.com/photos/5953ca064919e41593325d97/6:4/w_620%2Ch_413/bubble_tea_recipe_062817.jpg"
+                                            src={Images.events.games}
                                 />
                             </MDBCol>
                         </MDBRow>
