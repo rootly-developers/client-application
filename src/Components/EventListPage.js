@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody } from "mdbreact";
-import EventCard from './EventCard.js';
-import ChangeRegionDropDown from './ChangeRegionDropDown.js';
+import EventCard from './EventCard.js'
+import Images from "../images.js"
+import ChangeRegionDropDown from './ChangeRegionDropDown.js'
 import axios from "axios";
 import './styles/EventListPage.css'
 
@@ -107,8 +108,8 @@ class EventListPage extends Component {
                                 <div id="eventlist-toolbar">
                                     <ChangeRegionDropDown onclick={this.handleChangeRegion}/>
                                     <div id="eventlist-right-btns">
-                                        <h4>Newest</h4>
-                                        <h4>Upcoming</h4>
+                                        <p>Newest</p>
+                                        <p>Upcoming</p>
                                     </div>
                                 </div>
                             </MDBCol>
@@ -117,7 +118,7 @@ class EventListPage extends Component {
                         <MDBRow>
                             <MDBCol size="12">
                                 <EventCard title="Rockclimbing at Phil's" description="No one has made this event yet...It could be you!"  sample={true}
-                                            src="https://images.unsplash.com/photo-1564769662533-4f00a87b4056?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"
+                                            src={Images.events.theatre}
                                 />
                             </MDBCol>
                         </MDBRow>
@@ -125,7 +126,7 @@ class EventListPage extends Component {
                         <MDBRow>
                             <MDBCol size="12">
                                 <EventCard title="Bubble Tea at Icon" description="No one has made this event yet...It could be you!" sample={true}
-                                            src="https://assets.epicurious.com/photos/5953ca064919e41593325d97/6:4/w_620%2Ch_413/bubble_tea_recipe_062817.jpg"
+                                            src={Images.events.games}
                                 />
                             </MDBCol>
                         </MDBRow>
