@@ -28,8 +28,20 @@ class LoginPage extends Component {
               })
               .then((res) => {
                 if (res.status == 200) {
-                    const redirectPath = res.data.isVerified ? "/events":"/verify";
-                    resolve({ redirectPath: redirectPath, params: { email: email }});
+                    if(res.data.isVerified) {
+                        axios.post('http://localhost:8080/login', {
+                            email: this.state.email,
+                            password: this.state.password
+                        })
+                        .then((res) => {
+                            console.log(res);
+                            resolve({ redirectPath: "/events", params: { token: res.data.token }});
+                        })
+                    }
+                    else {
+                        resolve({ redirectPath: "/verify", params: { email: email }});
+                    }
+                    
                 }
               })
         })

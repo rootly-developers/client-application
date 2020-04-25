@@ -22,13 +22,14 @@ class SignUpPage extends Component {
         const {firstName, lastName, password, city} = this.state;
         return new Promise((resolve, reject) => {
             axios.post(`http://localhost:8080/signup`, {
-                email: this.props.email, password: password
+                email: this.props.location.email, password: password
             })
             .then((res) => {
                 console.log(res);
                 if (res.status === 200) {
+                    console.log(res.data.token);
                   axios.post(`http://localhost:8080/users`, {
-                    firstName: firstName, lastName: lastName, city: city
+                    firstName: firstName, lastName: lastName, city: city, token: res.data.token
                   })
                   .then((res) => {
                       console.log(res);
