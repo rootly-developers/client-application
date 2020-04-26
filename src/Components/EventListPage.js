@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody } from "mdbreact";
 import EventCard from './EventCard.js'
-import Images from "../images.js"
 import ChangeRegionDropDown from './ChangeRegionDropDown.js'
 import axios from "axios";
 import './styles/EventListPage.css'
@@ -91,8 +90,8 @@ class EventListPage extends Component {
             return  <MDBRow>
                         <MDBCol size="12">
                             <EventCard title={events.title} description={events.description} 
-                                    attendees={events.attendees} maxAttendees={events.maxattendees}
-                                    src={events.imgSrc} key={i}
+                                    attendees={events.attendees} maxAttendees={events.max_attendees}
+                                    type={events.event_type} key={i}
                             />
                         </MDBCol>
                      </MDBRow>
@@ -118,7 +117,7 @@ class EventListPage extends Component {
                         <MDBRow>
                             <MDBCol size="12">
                                 <EventCard title="Rockclimbing at Phil's" description="No one has made this event yet...It could be you!"  sample={true}
-                                            src={Images.events.theatre}
+                                            type="SPORTS"
                                 />
                             </MDBCol>
                         </MDBRow>
@@ -126,7 +125,7 @@ class EventListPage extends Component {
                         <MDBRow>
                             <MDBCol size="12">
                                 <EventCard title="Bubble Tea at Icon" description="No one has made this event yet...It could be you!" sample={true}
-                                            src={Images.events.games}
+                                            src="COFFEE"
                                 />
                             </MDBCol>
                         </MDBRow>

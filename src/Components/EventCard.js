@@ -6,10 +6,30 @@ const EventCard = (props) => {
     let btnMsg = props.sample ? "MAKE EVENT":"JOIN";
     let attendeesMsg = props.attendees ? (props.attendees + "/" + props.maxAttendees):""; 
     let eventCardClass = "event-card " + props.location;
+    
+    function getImgSrcForType(type) {
+        switch(type) {
+            case "ADVENTURE":
+                return '/images/events/adventure.png';
+            case "COFFEE":
+                return '/images/events/coffee.png';
+            case "GAMES":
+                return '/images/events/games.png';
+            case "IDEAS":
+                return '/images/events/ideas.png';
+            case "SPORTS":
+                return '/images/events/sports.png';    
+            case "THEATRE":
+                return '/images/events/theatre.png';
+            default:
+                return '/images/events/coffee.png';
+        }
+    }
+    
     return (
         <MDBRow className={eventCardClass}>
             <MDBCol size="3">
-                <img className="img-fluid" src={props.src}></img>
+                <img className="img-fluid" src={getImgSrcForType(props.src)}></img>
             </MDBCol>
             
             <MDBCol size="5" className="eventcard-content-col">
@@ -29,5 +49,5 @@ const EventCard = (props) => {
         </MDBRow>
     );
   }
-  
-  export default EventCard
+
+export default EventCard
