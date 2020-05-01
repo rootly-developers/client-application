@@ -20,3 +20,8 @@
   #bootstrap-override .navbar-collapse .nav-item {
     padding: 5px;
   }
+  
+#logo {
+  height: 2.5rem;
+  margin-bottom: 0.5rem;
+}
