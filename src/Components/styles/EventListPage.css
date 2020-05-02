@@ -2,9 +2,13 @@
     margin-top: 1em;
 }
 
+#eventlist-page {
+    height: 100vh;
+}
+
 #eventlist-page h1 {
     font-weight: 600;
-    font-size: 6rem;
+    font-size: 5rem;
 }
 
 #eventlist-toolbar {
