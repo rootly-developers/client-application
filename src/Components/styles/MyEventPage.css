@@ -3,7 +3,13 @@
     margin-top: -3rem;
 }
 
-.tab{
+.tab {
+    background-color: var(--pink);
+    color: white;
+    font-weight: bold;
+}
+
+.tab .nav-link.active{
     background-color: white;
     color: var(--pink);
     font-weight: bold;

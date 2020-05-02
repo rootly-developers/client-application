@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody } from "mdbreact";
+import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBTabPane, MDBTabContent, MDBNav, MDBNavItem, MDBNavLink } from "mdbreact";
 import EventCard from './EventCard.js'
 import Images from "../images.js"
 import axios from "axios";
@@ -45,6 +45,7 @@ class MyEventPage extends Component {
     constructor(){
         super();
         this.state = {
+            activeItem: "1",
             events: []    
         }
         this.setNewEvents = this.setNewEvents.bind(this);
@@ -78,6 +79,14 @@ class MyEventPage extends Component {
           })
     }
 
+    toggle = tab => e => {
+      if (this.state.activeItem !== tab) {
+        this.setState({
+          activeItem: tab
+        });
+      }
+    };
+
     render() {
         const events = this.state.events;
         let eventCards = events.map((events, i) => {
@@ -96,18 +105,22 @@ class MyEventPage extends Component {
                 <div className="app-main-section">
                     <h1 className="app-page-header">My Events</h1>
                     <div id="main-content">
-                        <ul class="nav nav-tabs justify-content-end" id="myTab" role="tablist">
-                            <li class="nav-item" id="act">
-                                <a class="nav-link tab" data-toggle="tab" href="#active">Active</a>
-                            </li>
-                            <li class="nav-item" id="arch">
-                                <a class="nav-link tab" data-toggle="tab" href="#archived">Archived</a>
-                            </li>
-                        </ul>
+                        <MDBNav className="nav-tabs justify-content-end mt-5">
+                            <MDBNavItem>
+                                <MDBNavLink className = 'tab' link to="#" active={this.state.activeItem === "1"} onClick={this.toggle("1")} role="tab" >
+                                    Active
+                                </MDBNavLink>
+                            </MDBNavItem>
+                            <MDBNavItem>
+                                <MDBNavLink className = 'tab' link to="#" active={this.state.activeItem === "2"} onClick={this.toggle("2")} role="tab" >
+                                    Archived
+                                </MDBNavLink>
+                            </MDBNavItem>
+                        </MDBNav>
 
                         <MDBCardBody className="page-body">
-                        <div class="tab-content" id="myTabContent">
-                            <div class="tab-pane fade show active" id="active" role="tabpanel" aria-labelledby="active-tab">
+                        <MDBTabContent activeItem={this.state.activeItem} >
+                            <MDBTabPane tabId="1" role="tabpanel">
                                 <MDBRow>
                                     <MDBCol size="12">
                                         <EventCard title="Rockclimbing at Phil's" description="No one has made this event yet...It could be you!"  sample={true}
@@ -115,8 +128,8 @@ class MyEventPage extends Component {
                                         />
                                     </MDBCol>
                                 </MDBRow>
-                            </div>
-                            <div class="tab-pane fade" id="archived" role="tabpanel" aria-labelledby="archived-tab">
+                            </MDBTabPane>
+                            <MDBTabPane tabId="2" role="tabpanel">
                                 <MDBRow>
                                     <MDBCol size="12">
                                         <EventCard title="Bubble Tea at Icon" description="No one has made this event yet...It could be you!" sample={true}
@@ -124,8 +137,8 @@ class MyEventPage extends Component {
                                         />
                                     </MDBCol>
                                 </MDBRow>
-                            </div>
-                        </div>
+                                </MDBTabPane>
+                        </MDBTabContent>
 
                             { eventCards }
                         </MDBCardBody>
