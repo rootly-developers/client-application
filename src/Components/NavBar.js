@@ -13,9 +13,11 @@ import EventDetailsPage from '../Components/EventDetailsPage'
 import MyEventPage from '../Components/MyEventPage'
 import SignUpPage from '../Components/SignUpPage'
 import VerifyPage from '../Components/VerifyPage'
+import logo from '../images/logos/light-logo.svg';
 import './styles/NavBar.css'
 
 class NavBar extends Component {
+  
 state = {
   isOpen: false,
   active: true
@@ -31,22 +33,22 @@ render() {
     <Router>
       <MDBNavbar color="blue" dark expand="md" fixed="top" id="nav-bar">
         <MDBNavbarBrand>
-          <strong className="white-text">Rootly</strong>
+          <MDBNavLink to="/"><img id="logo" src={logo}></img></MDBNavLink>
         </MDBNavbarBrand>
         <MDBNavbarToggler onClick={this.toggleCollapse} />
         <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
           <MDBNavbarNav left>
             <MDBNavItem active={active}>
-              <MDBNavLink to="/">Home</MDBNavLink>
+              <MDBNavLink to="/"><i class="fas fa-plus-circle fa-2x"></i></MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
               <MDBNavLink to="/login">Login</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
-              <MDBNavLink to="/events">Events</MDBNavLink>
+              <MDBNavLink to="/events"><i class="far fa-calendar fa-2x"></i></MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
-              <MDBNavLink to="/profile">Profile</MDBNavLink>
+              <MDBNavLink to="/profile"><i class="fas fa-user-circle fa-2x"></i></MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
               <MDBDropdown>
