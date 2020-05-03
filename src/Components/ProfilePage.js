@@ -35,6 +35,7 @@ class ProfilePage extends Component {
                             <div className="utilities">
                                 <MDBBtn type="" className="btn editProfile">Edit Profile</MDBBtn>
                                 <MDBBtn type="" className="btn changePassword">Change Password</MDBBtn>
+                                <MDBBtn type="" className="btn logout">logout</MDBBtn>
                             </div>
                         </MDBRow>
                     </div>
