@@ -1,3 +1,43 @@
+#myevents-page .col-12 {
+    margin-top: 1em;
+}
+
+#myevents-page {
+    height: 100vh;
+}
+
+#myevents-page .page-body {
+    border-radius: 1rem 0px 1rem 1rem;
+}
+
+#myevents-page h1 {
+    font-weight: 600;
+    font-size: 5rem;
+}
+
+#myevents-toolbar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 92%;
+    margin: auto;
+    color: var(--mediumpurple);
+}
+
+#myevents-right-btns {
+    display: flex;
+    flex-direction: row;
+}
+
+#myevents-right-btns h4 {
+    margin-left: 1em;
+}
+
+#myevents-right-btns p {
+    margin-right: 1em;
+}
+
 #main-content{
     z-index: 1;
     margin-top: -5rem;
@@ -13,10 +53,6 @@
     background-color: white;
     color: var(--pink);
     font-weight: bold;
-}
-
-.page-body {
-    border-radius: 1rem 0px 1rem 1rem;
 }
 
 .nav-tabs .nav-link {

@@ -3,7 +3,6 @@ import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBTabPane, MDBTabC
 import EventCard from './EventCard.js'
 import Images from "../images.js"
 import axios from "axios";
-import './styles/EventListPage.css'
 import './styles/MyEventPage.css'
 
 const eventTemplates = [
@@ -100,7 +99,7 @@ class MyEventPage extends Component {
                      </MDBRow>
         });
         return(
-            <div className="app-page" id="eventlist-page">
+            <div className="app-page" id="myevents-page">
                 <div className="app-page-fill"></div>
                 <div className="app-main-section">
                     <h1 className="app-page-header">My Events</h1>

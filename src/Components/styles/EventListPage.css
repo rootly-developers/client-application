@@ -1,9 +1,19 @@
 #eventlist-page .col-12 {
-    margin-top: 1em;
+    margin-bottom: 1em;
 }
 
 #eventlist-page {
     height: 100vh;
+}
+
+#eventlist-page .sort{
+    background-color: var(--pink) !important;
+    color: white;
+}
+
+#eventlist-page .sort.active{
+    background-color: white !important;
+    color: var(--pink);
 }
 
 #eventlist-page h1 {
@@ -19,6 +29,17 @@
     width: 92%;
     margin: auto;
     color: var(--mediumpurple);
+}
+
+#eventlist-page .app-page-header:hover {
+    text-decoration: underline;
+    color: var(--darkpurple);
+}
+
+#eventlist-page .fa-sort{
+    margin-top: 1rem;
+    margin-right: 1rem;
+    color: var(--pink);
 }
 
 #eventlist-right-btns {

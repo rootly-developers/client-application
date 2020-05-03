@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
-import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody } from "mdbreact";
+import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBBtn, MDBIcon } from "mdbreact";
 import EventCard from './EventCard.js'
 import Images from "../images.js"
-import ChangeRegionDropDown from './ChangeRegionDropDown.js'
+import ChangeRegionModal from './ChangeRegionModal.js'
 import axios from "axios";
 import './styles/EventListPage.css'
 
@@ -46,6 +46,7 @@ class EventListPage extends Component {
         super();
         this.state = {
             location: "Seattle",
+            sort: true,
             events: []    
         }
         this.handleChangeRegion = this.handleChangeRegion.bind(this);
@@ -57,7 +58,8 @@ class EventListPage extends Component {
     }
 
     handleChangeRegion(e) {
-        this.setState({ location: e.target.innerHTML }, this.setNewEvents);
+        console.log(e.target.textContent);
+        this.setState({ location: e.target.textContent }, this.setNewEvents);
     }
 
     setNewEvents() {
@@ -85,6 +87,15 @@ class EventListPage extends Component {
           })
     }
 
+    toggle = id => e => {
+        if ((id == "Newest" && this.state.sort == false) || (id == "Upcoming" && this.state.sort == true) ){
+            this.setState({
+                sort: !this.state.sort
+              });
+        }
+        console.log(this.state.sort)
+      }
+
     render() {
         const events = this.state.events;
         let eventCards = events.map((events, i) => {
@@ -101,15 +112,21 @@ class EventListPage extends Component {
             <div className="app-page" id="eventlist-page">
                 <div className="app-page-fill"></div>
                 <div className="app-main-section">
-                    <h1 className="app-page-header">{this.state.location}</h1>
+                    <div className="app-page-header">
+                        <ChangeRegionModal className="app-page-header" value={this.state.location} onclick={this.handleChangeRegion}/>
+                    </div>
                     <MDBCardBody className="page-body">
                         <MDBRow>
                             <MDBCol size="12">
                                 <div id="eventlist-toolbar">
-                                    <ChangeRegionDropDown onclick={this.handleChangeRegion}/>
                                     <div id="eventlist-right-btns">
-                                        <p>Newest</p>
-                                        <p>Upcoming</p>
+                                        <i class="fas fa-sort fa-2x"></i>
+                                        <MDBBtn id="Newest" className="sort" onClick={this.toggle("Newest")} active={this.state.sort}>
+                                             Newest
+                                        </MDBBtn>
+                                        <MDBBtn id="Upcoming" className="sort" onClick={this.toggle("Upcoming")} active={!this.state.sort}>
+                                             Upcoming
+                                        </MDBBtn>
                                     </div>
                                 </div>
                             </MDBCol>
