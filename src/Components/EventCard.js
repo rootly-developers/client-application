@@ -30,7 +30,7 @@ const EventCard = (props) => {
     return (
         <MDBRow className={eventCardClass}>
             <MDBCol size="3">
-                <img className="img-fluid" src={getImgSrcForType(props.src)}></img>
+                <img className="img-fluid" src={getImgSrcForType(props.type)}></img>
             </MDBCol>
             
             <MDBCol size="5" className="eventcard-content-col">

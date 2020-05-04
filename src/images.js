@@ -15,6 +15,11 @@ const images = {
         ideas: '/images/events/ideas.png',
         sports: '/images/events/sports.png',
         theatre: '/images/events/theatre.png'
+    },
+
+    logos: {
+        light: '/images/logos/light-logo.svg',
+        dark: '/images/logos/dark-logo.svg'
     }
 };
 

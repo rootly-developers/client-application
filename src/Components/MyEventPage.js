@@ -94,7 +94,7 @@ class MyEventPage extends Component {
                         <MDBCol size="12">
                             <EventCard title={events.title} description={events.description} 
                                     attendees={events.attendees} maxAttendees={events.maxattendees}
-                                    src={events.imgSrc} key={i}
+                                    type={events.type} key={i}
                             />
                         </MDBCol>
                      </MDBRow>
@@ -124,7 +124,7 @@ class MyEventPage extends Component {
                                 <MDBRow>
                                     <MDBCol size="12">
                                         <EventCard title="Rockclimbing at Phil's" description="No one has made this event yet...It could be you!"  sample={true}
-                                                    src={Images.events.theatre}
+                                                    type="GAMES"
                                         />
                                     </MDBCol>
                                 </MDBRow>
@@ -133,7 +133,7 @@ class MyEventPage extends Component {
                                 <MDBRow>
                                     <MDBCol size="12">
                                         <EventCard title="Bubble Tea at Icon" description="No one has made this event yet...It could be you!" sample={true}
-                                                    src={Images.events.games}
+                                                    type="THEATRE"
                                         />
                                     </MDBCol>
                                 </MDBRow>
