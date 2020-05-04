@@ -81,7 +81,7 @@ class CreateEventPage extends Component {
                         <form id="create-form">
                             <MDBRow>
                                <MDBCol size="3">
-                                    <h4>Event Name:</h4>
+                                    <h5>Event Name:</h5>
                                </MDBCol>
                                <MDBCol size="9">
                                     <MDBInput
@@ -96,7 +96,7 @@ class CreateEventPage extends Component {
                             
                             <MDBRow>
                                <MDBCol size="3">
-                                    <h4>External Description:</h4>
+                                    <h5>External Description:</h5>
                                </MDBCol>
                                <MDBCol size="9">
                                     <MDBInput
@@ -126,7 +126,7 @@ class CreateEventPage extends Component {
 
                             <MDBRow>
                                <MDBCol size="3">
-                                    <h4>Address:</h4>
+                                    <h5>Address:</h5>
                                </MDBCol>
                                <MDBCol size="9">
                                     <MDBInput
@@ -141,7 +141,7 @@ class CreateEventPage extends Component {
 
                             <MDBRow>
                                <MDBCol size="3">
-                                    <h4>Region:</h4>
+                                    <h5>Region:</h5>
                                </MDBCol>
                                <MDBCol size="9">
                                     <Select options={options} onChange={(e) => this.setState({region: this.value})}/>
@@ -150,7 +150,7 @@ class CreateEventPage extends Component {
 
                             <MDBRow>
                                 <MDBCol size="3">
-                                    <h4>Party Cap:</h4>
+                                    <h5>Party Cap:</h5>
                                </MDBCol>
                                <MDBCol size="3">
                                     <MDBInput
@@ -163,7 +163,7 @@ class CreateEventPage extends Component {
                                 </MDBCol> 
 
                                <MDBCol size="3">
-                                    <h4>Date:</h4>
+                                    <h5>Date:</h5>
                                </MDBCol>
                                <MDBCol size="3">
                                     <DatePicker
@@ -175,7 +175,7 @@ class CreateEventPage extends Component {
 
                             <MDBRow>
                                <MDBCol size="3">
-                                    <h4>Start Time:</h4>
+                                    <h5>Start Time:</h5>
                                </MDBCol>
                                <MDBCol size="3">
                                     <TimePicker
@@ -184,7 +184,7 @@ class CreateEventPage extends Component {
                                     />
                                 </MDBCol>   
                                 <MDBCol size="3">
-                                    <h4>End Time:</h4>
+                                    <h5>End Time:</h5>
                                </MDBCol>
                                <MDBCol size="3">
                                     <TimePicker
@@ -196,7 +196,7 @@ class CreateEventPage extends Component {
 
                             <MDBRow>
                                <MDBCol size="3">
-                                    <h4>Cross-post Link:</h4>
+                                    <h5>Cross-post Link:</h5>
                                </MDBCol>
                                <MDBCol size="9">
                                     <MDBInput
