@@ -3,7 +3,14 @@ import { MDBInput, MDBContainer, MDBRow, MDBCol } from 'mdbreact';
 import './styles/CreateEventPage.css';
 import SubmitButton from './SubmitButton';
 import axios from "axios";
+import Select from 'react-select'
 
+const options = [
+    { value: 'San Francisco', label: 'San Francisco' },
+    { value: 'Toronto', label: 'Toronto' },
+    { value: 'Peterborough', label: 'Peterborough' }
+  ]
+  
 class CreateEventPage extends Component {
     constructor(){
         super();
@@ -13,6 +20,7 @@ class CreateEventPage extends Component {
             inDescription: '',
             address: '',
             city: '',
+            region: '',
             link: ''
         }
     }
@@ -83,6 +91,15 @@ class CreateEventPage extends Component {
                                         onChange={(e) => this.setState({address: e.target.value})}
                                     /> 
                                 </MDBCol>   
+                            </MDBRow>
+
+                            <MDBRow>
+                               <MDBCol size="3">
+                                    <h4>Region:</h4>
+                               </MDBCol>
+                               <MDBCol size="9">
+                                    <Select options={options} onChange={(e) => this.setState({region: this.value})}/>
+                               </MDBCol>   
                             </MDBRow>
 
                             <MDBRow>
