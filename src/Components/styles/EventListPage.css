@@ -1,10 +1,24 @@
 #eventlist-page .col-12 {
-    margin-top: 1em;
+    margin-bottom: 1em;
+}
+
+#eventlist-page {
+    height: 100vh;
+}
+
+#eventlist-page .sort{
+    background-color: var(--pink) !important;
+    color: white;
+}
+
+#eventlist-page .sort.active{
+    background-color: white !important;
+    color: var(--pink);
 }
 
 #eventlist-page h1 {
     font-weight: 600;
-    font-size: 6rem;
+    font-size: 5rem;
 }
 
 #eventlist-toolbar {
@@ -17,15 +31,13 @@
     color: var(--mediumpurple);
 }
 
-#eventlist-right-btns {
-    display: flex;
-    flex-direction: row;
+#eventlist-page .app-page-header:hover {
+    text-decoration: underline;
+    color: var(--darkpurple);
 }
 
-#eventlist-right-btns h4 {
-    margin-left: 1em;
-}
-
-#eventlist-right-btns p {
-    margin-right: 1em;
+#eventlist-page .fa-sort{
+    margin-top: 1rem;
+    margin-right: 1rem;
+    color: var(--pink);
 }
