@@ -17,8 +17,8 @@ class MessagePost extends Component {
     }
 
     render() {
-        const userIcon = this.props.user == "EventHelper" ? "hand-paper": "star";
-        let iconClass = this.props.user == "EventHelper" ? "deep-purple-text user-icon": "amber-text user-icon";
+        const userIcon = this.props.type == "BOT_POST" ? "hand-paper": "star";
+        let iconClass = this.props.type == "BOT_POST" ? "deep-purple-text user-icon": "amber-text user-icon";
         return(
             <MDBRow className="message-post">
                 <MDBCol size="1">
@@ -28,7 +28,7 @@ class MessagePost extends Component {
                 <MDBCol size="7" className="message-post-main-section">
                     <MDBRow>
                         <MDBCol size="12" className="message-post-top-row">
-                            <h5 className="message-post-user">{this.props.user}</h5>
+                            <h5 className="message-post-user">{this.props.username}</h5>
                             <MDBIcon far icon={userIcon} size="lg" className={iconClass} />
                             <p className="message-post-date">{this.props.date}</p>
                         </MDBCol>
@@ -36,7 +36,7 @@ class MessagePost extends Component {
 
                     <MDBRow>
                         <MDBCol size="12">
-                            <p className="message-post-message">{this.props.message}</p>
+                            <p className="message-post-message">{this.props.content}</p>
                         </MDBCol>
                     </MDBRow>
                 </MDBCol>

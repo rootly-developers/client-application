@@ -34,8 +34,8 @@ class LoginPage extends Component {
                             password: this.state.password
                         })
                         .then((res) => {
-                            console.log("EVENTLIST")
-                            console.log(res.data.eventsList);
+                            console.log("user data")
+                            console.log(res.data);
                             let params = {
                                 token: res.data.token,
                                 eventsList: res.data.eventsList,

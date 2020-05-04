@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { MDBRow, MDBCol, MDBCardBody, MDBInput, MDBBtn } from "mdbreact";
 import Post from './Post.js';
 import './styles/EventDetailsPage.css';
+import axios from "axios";
 
 class EventDetailsPage extends Component {
     constructor(){
@@ -20,21 +21,47 @@ class EventDetailsPage extends Component {
     }
 
     componentDidMount() {
-        let eventDetails = this.props.location.eventDetails;
-        console.log("EVENT DETAILS");
-        console.log(eventDetails);
-        this.setState({
-            title: eventDetails.title,
-            description: eventDetails.description,
-            numAttendees: eventDetails.attendees,
-            maxAttendees: eventDetails.maxattendees,
-            address: eventDetails.address
-        });
+        let { eventId, token } = this.props.location;
+        axios({
+            method: 'get',
+            url: `http://localhost:8080/events/${eventId}`,
+            headers: {
+                'Content-Type': 'application/json',
+                'token': token
+            },
+            })
+            .then(res => {
+                if(res.status == 200) {
+                    const event = res.data.event;
+                    const eventDetails = event.event;
+                    const threads = event.threads;
+                    let posts = this.state.posts.slice();
+                    threads.forEach(thread => {
+                        posts.push(thread);
+                    })
+
+                    this.setState({
+                        title: eventDetails.title,
+                        description: eventDetails.description,
+                        numAttendees: eventDetails.num_attendees,
+                        maxAttendees: eventDetails.max_attendees,
+                        address: eventDetails.address,
+                        posts: posts
+                    });
+                }
+            })
     }
 
     handlePostClick() {
-        const posts = this.state.posts.slice();
-        posts.push({message: this.state.messageInput});
+        const { eventId, token, user } = this.props.location;
+        let posts = this.state.posts.slice();
+        const content = this.state.messageInput;
+        const username = `${user.firstName} ${user.lastName}`;
+        const newPost = {content, username, thread_type: "USER_POST"};
+        posts.push(newPost);
+        axios.post(`http://localhost:8080/events/${eventId}/threads`, {
+            token, content, username
+        })
         this.setState({posts: posts, messageInput: ""});
     }
 
@@ -44,9 +71,11 @@ class EventDetailsPage extends Component {
         let postCards = posts.map((post, i) => {
             return  <MDBRow>
                         <MDBCol size="12">
-                            <Post user="Darren Cheung" date="8:00pm Jan 21"
-                                  message={post.message} key={i}
-                                  threadType="message"
+                            <Post username={post.username}
+                                  date="8:00pm Jan 21"
+                                  content={post.content} 
+                                  key={i}
+                                  threadType={post.thread_type}
                             />
                         </MDBCol>
                      </MDBRow>
@@ -105,30 +134,6 @@ class EventDetailsPage extends Component {
                                 <MDBBtn id="post-btn" onClick={this.handlePostClick}>POST</MDBBtn>
                             </MDBCol>
                         </MDBRow>
-
-                        <Post user="EventHelper" date="8:00pm Jan 21"
-                              message="Hey Guys! Like for Attendance!"
-                              threadType="message"
-                        />
-
-                        <Post user="Darren Cheung" date="8:00pm Jan 21"
-                              message="Greyhound divisively hello coldly wonderfully marginally far..."
-                              threadType="message"
-                        />
-
-                        <Post user="Darren Cheung" date="8:00pm Jan 21"
-                              message="Greyhound divisively hello coldly wonderfully marginally far..."
-                              threadType="message"
-                        />
-
-                        <Post user="Darren Cheung" date="8:00pm Jan 21"
-                              message="Greyhound divisively hello coldly wonderfully marginally far..."
-                              threadType="message"
-                        />
-
-                        <Post action="Lulu L. has joined the event" threadType="action" />
-
-                        <Post action="Mickey D. has joined the event" threadType="action"/>
 
                         {postCards}
                     </MDBCardBody>

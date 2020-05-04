@@ -8,11 +8,11 @@ import axios from 'axios';
 // TODO: handle join vs not join state
 
 const EventCard = (props) => {
-    let btnMsg = props.sample ? "MAKE EVENT":"JOIN";
+    let btnMsg = props.isTemplate ? "MAKE EVENT":"JOIN";
     let attendeesMsg = props.attendees ? (props.attendees + "/" + props.maxAttendees):""; 
     let eventCardClass = "event-card " + props.location;
 
-    function getImgSrcForType(type) {
+    const getImgSrcForType = type => {
         switch(type) {
             case "ADVENTURE":
                 return Images.events.adventure;
@@ -45,6 +45,36 @@ const EventCard = (props) => {
 
         return new Promise((resolve, reject) => {
             axios.put(`http://localhost:8080/events/${eventDetails.id}/user`, {
+                token: props.token, 
+                firstName: props.user.firstName, 
+                lastName: props.user.lastName, 
+                isAdd: true
+            })
+            .then(res => {
+                if(res.status == 200) {
+                    console.log("EVENT DETAILS");
+                    console.log(props.eventDetails);
+                    resolve({redirectPath, params});
+                }
+            })
+        });
+    }
+
+    const handleJoinClick = e => {
+        console.log("JOINING");
+        let { eventId, eventsList, user } = props;
+        let redirectPath = `/events/${eventId}`;
+        let params = { eventId, user, token: props.token };
+        
+        // redirect to eventdetails if user already joined
+        if (eventsList && eventsList.includes(eventId)) {
+            return new Promise( (resolve, reject) => {
+                resolve({redirectPath, params});
+            })
+        }
+
+        return new Promise((resolve, reject) => {
+            axios.put(`http://localhost:8080/events/${eventId}/user`, {
                 token: props.token, 
                 firstName: props.user.firstName, 
                 lastName: props.user.lastName, 
