@@ -25,19 +25,6 @@
     color: var(--mediumpurple);
 }
 
-#myevents-right-btns {
-    display: flex;
-    flex-direction: row;
-}
-
-#myevents-right-btns h4 {
-    margin-left: 1em;
-}
-
-#myevents-right-btns p {
-    margin-right: 1em;
-}
-
 #main-content{
     z-index: 1;
     margin-top: -5rem;

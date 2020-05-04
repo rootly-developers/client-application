@@ -5,6 +5,7 @@ import Images from "../images.js"
 import axios from "axios";
 import './styles/MyEventPage.css'
 
+//TODO: remove after backend integration
 const eventTemplates = [
     {
         "id": 2,

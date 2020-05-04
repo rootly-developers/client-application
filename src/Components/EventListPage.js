@@ -93,7 +93,6 @@ class EventListPage extends Component {
                 sort: !this.state.sort
               });
         }
-        console.log(this.state.sort)
       }
 
     render() {

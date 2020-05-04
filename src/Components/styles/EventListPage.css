@@ -41,16 +41,3 @@
     margin-right: 1rem;
     color: var(--pink);
 }
-
-#eventlist-right-btns {
-    display: flex;
-    flex-direction: row;
-}
-
-#eventlist-right-btns h4 {
-    margin-left: 1em;
-}
-
-#eventlist-right-btns p {
-    margin-right: 1em;
-}
