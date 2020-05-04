@@ -25,6 +25,10 @@
     color: var(--mediumpurple);
 }
 
+#myevents-page .app-page-header:hover {
+    text-decoration: none;
+}
+
 #main-content{
     z-index: 1;
     margin-top: -5rem;

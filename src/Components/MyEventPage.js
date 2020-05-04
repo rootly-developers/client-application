@@ -89,12 +89,12 @@ class MyEventPage extends Component {
 
     render() {
         const events = this.state.events;
-        let eventCards = events.map((events, i) => {
+        let eventCards = events.map((event, i) => {
             return  <MDBRow>
                         <MDBCol size="12">
-                            <EventCard title={events.title} description={events.description} 
-                                    attendees={events.attendees} maxAttendees={events.maxattendees}
-                                    type={events.type} key={i}
+                            <EventCard title={event.title} description={event.description} 
+                                    attendees={event.attendees} maxAttendees={event.maxattendees}
+                                    type={event.type} key={i}
                             />
                         </MDBCol>
                      </MDBRow>
