@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Images from "../images.js"
 import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBIcon, MDBCardBody } from "mdbreact";
 import './styles/ProfilePage.css'
 
@@ -10,7 +11,7 @@ class ProfilePage extends Component {
             biography: "Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. ",
             program: "SYDE - 3A",
             socialMedia: "@LuluLiu",
-            avatar: "/images/avatars/chicken.jpg"
+            avatar: Images.avatar.chicken
             }
     }
     render() {

@@ -13,6 +13,7 @@ import EventDetailsPage from '../Components/EventDetailsPage'
 import MyEventPage from '../Components/MyEventPage'
 import SignUpPage from '../Components/SignUpPage'
 import VerifyPage from '../Components/VerifyPage'
+import logo from '../images/logos/light-logo.svg';
 import './styles/NavBar.css'
 
 class NavBar extends Component {

@@ -101,8 +101,8 @@ class EventListPage extends Component {
             return  <MDBRow>
                         <MDBCol size="12">
                             <EventCard title={events.title} description={events.description} 
-                                    attendees={events.attendees} maxAttendees={events.max_attendees}
-                                    type={events.event_type} key={i}
+                                    attendees={events.attendees} maxAttendees={events.maxattendees}
+                                    src={events.imgSrc} key={i}
                             />
                         </MDBCol>
                      </MDBRow>
@@ -134,7 +134,7 @@ class EventListPage extends Component {
                         <MDBRow>
                             <MDBCol size="12">
                                 <EventCard title="Rockclimbing at Phil's" description="No one has made this event yet...It could be you!"  sample={true}
-                                            type="SPORTS"
+                                            src={Images.events.theatre}
                                 />
                             </MDBCol>
                         </MDBRow>
@@ -142,7 +142,7 @@ class EventListPage extends Component {
                         <MDBRow>
                             <MDBCol size="12">
                                 <EventCard title="Bubble Tea at Icon" description="No one has made this event yet...It could be you!" sample={true}
-                                            src="COFFEE"
+                                            src={Images.events.games}
                                 />
                             </MDBCol>
                         </MDBRow>
