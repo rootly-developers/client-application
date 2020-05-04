@@ -34,8 +34,14 @@ class LoginPage extends Component {
                             password: this.state.password
                         })
                         .then((res) => {
-                            console.log(res);
-                            resolve({ redirectPath: "/events", params: { token: res.data.token }});
+                            console.log("EVENTLIST")
+                            console.log(res.data.eventsList);
+                            let params = {
+                                token: res.data.token,
+                                eventsList: res.data.eventsList,
+                                user: res.data.user
+                            }
+                            resolve({ redirectPath: "/events", params: params});
                         })
                     }
                     else {

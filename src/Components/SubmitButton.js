@@ -13,7 +13,7 @@ const SubmitButton = (props) => {
   }
 
   return (
-    <MDBBtn id={props.id} type="submit" onClick={handleClick}>
+    <MDBBtn id={props.id} className={props.className} type="submit" onClick={handleClick}>
       {props.text}
     </MDBBtn>
   );

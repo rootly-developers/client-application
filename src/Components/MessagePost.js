@@ -22,7 +22,7 @@ class MessagePost extends Component {
         return(
             <MDBRow className="message-post">
                 <MDBCol size="1">
-                    <img src="default-avatar.jpg" className="message-post-img"></img>
+                    <img src="/default-avatar.jpg" className="message-post-img"></img>
                 </MDBCol>
 
                 <MDBCol size="7" className="message-post-main-section">
@@ -42,9 +42,9 @@ class MessagePost extends Component {
                 </MDBCol>
 
                 <MDBCol size="4" className="message-post-right-bar">
-                    <img src="default-avatar.jpg" className="message-icon"></img>
-                    <img src="default-avatar.jpg" className="message-icon"></img>
-                    <img src="default-avatar.jpg" className="message-icon"></img>
+                    <img src="/default-avatar.jpg" className="message-icon"></img>
+                    <img src="/default-avatar.jpg" className="message-icon"></img>
+                    <img src="/default-avatar.jpg" className="message-icon"></img>
                     <p className="thumb-count">{this.state.thumbCount}</p>
                     <MDBIcon far icon="thumbs-up" size="lg" className="deep-purple-text thumb-icon" onClick={this.handleThumbsUpClick}/>
                 </MDBCol>
