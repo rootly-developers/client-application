@@ -32,22 +32,19 @@ render() {
     <Router>
       <MDBNavbar color="blue" dark expand="md" fixed="top" id="nav-bar">
         <MDBNavbarBrand>
-          <MDBNavLink to="/events"><img id="logo" src={logo}></img></MDBNavLink>
+          <MDBNavLink to="/"><img id="logo" src="/images/logos/light-logo.svg"></img></MDBNavLink>
         </MDBNavbarBrand>
         <MDBNavbarToggler onClick={this.toggleCollapse} />
         <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
           <MDBNavbarNav left>
-          <MDBNavItem>
-              <MDBNavLink to="/">Home</MDBNavLink>
+            <MDBNavItem active={active}>
+              <MDBNavLink to="/"><i class="fas fa-plus-circle fa-2x"></i></MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
               <MDBNavLink to="/login">Login</MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
-              <MDBNavLink to="/events/new"><i class="fas fa-plus fa-2x"></i></MDBNavLink>
-            </MDBNavItem>
-            <MDBNavItem>
-              <MDBNavLink to="/myevents"><i class="far fa-calendar fa-2x"></i></MDBNavLink>
+              <MDBNavLink to="/events"><i class="far fa-calendar fa-2x"></i></MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
               <MDBNavLink to="/profile"><i class="fas fa-user-circle fa-2x"></i></MDBNavLink>
