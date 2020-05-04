@@ -6,6 +6,9 @@ import axios from "axios";
 import Select from 'react-select'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import TimePicker from 'rc-time-picker';
+import ReactDOM from 'react-dom';
+import 'rc-time-picker/assets/index.css';
 
 const options = [
     { value: 'San Francisco', label: 'San Francisco' },
@@ -21,9 +24,11 @@ class CreateEventPage extends Component {
             exDescription: '',
             inDescription: '',
             address: '',
-            city: '',
             region: '',
+            cap: '',
             date: new Date(),
+            startTime: '',
+            endTime: '',
             link: ''
         }
 <<<<<<< HEAD
@@ -44,7 +49,11 @@ class CreateEventPage extends Component {
             exDescription: this.state.exDescription,
             inDescription: this.state.inDescription,
             address: this.state.address,
-            city: this.state.city,
+            region: this.state.region,
+            date: this.state.date,
+            cap: this.state.cap,
+            startTime: this.state.startTime,
+            endTime: this.state.endTime,
             link: this.state.link
             // TODO: this should have more data but not sure what to do yet for elements that exist only in mdb pro (select/datepicker/timepicker)
             })
@@ -140,30 +149,49 @@ class CreateEventPage extends Component {
                             </MDBRow>
 
                             <MDBRow>
-                               <MDBCol size="3">
-                                    <h4>City:</h4>
+                                <MDBCol size="3">
+                                    <h4>Party Cap:</h4>
                                </MDBCol>
-                               <MDBCol size="9">
+                               <MDBCol size="3">
                                     <MDBInput
                                         className="textField"
                                         autoComplete="off"
-                                        type="text"
-                                        name="city"
-                                        onChange={(e) => this.setState({city: e.target.value})}
-                                    /> 
-                                </MDBCol>   
-                            </MDBRow>
+                                        type="number"
+                                        name="cap"
+                                        onChange={(e) => this.setState({cap: e.target.value})}
+                                    />
+                                </MDBCol> 
 
-                            <MDBRow>
                                <MDBCol size="3">
                                     <h4>Date:</h4>
                                </MDBCol>
-                               <MDBCol size="9">
+                               <MDBCol size="3">
                                     <DatePicker
                                         selected={this.state.date}
                                         onChange={this.handleChange}
                                     />
                                 </MDBCol>   
+                            </MDBRow>
+
+                            <MDBRow>
+                               <MDBCol size="3">
+                                    <h4>Start Time:</h4>
+                               </MDBCol>
+                               <MDBCol size="3">
+                                    <TimePicker
+                                        selected={this.state.startTime}
+                                        onChange={(e) => this.setState({endTime: this.value})}
+                                    />
+                                </MDBCol>   
+                                <MDBCol size="3">
+                                    <h4>End Time:</h4>
+                               </MDBCol>
+                               <MDBCol size="3">
+                                    <TimePicker
+                                        selected={this.state.endTime}
+                                        onChange={(e) => this.setState({startTime: this.value})}
+                                    />
+                                </MDBCol>  
                             </MDBRow>
 
                             <MDBRow>
