@@ -43,6 +43,7 @@ h1 {
 }
 
 .app-page {
+  height: 100%;
   background-color: var(--lightpurple);
 }
 
@@ -74,4 +75,8 @@ h1 {
   width: 67px;
   height: 67px;
   margin-right: 1rem;
+}
+
+.footer-copyright {
+  display:none;
 }
