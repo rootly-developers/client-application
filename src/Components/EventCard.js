@@ -1,35 +1,36 @@
 import React, { Component } from 'react';
 import { MDBRow, MDBCol, MDBBtn } from 'mdbreact';
+import Images from "../images.js"
 import './styles/EventCard.css'
 
 const EventCard = (props) => {
     let btnMsg = props.sample ? "MAKE EVENT":"JOIN";
     let attendeesMsg = props.attendees ? (props.attendees + "/" + props.maxAttendees):""; 
     let eventCardClass = "event-card " + props.location;
-    
+
     function getImgSrcForType(type) {
         switch(type) {
             case "ADVENTURE":
-                return '/images/events/adventure.png';
+                return Images.events.adventure;
             case "COFFEE":
-                return '/images/events/coffee.png';
+                return  Images.events.coffee;
             case "GAMES":
-                return '/images/events/games.png';
+                return Images.events.games;
             case "IDEAS":
-                return '/images/events/ideas.png';
+                return Images.events.ideas;
             case "SPORTS":
-                return '/images/events/sports.png';    
+                return Images.events.sports;    
             case "THEATRE":
-                return '/images/events/theatre.png';
+                return Images.events.theatre;
             default:
-                return '/images/events/coffee.png';
+                return Images.events.coffee;
         }
     }
-    
+
     return (
         <MDBRow className={eventCardClass}>
             <MDBCol size="3">
-                <img className="img-fluid" src={getImgSrcForType(props.src)}></img>
+                <img className="img-fluid" src={getImgSrcForType(props.type)}></img>
             </MDBCol>
             
             <MDBCol size="5" className="eventcard-content-col">
@@ -49,5 +50,5 @@ const EventCard = (props) => {
         </MDBRow>
     );
   }
-
-export default EventCard
+  
+  export default EventCard
