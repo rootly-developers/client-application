@@ -6,10 +6,27 @@
     margin-top: 2rem;
     display: flex;
     flex-direction: column;
+    /* vertical-align: middle; */
+    /* align-items: center; */
 }
 
 #create-form .md-form {
-    width: 80%;
+    /* width: 80%; */
+}
+
+.textField {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 24px;
+    /* identical to box height, or 171% */
+
+    letter-spacing: 0.15px;
+
+    color: #190078;
+
+    mix-blend-mode: normal;
 }
 
 #create-page-container {

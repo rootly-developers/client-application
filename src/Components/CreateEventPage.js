@@ -23,6 +23,7 @@ class CreateEventPage extends Component {
             eventName: '',
             exDescription: '',
             inDescription: '',
+            code: '',
             address: '',
             region: '',
             cap: '',
@@ -48,6 +49,7 @@ class CreateEventPage extends Component {
             eventName: this.state.eventName,
             exDescription: this.state.exDescription,
             inDescription: this.state.inDescription,
+            code: this.state.code,
             address: this.state.address,
             region: this.state.region,
             date: this.state.date,
@@ -72,6 +74,8 @@ class CreateEventPage extends Component {
     }
 
     render() {
+        const INPUT_SIZE = 7;
+        const INPUT_SIZE_SMALL = 3;
         return(
             <div className="app-page" id="create-page">
                 <div className="app-page-fill"></div>
@@ -83,7 +87,7 @@ class CreateEventPage extends Component {
                                <MDBCol size="3">
                                     <h5>Event Name:</h5>
                                </MDBCol>
-                               <MDBCol size="9">
+                               <MDBCol size={INPUT_SIZE}>
                                     <MDBInput
                                     className="textField"
                                     autoComplete="off"
@@ -96,9 +100,9 @@ class CreateEventPage extends Component {
                             
                             <MDBRow>
                                <MDBCol size="3">
-                                    <h5>External Description:</h5>
+                                    <h5>Why this event?</h5>
                                </MDBCol>
-                               <MDBCol size="9">
+                               <MDBCol size={INPUT_SIZE}>
                                     <MDBInput
                                         className="textField"
                                         autoComplete="off"
@@ -111,9 +115,9 @@ class CreateEventPage extends Component {
                            
                             <MDBRow>
                                <MDBCol size="3">
-                                    <h4>Internal Description:</h4>
+                                    <h5>Details for guests:</h5>
                                </MDBCol>
-                               <MDBCol size="9">
+                               <MDBCol size={INPUT_SIZE}>
                                     <MDBInput
                                         className="textField"
                                         autoComplete="off"
@@ -126,9 +130,24 @@ class CreateEventPage extends Component {
 
                             <MDBRow>
                                <MDBCol size="3">
-                                    <h5>Address:</h5>
+                                    <h5>Postal / Zip code: (Shown to public)</h5>
                                </MDBCol>
-                               <MDBCol size="9">
+                               <MDBCol size={INPUT_SIZE}>
+                                    <MDBInput
+                                        className="textField"
+                                        autoComplete="off"
+                                        type="text"
+                                        name="code"
+                                        onChange={(e) => this.setState({code: e.target.value})}
+                                    /> 
+                                </MDBCol>   
+                            </MDBRow>
+
+                            <MDBRow>
+                               <MDBCol size="3">
+                                    <h5>Address: <br></br> (Shown to public)</h5>
+                               </MDBCol>
+                               <MDBCol size={INPUT_SIZE}>
                                     <MDBInput
                                         className="textField"
                                         autoComplete="off"
@@ -143,18 +162,18 @@ class CreateEventPage extends Component {
                                <MDBCol size="3">
                                     <h5>Region:</h5>
                                </MDBCol>
-                               <MDBCol size="9">
-                                    <Select options={options} onChange={(e) => this.setState({region: this.value})}/>
+                               <MDBCol size={INPUT_SIZE}>
+                                    <Select className="md-form" options={options} onChange={(e) => this.setState({region: this.value})}/>
                                </MDBCol>   
                             </MDBRow>
 
                             <MDBRow>
-                                <MDBCol size="3">
+                                <MDBCol size="2">
                                     <h5>Party Cap:</h5>
                                </MDBCol>
                                <MDBCol size="3">
                                     <MDBInput
-                                        className="textField"
+                                        className="textField md-form"
                                         autoComplete="off"
                                         type="number"
                                         name="cap"
@@ -162,19 +181,20 @@ class CreateEventPage extends Component {
                                     />
                                 </MDBCol> 
 
-                               <MDBCol size="3">
+                               <MDBCol size="2">
                                     <h5>Date:</h5>
                                </MDBCol>
                                <MDBCol size="3">
                                     <DatePicker
                                         selected={this.state.date}
                                         onChange={this.handleChange}
+                                        className="md-form"
                                     />
                                 </MDBCol>   
                             </MDBRow>
 
                             <MDBRow>
-                               <MDBCol size="3">
+                               <MDBCol size="2">
                                     <h5>Start Time:</h5>
                                </MDBCol>
                                <MDBCol size="3">
@@ -183,7 +203,7 @@ class CreateEventPage extends Component {
                                         onChange={(e) => this.setState({endTime: this.value})}
                                     />
                                 </MDBCol>   
-                                <MDBCol size="3">
+                                <MDBCol size="2">
                                     <h5>End Time:</h5>
                                </MDBCol>
                                <MDBCol size="3">
@@ -194,11 +214,13 @@ class CreateEventPage extends Component {
                                 </MDBCol>  
                             </MDBRow>
 
+                            <br></br>
+
                             <MDBRow>
                                <MDBCol size="3">
                                     <h5>Cross-post Link:</h5>
                                </MDBCol>
-                               <MDBCol size="9">
+                               <MDBCol size={INPUT_SIZE}>
                                     <MDBInput
                                         className="textField"
                                         autoComplete="off"
