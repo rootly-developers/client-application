@@ -30,18 +30,15 @@ class CreateEventPage extends Component {
             date: new Date(),
             startTime: '',
             endTime: '',
-            link: ''
+            link: '',
+            avatar: ''
         }
-<<<<<<< HEAD
-=======
         this.handleAPICall = this.handleAPICall.bind(this);
     }
 
-    handleChange = date => {
-        this.setState({
-          date: date
-        });
-      };
+    handleAvatarSelect = (avatar) => {
+        this.setState({avatar: avatar})
+    }
 
     handleAPICall() {
         return new Promise((resolve, reject) => {
@@ -56,9 +53,9 @@ class CreateEventPage extends Component {
             cap: this.state.cap,
             startTime: this.state.startTime,
             endTime: this.state.endTime,
-            link: this.state.link
-            // TODO: this should have more data but not sure what to do yet for elements that exist only in mdb pro (select/datepicker/timepicker)
-            })
+            link: this.state.link,
+            avatar: this.state.avatar
+           })
             .then((res) => {
                 if (res.status == 200) {
                     console.log(res);
@@ -70,7 +67,6 @@ class CreateEventPage extends Component {
                 }
             })
         })
->>>>>>> import/add datepicker for date field
     }
 
     render() {
@@ -187,7 +183,7 @@ class CreateEventPage extends Component {
                                <MDBCol size="3">
                                     <DatePicker
                                         selected={this.state.date}
-                                        onChange={this.handleChange}
+                                        onChange={date => this.setState({date: date})}
                                         className="md-form"
                                     />
                                 </MDBCol>   
@@ -231,8 +227,26 @@ class CreateEventPage extends Component {
                                 </MDBCol>   
                             </MDBRow>
 
+<<<<<<< HEAD
                             <SubmitButton id="create-event" text="Submit" type={"createEvent"} eventName={this.state.eventName} exDescription={this.state.exDescription} 
                             inDescription={this.state.inDescription} address={this.state.address} city={this.state.city} link={this.state.link}
+=======
+                            <MDBRow>
+                               <MDBCol size="3">
+                                    <h5>Event Avatar: {this.state.avatar}</h5>
+                               </MDBCol>
+                               <MDBCol size="9">
+                                    <img src="/coffee.svg" className="img-fluid" id="coffee" onClick={(e) => this.handleAvatarSelect("coffee")}></img>
+                                    <img src="/bulb.png" className="img-fluid" id="bulb" onClick={(e) => this.handleAvatarSelect("bulb")}></img>
+                                    <img src="/dice.png" className="img-fluid" id="dice" onClick={(e) => this.handleAvatarSelect("dice")}></img>
+                                    <img src="/mask.png" className="img-fluid" id="mask" onClick={(e) => this.handleAvatarSelect("mask")}></img>
+                                    <img src="/football.png" className="img-fluid" id="football" onClick={(e) => this.handleAvatarSelect("football")}></img>
+                                    <img src="/pyramid.png" className="img-fluid" id="pyramid" onClick={(e) => this.handleAvatarSelect("pyramid")}></img>
+                                </MDBCol>   
+                            </MDBRow>
+
+                            <SubmitButton id="create-event" text="Submit" handleAPICall={this.handleAPICall}
+>>>>>>> add hacky avatar icon select
                             /> 
                         </form>
                     </MDBContainer>

@@ -6,6 +6,7 @@
     margin-top: 2rem;
     display: flex;
     flex-direction: column;
+    margin: auto;
     /* vertical-align: middle; */
     /* align-items: center; */
 }
@@ -27,6 +28,8 @@
     color: #190078;
 
     mix-blend-mode: normal;
+
+    /* copied from figma */
 }
 
 #create-page-container {
