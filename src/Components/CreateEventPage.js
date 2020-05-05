@@ -26,7 +26,7 @@ class CreateEventPage extends Component {
             code: '',
             address: '',
             region: '',
-            cap: '',
+            cap: 1,
             date: new Date(),
             startTime: '',
             endTime: '',
@@ -42,24 +42,23 @@ class CreateEventPage extends Component {
 
     handleAPICall() {
         return new Promise((resolve, reject) => {
+            console.log(this.props.token);
             axios.post('http://localhost:8080/events', {
-            eventName: this.state.eventName,
-            exDescription: this.state.exDescription,
-            inDescription: this.state.inDescription,
-            code: this.state.code,
-            address: this.state.address,
-            region: this.state.region,
-            date: this.state.date,
-            cap: this.state.cap,
-            startTime: this.state.startTime,
-            endTime: this.state.endTime,
-            link: this.state.link,
-            avatar: this.state.avatar
+                token: "eyJhbGciOiJSUzI1NiIsImtpZCI6Ijg4ODQ4YjVhZmYyZDUyMDEzMzFhNTQ3ZDE5MDZlNWFhZGY2NTEzYzgiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcm9vdGx5LTExMjM1ODEzIiwiYXVkIjoicm9vdGx5LTExMjM1ODEzIiwiYXV0aF90aW1lIjoxNTg4NjU5NzM4LCJ1c2VyX2lkIjoiZDVid2ZnYnVYa1BPUEpEQjdkaEE5Wk9QUFNwMiIsInN1YiI6ImQ1YndmZ2J1WGtQT1BKREI3ZGhBOVpPUFBTcDIiLCJpYXQiOjE1ODg2NTk3MzgsImV4cCI6MTU4ODY2MzMzOCwiZW1haWwiOiJkdGNoZXVuZ0B1d2F0ZXJsb28uY2EiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJlbWFpbCI6WyJkdGNoZXVuZ0B1d2F0ZXJsb28uY2EiXX0sInNpZ25faW5fcHJvdmlkZXIiOiJwYXNzd29yZCJ9fQ.NlpaoTj4J3piEWqC9fHYG04Bi0GmlyJVTY5RQOB8tvgotu7sD_nMjK1YViEFRpm3TH4BLuAS2M1OTT2hs8mXYTR05lVIF6_yf5WIun4wPmen-BGqVEhIADqhR8p8_y79H4daDRc9q86DsYLObwA50w9VmB821WmwtUDMEdLVRLc-KcKWf4lS7A6u3WXrJ9mbE-3x_dYYzBEopg4ClkkYyVX4XqxPTDETbZSFRwTIfgY8_j1qzHAZC1C3I_bBgrrtftKsVZSAiovqbZsdaMHEVVa64fA1zGDsUbYnqt2G8f5gNsiL3okx-a4qoXAtUCln2PSdlV4Gil_mwLWk3cLxwQ",
+                organizerName: "Darren Cheung",
+                title: this.state.eventName,
+                description: this.state.exDescription,
+                address: this.state.address,
+                city: this.state.region,
+                startTime: this.state.startTime,
+                endTime: this.state.endTime,
+                maxAttendees: this.state.cap,
+                eventType: this.state.avatar
            })
             .then((res) => {
                 if (res.status == 200) {
                     console.log(res);
-                    let redirectPath = "/" + res.eventData;
+                    let redirectPath = "/" + res.data.eventId;
                     resolve({redirectPath});
                 }
                 else {
@@ -70,7 +69,7 @@ class CreateEventPage extends Component {
     }
 
     render() {
-        const INPUT_SIZE = 7;
+        const INPUT_SIZE = "7";
         const INPUT_SIZE_SMALL = 3;
         return(
             <div className="app-page" id="create-page">
@@ -237,7 +236,7 @@ class CreateEventPage extends Component {
                                </MDBCol>
                                <MDBCol size="9">
                                     <img src="/coffee.svg" className="img-fluid" id="coffee" onClick={(e) => this.handleAvatarSelect("coffee")}></img>
-                                    <img src="/bulb.png" className="img-fluid" id="bulb" onClick={(e) => this.handleAvatarSelect("bulb")}></img>
+                                    <img src="/bulb.png" className="img-fluid" id="bulb" onClick={(e) => this.handleAvatarSelect("COFFEE")}></img>
                                     <img src="/dice.png" className="img-fluid" id="dice" onClick={(e) => this.handleAvatarSelect("dice")}></img>
                                     <img src="/mask.png" className="img-fluid" id="mask" onClick={(e) => this.handleAvatarSelect("mask")}></img>
                                     <img src="/football.png" className="img-fluid" id="football" onClick={(e) => this.handleAvatarSelect("football")}></img>
