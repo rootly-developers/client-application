@@ -61,6 +61,7 @@ class EventListPage extends Component {
     }
 
     setNewEvents() {
+        console.log(this.props.location.token);
         axios({
             method: 'get',
             url: "http://localhost:8080/home",
@@ -75,9 +76,10 @@ class EventListPage extends Component {
             },
           })
           .then(res => {
-              if(res.status == 200 && res.data.status == 200) {
+              if(res.status == 200) {
                   let events = eventTemplates.slice();
                   res.data.data.forEach(event => {
+                      console.log(event);
                       events.push(event);
                   });
                   this.setState({events: events});
@@ -95,12 +97,20 @@ class EventListPage extends Component {
 
     render() {
         const events = this.state.events;
-        let eventCards = events.map((events, i) => {
+        let eventCards = events.map((event, i) => {
             return  <MDBRow>
                         <MDBCol size="12">
-                            <EventCard title={events.title} description={events.description} 
-                                    attendees={events.attendees} maxAttendees={events.max_attendees}
-                                    type={events.event_type} key={i}
+                            <EventCard 
+                                title={event.title} 
+                                description={event.description} 
+                                attendees={event.attendees}
+                                maxAttendees={event.maxattendees}
+                                type={event.type}
+                                key={i}
+                                eventDetails={event}
+                                token={this.props.location.token}
+                                eventsList={this.props.location.eventsList}
+                                user={this.props.location.user}
                             />
                         </MDBCol>
                      </MDBRow>

@@ -20,6 +20,7 @@ class LandingPage extends Component {
             axios.get(`http://localhost:8080/users/exists?email=${email}`)
             .then((res) => {    
                 if (res.status == 200) {
+                    console.log(res);
                     let redirectPath = res.data.exists ? "/login":"/signup";
                     resolve({redirectPath, params: { 'email': email } });
                 } 

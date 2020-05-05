@@ -76,6 +76,7 @@ render() {
         <Route exact path='/profile' component={ProfilePage}/>
         <Route exact path='/events/new' component={CreateEventPage} />
         <Route exact path='/eventDetails' component={EventDetailsPage} />
+        <Route exact path='/events/:eventId' component={EventDetailsPage} />
         <Route exact path='/myevents' component={MyEventPage}/>
         <Route exact path='/signup' component={SignUpPage}/>
         <Route exact path='/verify' component={VerifyPage}/>

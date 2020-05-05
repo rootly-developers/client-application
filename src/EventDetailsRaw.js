@@ -7,29 +7,20 @@ class EventDetailsPage extends Component {
     constructor(){
         super();
         this.state = {
-            renderPage: false,
             title: "",
             description: "",
             numAttendees: 0,
             maxAttendees: 0,
             address: "",
+
             messageInput: "",
             posts: []
         }
         this.handlePostClick = this.handlePostClick.bind(this);
     }
 
-    componentDidMount() {
-        let eventDetails = this.props.location.eventDetails;
-        console.log("EVENT DETAILS");
-        console.log(eventDetails);
-        this.setState({
-            title: eventDetails.title,
-            description: eventDetails.description,
-            numAttendees: eventDetails.attendees,
-            maxAttendees: eventDetails.maxattendees,
-            address: eventDetails.address
-        });
+    componentWillMount() {
+        
     }
 
     handlePostClick() {
@@ -39,7 +30,8 @@ class EventDetailsPage extends Component {
     }
 
     render() {
-        let { title, description, numAttendees, maxAttendees, address } = this.state;
+        let { title, description, numAttendees, maxAttendees, address } = this.state
+
         const posts = this.state.posts;
         let postCards = posts.map((post, i) => {
             return  <MDBRow>
@@ -56,14 +48,14 @@ class EventDetailsPage extends Component {
                 <div className="app-page-fill"></div>
                 <div className="app-main-section" id="event-details-main">
                     <div id="event-details-header">
-                        <h1 className="app-page-header">{title}</h1>
+                        <h1 className="app-page-header">Rock Climbing</h1>
                         <MDBBtn id="leave-event-btn">LEAVE EVENT</MDBBtn>
                     </div>     
                     <MDBCardBody className="page-body" id="event-details-body">
                         <MDBRow>
                             <MDBCol size="7">
                                 <p id="event-details-description">
-                                {description}
+                                Sed ut perspiciatiste velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"Sed ut perspiciatiste velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"Sed ut perspiciatiste velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?"
                                 </p>
                             </MDBCol>
                         </MDBRow>
@@ -75,7 +67,7 @@ class EventDetailsPage extends Component {
                             </MDBCol>
 
                             <MDBCol size="5">
-                                <h3>Attendees: {numAttendees}/{maxAttendees}</h3>
+                                <h3>Attendees: 7/8</h3>
                                 <img src="/default-avatar.jpg" className="event-details-user-icons"></img>
                                 <img src="/default-avatar.jpg" className="event-details-user-icons"></img>
                                 <img src="/default-avatar.jpg" className="event-details-user-icons"></img>
@@ -86,7 +78,7 @@ class EventDetailsPage extends Component {
                             
                             <MDBCol size="3">
                                 <h3 id="event-details-date">7:30 - 9:30pm</h3>
-                                <h4 id="event-details-address">{address}</h4>
+                                <h4 id="event-details-address">100 Waterloo way, Denver Colorado</h4>
                             </MDBCol>
                         </MDBRow>
 
