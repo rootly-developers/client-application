@@ -1,4 +1,75 @@
+#ChangeRegion .row{
+    font-family: 'Roboto', sans-serif;
+}
+
 #ChangeRegion h1 {
     font-weight: 600;
     font-size: 5rem;
+}
+
+#ChangeRegion h2 {
+    font-weight: 600;
+    margin-left: 1rem;
+    color: var(--darkgray);
+    margin: 1rem 1rem 0rem 1rem;
+}
+
+#ChangeRegion h3 {
+    margin-top: 3rem;
+    font-weight: 1000;
+    color : var(--saturatedpurple);
+}
+
+#ChangeRegion h4 {
+    color : var(--darkgray);
+    font-weight: 400;
+}
+
+#ChangeRegion p {
+    color : var(--medgray);
+    font-weight: 400;
+}
+
+#ChangeRegion .region{
+    margin-top: 2rem;
+    font-weight: 1000;
+    color: var(--darkgray);
+}
+
+#eventlist-page .country .btn.active{
+    background: white !important;
+    color: var(--pink);
+}
+
+#eventlist-page .country .btn.active h4{
+    font-weight:800;
+}
+
+#ChangeRegion .modal-dialog{
+    max-width: 50.5rem !important;
+}
+
+#ChangeRegion .modal-body{
+    padding: 0rem 2rem 4rem 2rem;
+}
+
+#ChangeRegion .close{
+    font-size: xx-large;
+    padding: 2rem 2rem;
+}
+
+#ChangeRegion .country{
+    margin: 0rem 0rem 0rem 2rem;
+}
+
+#ChangeRegion .country .btn {
+    background-color: var(--lightgray) !important;
+    border-radius: 0.5rem;
+    letter-spacing: 0.75px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--gray);
+    text-align: left;
+    padding: 1rem 2rem 1rem 2rem;
+    text-transform: none;
 }

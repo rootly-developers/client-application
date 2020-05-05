@@ -4,6 +4,7 @@ import EventCard from './EventCard.js'
 import ChangeRegionModal from './ChangeRegionModal.js'
 import axios from "axios";
 import './styles/EventListPage.css'
+const locations = require('../commons/locations.json')
 
 const eventTemplates = [
     {
@@ -44,7 +45,7 @@ class EventListPage extends Component {
     constructor(){
         super();
         this.state = {
-            location: "Seattle",
+            location: "Los Angeles",
             sort: true,
             events: []    
         }
@@ -57,7 +58,8 @@ class EventListPage extends Component {
     }
 
     handleChangeRegion(e) {
-        this.setState({ location: e.target.textContent }, this.setNewEvents);
+        console.log(e.target);
+        this.setState({ location: e.target.children[1].innerText}, this.setNewEvents);
     }
 
     setNewEvents() {
