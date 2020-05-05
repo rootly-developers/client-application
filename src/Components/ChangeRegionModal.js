@@ -12,6 +12,9 @@ class ChangeRegionModal extends Component {
       id: "1"
     };
     this.change = this.change.bind(this);
+    this.toggle = this.toggle.bind(this);
+    this.isActive = this.isActive.bind(this);
+    this.getIdForLocation = this.getIdForLocation.bind(this);
   }
 
   toggle = () => {
@@ -26,6 +29,7 @@ class ChangeRegionModal extends Component {
             id: id
           });
     }
+    this.toggle();
     this.props.onclick(e);
   }
 

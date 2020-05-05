@@ -73,3 +73,19 @@
     padding: 1rem 2rem 1rem 2rem;
     text-transform: none;
 }
+
+#ChangeRegion .country .btn{
+    background-color: var(--lightgray) !important;
+    border-radius: 0.5rem;
+    letter-spacing: 0.75px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--gray);
+    text-align: left;
+    padding: 1rem 2rem 1rem 2rem;
+    text-transform: none;
+}
+
+#ChangeRegion .country .btn > h4, p {
+    pointer-events: none;
+}

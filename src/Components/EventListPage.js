@@ -58,7 +58,6 @@ class EventListPage extends Component {
     }
 
     handleChangeRegion(e) {
-        console.log(e.target);
         this.setState({ location: e.target.children[1].innerText}, this.setNewEvents);
     }
 
