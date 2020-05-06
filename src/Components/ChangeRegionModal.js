@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { MDBContainer, MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter, MDBRow, MDBCard } from 'mdbreact';
 import './styles/ChangeRegionModal.css'
 const locations = require('../commons/locations.json');
-const location_id = ["non", "Seattle", "San Francisco / Bay", "Los Angeles", "Silicon Valley", "Chicago", "Boston", "New York", "Austin", "Vancouver", "Calgary", "Edmonton", "Winnipeg", "Kitchener-Waterloo", "Toronto", "Peel Region", "York Region", "Ottawa", "Montreal", "Quebec City"]
+const location_id = ["non", "Seattle", "San Francisco", "Los Angeles", "Silicon Valley", "Chicago", "Boston", "New York", "Austin", "Vancouver", "Calgary", "Edmonton", "Winnipeg", "Kitchener-Waterloo", "Toronto", "Peel Region", "York Region", "Ottawa", "Montreal", "Quebec City"]
 
 class ChangeRegionModal extends Component {
   constructor(){
@@ -59,7 +59,7 @@ class ChangeRegionModal extends Component {
               <h4 className="region">Western USA</h4>
               <MDBRow>
                 <MDBBtn id="1" onClick={this.change("1")} active={this.isActive("1")}><p>Western USA</p><h4>Seattle</h4></MDBBtn>
-                <MDBBtn id="2" onClick={this.change("2")} active={this.isActive("2")}><p>Western USA</p><h4>San Francisco / Bay</h4></MDBBtn>
+                <MDBBtn id="2" onClick={this.change("2")} active={this.isActive("2")}><p>Western USA</p><h4>San Francisco</h4></MDBBtn>
                 <MDBBtn id="3" onClick={this.change("3")} active={this.isActive("3")}><p>Western USA</p><h4>Los Angeles</h4></MDBBtn>
               </MDBRow>
               <MDBRow>

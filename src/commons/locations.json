@@ -1,18 +1,74 @@
 {
-    "Seattle": "Seattle",
-    "San_Francisco": "San Francisco / Bay",
-    "Los_angeles": "Los Angeles",
-    "Silicon_Valley": "Silicon Valley",
-    "Chicago": "Chicago",
-    "Boston": "Boston",
-    "New_York": "New York",
-    "Austin": "Austin",
-    "Vancouver": "Vancouver",
-    "Kitchener_Waterloo": "Kitchener-Waterloo",
-    "Toronto": "Toronto",
-    "Peel Region": "Peel_Region",
-    "York Region": "York_Region",
-    "Ottawa": "Ottawa",
-    "Montreal": "Montreal",
-    "Quebec_city": "Quebec City"
+    "SEA": {
+        "canonical" : "SEA",
+        "pretty" : "Seattle"
+    },
+    "SF": {
+        "canonical" : "SF",
+        "pretty" : "San Francisco"
+    },
+    "LA": {
+        "canonical" : "LA",
+        "pretty" : "Los Angeles"
+    },
+    "SV": {
+        "canonical" : "SV",
+        "pretty" : "Silicon Valley"
+    },
+    "CHI": {
+        "canonical" : "CHI",
+        "pretty" : "Chicago"
+    },
+    "BOS": {
+        "canonical" : "BOS",
+        "pretty" : "Boston"
+    },
+    "NY": {
+        "canonical" : "NY",
+        "pretty" : "New York"
+    },
+    "ATX": {
+        "canonical" : "ATX",
+        "pretty" : "Austin"
+    },
+    "VAN": {
+        "canonical" : "VAN",
+        "pretty" : "Vancouver"
+    },
+    "KW": {
+        "canonical" : "KW",
+        "pretty" : "Kitchener-Waterloo"
+    },
+    "TO": {
+        "canonical" : "TO",
+        "pretty" : "Toronto"
+    },
+    "PR": {
+        "canonical" : "PR",
+        "pretty" : "Peel Region"
+    },
+    "YR": {
+        "canonical" : "YR",
+        "pretty" : "York Region"
+    },
+    "OTT": {
+        "canonical" : "OTT",
+        "pretty" : "Ottawa"
+    },
+    "MTL": {
+        "canonical" : "MTL",
+        "pretty" : "Montreal"
+    },
+    "QC": {
+        "canonical" : "QC",
+        "pretty" : "Quebec City"
+    },
+    "CAL": {
+        "canonical" : "CAL",
+        "pretty" : "Calgary"
+    },
+    "EDM": {
+        "canonical" : "EDM",
+        "pretty" : "Edmonton"
+    },
 }
