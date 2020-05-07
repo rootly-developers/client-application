@@ -45,7 +45,7 @@ class EventListPage extends Component {
     constructor(){
         super();
         this.state = {
-            location: locations.LA.canonical,
+            location: locations.SEA.canonical,
             sort: true,
             events: []    
         }
