@@ -2,19 +2,17 @@ import React, { Component } from 'react';
 import { MDBContainer, MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter, MDBRow, MDBCard } from 'mdbreact';
 import './styles/ChangeRegionModal.css'
 const locations = require('../commons/locations.json');
-const location_id = ["non", "Seattle", "San Francisco", "Los Angeles", "Silicon Valley", "Chicago", "Boston", "New York", "Austin", "Vancouver", "Calgary", "Edmonton", "Winnipeg", "Kitchener-Waterloo", "Toronto", "Peel Region", "York Region", "Ottawa", "Montreal", "Quebec City"]
 
 class ChangeRegionModal extends Component {
   constructor(){
     super();
     this.state = {
       modal: false,
-      id: "1"
+      id: locations.SEA.canonical
     };
     this.change = this.change.bind(this);
     this.toggle = this.toggle.bind(this);
     this.isActive = this.isActive.bind(this);
-    this.getIdForLocation = this.getIdForLocation.bind(this);
   }
 
   toggle = () => {
@@ -33,22 +31,27 @@ class ChangeRegionModal extends Component {
     this.props.onclick(e);
   }
 
-  isActive = id =>{
-    if (id != this.state.id){
-      return false;
-    }
-    return true;
+  isActive = id => {
+    return id === this.state.id;
   }
 
-  getIdForLocation(value) {
-    return location_id.indexOf(value);
-  }
+  // TODO: Ideally we should pass both pretty and canon as a prop
+  convertCanonToPretty(canonText) {
+    for (var key in locations) {
+        if (locations[key].canonical === canonText) {
+            return locations[key].pretty;
+        }
+    }
+}
 
   render() {
-    this.state.id = this.getIdForLocation(this.props.value);
+    this.state.id = this.props.value;
+
     return (
       <MDBContainer id="ChangeRegion">
-        <h1 onClick={this.toggle}>{this.props.value}</h1>
+        
+        <h1 onClick={this.toggle}>{this.convertCanonToPretty(this.props.value)}</h1>
+        
         <MDBModal isOpen={this.state.modal} toggle={this.toggle}>
           <MDBModalHeader toggle={this.toggle}>
             <h2>Choose Region</h2>
@@ -58,47 +61,44 @@ class ChangeRegionModal extends Component {
               <h3>United States</h3>
               <h4 className="region">Western USA</h4>
               <MDBRow>
-                <MDBBtn id="1" onClick={this.change("1")} active={this.isActive("1")}><p>Western USA</p><h4>Seattle</h4></MDBBtn>
-                <MDBBtn id="2" onClick={this.change("2")} active={this.isActive("2")}><p>Western USA</p><h4>San Francisco</h4></MDBBtn>
-                <MDBBtn id="3" onClick={this.change("3")} active={this.isActive("3")}><p>Western USA</p><h4>Los Angeles</h4></MDBBtn>
+                <MDBBtn id={locations.SEA.canonical} onClick={this.change(locations.SEA.canonical)} active={this.isActive(locations.SEA.canonical)}><p>Western USA</p><h4>{locations.SEA.pretty}</h4></MDBBtn>
+                <MDBBtn id={locations.SF.canonical} onClick={this.change(locations.SF.canonical)} active={this.isActive(locations.SF.canonical)}><p>Western USA</p><h4>{locations.SF.pretty}</h4></MDBBtn>
+                <MDBBtn id={locations.LA.canonical} onClick={this.change(locations.LA.canonical)} active={this.isActive(locations.LA.canonical)}><p>Western USA</p><h4>{locations.LA.pretty}</h4></MDBBtn>
               </MDBRow>
               <MDBRow>
-                <MDBBtn id="4" onClick={this.change("4")} active={this.isActive("4")}><p>Western USA</p><h4>Silicon Valley</h4></MDBBtn>
+                <MDBBtn id={locations.SV.canonical} onClick={this.change(locations.SV.canonical)} active={this.isActive(locations.SV.canonical)}><p>Western USA</p><h4>{locations.SV.pretty}</h4></MDBBtn>
               </MDBRow>
               <h4 className="region">Eastern USA</h4>
               <MDBRow>
-                <MDBBtn id="5" onClick={this.change("5")} active={this.isActive("5")}><p>Eastern USA</p><h4>Chicago</h4></MDBBtn>
-                <MDBBtn id="6" onClick={this.change("6")} active={this.isActive("6")}><p>Eastern USA</p><h4>Boston</h4></MDBBtn>
-                <MDBBtn id="7" onClick={this.change("7")} active={this.isActive("7")}><p>Eastern USA</p><h4>New York</h4></MDBBtn>
+                <MDBBtn id={locations.CHI.canonical} onClick={this.change(locations.CHI.canonical)} active={this.isActive(locations.CHI.canonical)}><p>Eastern USA</p><h4>{locations.CHI.pretty}</h4></MDBBtn>
+                <MDBBtn id={locations.BOS.canonical} onClick={this.change(locations.BOS.canonical)} active={this.isActive(locations.BOS.canonical)}><p>Eastern USA</p><h4>{locations.BOS.pretty}</h4></MDBBtn>
+                <MDBBtn id={locations.NY.canonical} onClick={this.change(locations.NY.canonical)} active={this.isActive(locations.NY.canonical)}><p>Eastern USA</p><h4>{locations.NY.pretty}</h4></MDBBtn>
               </MDBRow>
               <MDBRow>
-                <MDBBtn id="8" onClick={this.change("8")} active={this.isActive("8")}><p>Eastern USA</p><h4>Austin</h4></MDBBtn>
+                <MDBBtn id={locations.ATX.canonical} onClick={this.change(locations.ATX.canonical)} active={this.isActive(locations.ATX.canonical)}><p>Eastern USA</p><h4>{locations.ATX.pretty}</h4></MDBBtn>
               </MDBRow>
             </div>
             <div className="country">
               <h3>Canada</h3>
               <h4 className="region">Western Canada</h4>
               <MDBRow>
-                <MDBBtn id="10" onClick={this.change("9")} active={this.isActive("9")}><p>Western Canada</p><h4>Vancouver</h4></MDBBtn>
-                <MDBBtn id="11" onClick={this.change("10")} active={this.isActive("10")}><p>Western Canada</p><h4>Calgary</h4></MDBBtn>
-                <MDBBtn id="12" onClick={this.change("11")} active={this.isActive("11")}><p>Western Canada</p><h4>Edmonton</h4></MDBBtn>
-              </MDBRow>
-              <MDBRow>
-                <MDBBtn id="13" onClick={this.change("12")} active={this.isActive("12")}><p>Western Canada</p><h4>Winnipeg</h4></MDBBtn>
+                <MDBBtn id={locations.VAN.canonical} onClick={this.change(locations.VAN.canonical)} active={this.isActive(locations.VAN.canonical)}><p>Western Canada</p><h4>{locations.VAN.pretty}</h4></MDBBtn>
+                <MDBBtn id={locations.CAL.canonical} onClick={this.change(locations.CAL.canonical)} active={this.isActive(locations.CAL.canonical)}><p>Western Canada</p><h4>{locations.CAL.pretty}</h4></MDBBtn>
+                <MDBBtn id={locations.EDM.canonical} onClick={this.change(locations.EDM.canonical)} active={this.isActive(locations.EDM.canonical)}><p>Western Canada</p><h4>{locations.EDM.pretty}</h4></MDBBtn>
               </MDBRow>
               <h4 className="region">Eastern Canada</h4>
               <MDBRow>
-                <MDBBtn id="14" onClick={this.change("13")} active={this.isActive("13")}><p>Eastern Canada</p><h4>Kitchener-Waterloo</h4></MDBBtn>
-                <MDBBtn id="15" onClick={this.change("14")} active={this.isActive("14")}><p>Eastern Canada</p><h4>Toronto</h4></MDBBtn>
-                <MDBBtn id="16" onClick={this.change("15")} active={this.isActive("15")}><p>Eastern Canada</p><h4>Peel Region</h4></MDBBtn>
+                <MDBBtn id={locations.KW.canonical} onClick={this.change(locations.KW.canonical)} active={this.isActive(locations.KW.canonical)}><p>Eastern Canada</p><h4>{locations.KW.pretty}</h4></MDBBtn>
+                <MDBBtn id={locations.TO.canonical} onClick={this.change(locations.TO.canonical)} active={this.isActive(locations.TO.canonical)}><p>Eastern Canada</p><h4>{locations.TO.pretty}</h4></MDBBtn>
+                <MDBBtn id={locations.PR.canonical} onClick={this.change(locations.PR.canonical)} active={this.isActive(locations.PR.canonical)}><p>Eastern Canada</p><h4>{locations.PR.pretty}</h4></MDBBtn>
               </MDBRow>
               <MDBRow>
-                <MDBBtn id="17" onClick={this.change("16")} active={this.isActive("16")}><p>Eastern Canada</p><h4>York Region</h4></MDBBtn>
-                <MDBBtn id="18" onClick={this.change("17")} active={this.isActive("17")}><p>Eastern Canada</p><h4>Ottawa</h4></MDBBtn>
-                <MDBBtn id="19" onClick={this.change("18")} active={this.isActive("18")}><p>Eastern Canada</p><h4>Montreal</h4></MDBBtn>
+                <MDBBtn id={locations.YR.canonical} onClick={this.change(locations.YR.canonical)} active={this.isActive(locations.YR.canonical)}><p>Eastern Canada</p><h4>{locations.YR.pretty}</h4></MDBBtn>
+                <MDBBtn id={locations.OTT.canonical} onClick={this.change(locations.OTT.canonical)} active={this.isActive(locations.OTT.canonical)}><p>Eastern Canada</p><h4>{locations.OTT.pretty}</h4></MDBBtn>
+                <MDBBtn id={locations.MTL.canonical} onClick={this.change(locations.MTL.canonical)} active={this.isActive(locations.MTL.canonical)}><p>Eastern Canada</p><h4>{locations.MTL.pretty}</h4></MDBBtn>
               </MDBRow>
               <MDBRow>
-                <MDBBtn id="20" onClick={this.change("19")} active={this.isActive("19")}><p>Eastern Canada</p><h4>Quebec City</h4></MDBBtn>
+                <MDBBtn id={locations.QC.canonical} onClick={this.change(locations.QC.canonical)} active={this.isActive(locations.QC.canonical)}><p>Eastern Canada</p><h4>{locations.QC.pretty}</h4></MDBBtn>
               </MDBRow>
             </div>
           </MDBModalBody>

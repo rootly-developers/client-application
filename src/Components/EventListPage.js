@@ -45,12 +45,13 @@ class EventListPage extends Component {
     constructor(){
         super();
         this.state = {
-            location: "Los Angeles",
+            location: locations.LA.canonical,
             sort: true,
             events: []    
         }
         this.handleChangeRegion = this.handleChangeRegion.bind(this);
         this.setNewEvents = this.setNewEvents.bind(this);
+        this.convertPrettyToCanon = this.convertPrettyToCanon.bind(this);
     }
 
     componentDidMount() {
@@ -58,7 +59,18 @@ class EventListPage extends Component {
     }
 
     handleChangeRegion(e) {
-        this.setState({ location: e.target.children[1].innerText}, this.setNewEvents);
+        this.setState({ 
+            location: this.convertPrettyToCanon(e.target.children[1].innerText)
+        }, this.setNewEvents);
+    }
+
+    // TODO: Ideally we should find a way to not use innerText and somehow get the id of the child.
+    convertPrettyToCanon(prettyText) {
+        for (var key in locations) {
+            if (locations[key].pretty === prettyText) {
+                return locations[key].canonical;
+            }
+        }
     }
 
     setNewEvents() {
