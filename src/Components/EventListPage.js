@@ -120,10 +120,11 @@ class EventListPage extends Component {
                                 maxAttendees={event.maxattendees}
                                 type={event.type}
                                 key={i}
-                                eventDetails={event}
+                                eventId={event.id}
                                 token={this.props.location.token}
                                 eventsList={this.props.location.eventsList}
                                 user={this.props.location.user}
+                                isTemplate={event.isTemplate}
                             />
                         </MDBCol>
                      </MDBRow>

@@ -9,7 +9,7 @@ const ActionPost = (props) => {
             <MDBCol size="1" className="action-post-margin"></MDBCol>
             <MDBCol size="11" className="action-post-main">
                 <MDBIcon far icon="bell" className="grey-text action-post-icon" size="2x" />
-                <h5>{props.action}</h5>
+                <h5>{props.content}</h5>
             </MDBCol>
         </MDBRow>
     );
