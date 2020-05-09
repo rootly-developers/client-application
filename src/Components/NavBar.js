@@ -13,19 +13,68 @@ import EventDetailsPage from '../Components/EventDetailsPage'
 import MyEventPage from '../Components/MyEventPage'
 import SignUpPage from '../Components/SignUpPage'
 import VerifyPage from '../Components/VerifyPage'
+import NotificationDropdown from './NotificationDropdown.js'
 import Images from "../images.js"
 import './styles/NavBar.css'
 
 class NavBar extends Component {
-  
-state = {
-  isOpen: false,
-  active: true
-};
+
+  constructor() {
+    super();
+    this.state = {
+        isOpen: false,
+        active: true,
+        notifications: [
+          {
+              "event_id": 2,
+              "description": "big YEET",
+              "is_read": true,
+              "_notification_type": 'PEOPLE_MGMT',
+              "created": "2020-05-09T20:58:10.607Z"
+          },
+          {
+              "event_id": 3,
+              "description": "Event Details Have Changed For \"Rock Climbing Meetup\"",
+              "_notification_type": 'EVENT_UPDATE',
+              "is_read": false,
+              "created": "2020-05-09T20:58:10.607Z"
+          },
+          {
+              "event_id": 4,
+              "description": "Event Details Have Changed For \"Rock Climbing Meetup\"",
+              "_notification_type": 'EVENT_COMMUNICATION',
+              "is_read": false,
+              "created": "2020-05-09T20:58:10.607Z"
+          }
+        ]
+      }
+    };
 
 toggleCollapse = () => {
   this.setState({ isOpen: !this.state.isOpen });
 }
+
+// getNotifications() {
+//   axios({
+//       method: 'get',
+//       url: "http://localhost:8080/login",
+//       params: {
+//       },
+//       headers: {
+//         'Content-Type': 'application/json',
+//         'token': this.props.location.token
+//       },
+//     })
+//     .then(res => {
+//         if(res.status == 200 && res.data.status == 200) {
+//             let notifs = [];
+//             res.data.notifications.forEach(notification => {
+//                 notifs.push(notification);
+//             });
+//             this.setState({notifications: notifs});
+//         }
+//     })
+// }
 
 render() {
   let active = this.state.active;
@@ -44,6 +93,7 @@ render() {
             <MDBNavItem>
               <MDBNavLink to="/login">Login</MDBNavLink>
             </MDBNavItem>
+            <NotificationDropdown value={this.state.notifications}></NotificationDropdown>
             <MDBNavItem>
               <MDBNavLink to="/events/new"><i class="fas fa-plus fa-2x"></i></MDBNavLink>
             </MDBNavItem>
@@ -52,19 +102,6 @@ render() {
             </MDBNavItem>
             <MDBNavItem>
               <MDBNavLink to="/profile"><i class="fas fa-user-circle fa-2x"></i></MDBNavLink>
-            </MDBNavItem>
-            <MDBNavItem>
-              <MDBDropdown>
-                <MDBDropdownToggle nav caret>
-                  <span className="mr-2">Dropdown</span>
-                </MDBDropdownToggle>
-                <MDBDropdownMenu>
-                  <MDBDropdownItem href="#!">Action</MDBDropdownItem>
-                  <MDBDropdownItem href="#!">Another Action</MDBDropdownItem>
-                  <MDBDropdownItem href="#!">Something else here</MDBDropdownItem>
-                  <MDBDropdownItem href="#!">Something else here</MDBDropdownItem>
-                </MDBDropdownMenu>
-              </MDBDropdown>
             </MDBNavItem>
           </MDBNavbarNav>
         </MDBCollapse>
