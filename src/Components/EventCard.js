@@ -30,35 +30,6 @@ const EventCard = (props) => {
                 return Images.events.coffee;
         }
     }
-    
-    const handleJoinClick = e => {
-        console.log("JOINING");
-        let { eventsList, eventDetails } = props;
-        let redirectPath = `/events/${eventDetails.id}`;
-        let params = { eventDetails: eventDetails };
-
-        if (eventsList && eventsList.includes(eventDetails.id)) {
-            return new Promise( (resolve, reject) => {
-                resolve({redirectPath, params});
-            })
-        }
-
-        return new Promise((resolve, reject) => {
-            axios.put(`http://localhost:8080/events/${eventDetails.id}/user`, {
-                token: props.token, 
-                firstName: props.user.firstName, 
-                lastName: props.user.lastName, 
-                isAdd: true
-            })
-            .then(res => {
-                if(res.status == 200) {
-                    console.log("EVENT DETAILS");
-                    console.log(props.eventDetails);
-                    resolve({redirectPath, params});
-                }
-            })
-        });
-    }
 
     const handleJoinClick = e => {
         console.log("JOINING");
