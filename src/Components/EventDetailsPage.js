@@ -39,13 +39,17 @@ class EventDetailsPage extends Component {
                     threads.forEach(thread => {
                         posts.push(thread);
                     })
-
+                    
+                    const startTime = this.formatTime(eventDetails.start_time);
+                    const endTime = this.formatTime(eventDetails.end_time);
                     this.setState({
                         title: eventDetails.title,
                         description: eventDetails.description,
                         numAttendees: eventDetails.num_attendees,
                         maxAttendees: eventDetails.max_attendees,
                         address: eventDetails.address,
+                        startTime,
+                        endTime,
                         posts: posts
                     });
                 }
@@ -65,8 +69,23 @@ class EventDetailsPage extends Component {
         this.setState({posts: posts, messageInput: ""});
     }
 
+    formatTime(timestamp) {
+        const date = new Date(timestamp);
+        let hours = date.getHours();
+        let merideum = "";
+        if(hours > 12) {
+            hours = (hours - 12).toString();
+            merideum = "PM";
+        } else {
+            hours = hours.toString();
+            merideum = "AM";
+        }
+        const minutes = date.getMinutes().toString();
+        return `${hours}:${minutes} ${merideum}`;
+    }
+
     render() {
-        let { title, description, numAttendees, maxAttendees, address } = this.state;
+        let { title, description, numAttendees, maxAttendees, address, startTime, endTime } = this.state;
         const posts = this.state.posts;
         let postCards = posts.map((post, i) => {
             return  <MDBRow>
@@ -114,7 +133,7 @@ class EventDetailsPage extends Component {
                             <MDBCol size="2"></MDBCol>
                             
                             <MDBCol size="3">
-                                <h3 id="event-details-date">7:30 - 9:30pm</h3>
+                                <h3 id="event-details-date">{startTime} - {endTime}</h3>
                                 <h4 id="event-details-address">{address}</h4>
                             </MDBCol>
                         </MDBRow>

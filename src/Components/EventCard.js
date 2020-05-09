@@ -13,6 +13,9 @@ const EventCard = (props) => {
     let eventCardClass = "event-card " + props.location;
 
     const getImgSrcForType = type => {
+        if(type) {
+            type = type.toUpperCase();
+        }
         switch(type) {
             case "ADVENTURE":
                 return Images.events.adventure;
