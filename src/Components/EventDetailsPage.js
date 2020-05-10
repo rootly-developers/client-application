@@ -2,7 +2,14 @@ import React, { Component } from 'react';
 import { MDBRow, MDBCol, MDBCardBody, MDBInput, MDBBtn } from "mdbreact";
 import Post from './Post.js';
 import './styles/EventDetailsPage.css';
+import { formatTime } from '../helpers.js';
 import axios from "axios";
+
+/* TODOS: 
+    - add timestamp and other fields for new posts 
+    - add comments to threads functionality
+    - what is user_id and how do i get it?
+*/
 
 class EventDetailsPage extends Component {
     constructor(){
@@ -21,7 +28,7 @@ class EventDetailsPage extends Component {
     }
 
     componentDidMount() {
-        let { eventId, token } = this.props.location;
+        const { eventId, token } = this.props.location;
         axios({
             method: 'get',
             url: `http://localhost:8080/events/${eventId}`,
@@ -39,13 +46,17 @@ class EventDetailsPage extends Component {
                     threads.forEach(thread => {
                         posts.push(thread);
                     })
-
+                    
+                    const startTime = formatTime(eventDetails.start_time);
+                    const endTime = formatTime(eventDetails.end_time);
                     this.setState({
                         title: eventDetails.title,
                         description: eventDetails.description,
                         numAttendees: eventDetails.num_attendees,
                         maxAttendees: eventDetails.max_attendees,
                         address: eventDetails.address,
+                        startTime,
+                        endTime,
                         posts: posts
                     });
                 }
@@ -54,19 +65,33 @@ class EventDetailsPage extends Component {
 
     handlePostClick() {
         const { eventId, token, user } = this.props.location;
-        let posts = this.state.posts.slice();
+        let newPosts = this.state.posts.slice();
         const content = this.state.messageInput;
         const username = `${user.firstName} ${user.lastName}`;
-        const newPost = {content, username, thread_type: "USER_POST"};
-        posts.push(newPost);
         axios.post(`http://localhost:8080/events/${eventId}/threads`, {
             token, content, username
         })
-        this.setState({posts: posts, messageInput: ""});
+        .then(res => {
+            const newPost = {
+                id: res.data.id,
+                content,
+                username,
+                user_id: null,
+                thread_type: "USER_POST",
+                upvote_count: 0,
+                upvote_usernames: [],
+                upvote_userids: [],
+                comments_content: [],
+                comments_created: []
+            };
+            newPosts.push(newPost);
+            this.setState({posts: newPosts, messageInput: ""});
+        })
     }
 
     render() {
-        let { title, description, numAttendees, maxAttendees, address } = this.state;
+        const { title, description, numAttendees, maxAttendees, address, startTime, endTime } = this.state;
+        let { eventId, token } = this.props.location;
         const posts = this.state.posts;
         let postCards = posts.map((post, i) => {
             return  <MDBRow>
@@ -76,6 +101,12 @@ class EventDetailsPage extends Component {
                                   content={post.content} 
                                   key={i}
                                   threadType={post.thread_type}
+                                  upvoteCount={post.upvote_count}
+                                  upvoteUsers={post.upvote_usernames}
+                                  id={post.id}
+                                  token={token}
+                                  eventId={eventId}
+                                  user={this.props.location.user}
                             />
                         </MDBCol>
                      </MDBRow>
@@ -114,7 +145,7 @@ class EventDetailsPage extends Component {
                             <MDBCol size="2"></MDBCol>
                             
                             <MDBCol size="3">
-                                <h3 id="event-details-date">7:30 - 9:30pm</h3>
+                                <h3 id="event-details-date">{startTime} - {endTime}</h3>
                                 <h4 id="event-details-address">{address}</h4>
                             </MDBCol>
                         </MDBRow>
