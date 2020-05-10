@@ -19,7 +19,7 @@ class LoginPage extends Component {
         return new Promise((resolve, reject) => {
             axios({
                 method: 'get',
-                url: "http://192.168.99.100:8080/users/verify",
+                url: "http://localhost:8080/users/verify",
                 headers: {
                   'Content-Type': 'application/json',
                   'email': email,
