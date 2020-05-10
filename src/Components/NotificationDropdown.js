@@ -54,7 +54,7 @@ class Notification extends Component {
             },
             headers: {
               'Content-Type': 'application/json',
-              'token': "eyJhbGciOiJSUzI1NiIsImtpZCI6ImZjMmM4YmIyNmE3OGM0M2JkODYzNzA1YjNkNzkyMWI0ZTY0MjVkNTQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcm9vdGx5LTExMjM1ODEzIiwiYXVkIjoicm9vdGx5LTExMjM1ODEzIiwiYXV0aF90aW1lIjoxNTg5MDc5OTM3LCJ1c2VyX2lkIjoiOVgxTjNqUkYzTWRJMnRIOE9ZTzJOYWsyYUloMSIsInN1YiI6IjlYMU4zalJGM01kSTJ0SDhPWU8yTmFrMmFJaDEiLCJpYXQiOjE1ODkwNzk5MzcsImV4cCI6MTU4OTA4MzUzNywiZW1haWwiOiJtaWNrZXkxMDAzQHV3YXRlcmxvby5jYSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJlbWFpbCI6WyJtaWNrZXkxMDAzQHV3YXRlcmxvby5jYSJdfSwic2lnbl9pbl9wcm92aWRlciI6InBhc3N3b3JkIn19.lJ6ZZwjvbegPi-EbZPNSXIh5HHeYatDeuWiO-VzAlmFRX_0yacv-lhY4iGLTtxMYH_eCqH64U_PbZIxxbH6IGCoKYJQSWiiyUxjOJuwu98L20fl1Sz_gBYOAwoRqxEUglxP_1S2_5JngSzzsa1f8ctDWP5_ez4jHgbxE7ON5dRnqVFMBUh31GBjUDN1JHjEIUwJ4tAgZk0ClqVo9j5Sv6iN0BUuZmpEak-zcgwPO5pXDRg3cJcgqxfX8YNhNZou5o2XGBdK7TZPrzc-BOz9-HhCQqaniWY4u3QW4DAO-pyJ3gmnTLV8EtbVE_OZ_vZI6A9XU1hgCUui2QZNWf4nqHw"
+              'token': ""
             },
           })
           .then(res => {
@@ -70,7 +70,7 @@ class Notification extends Component {
 
     isRead(id, event_id) {
         axios.post(`http://localhost:8080/notification/${id}/read`, {
-            token: "eyJhbGciOiJSUzI1NiIsImtpZCI6ImZjMmM4YmIyNmE3OGM0M2JkODYzNzA1YjNkNzkyMWI0ZTY0MjVkNTQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcm9vdGx5LTExMjM1ODEzIiwiYXVkIjoicm9vdGx5LTExMjM1ODEzIiwiYXV0aF90aW1lIjoxNTg5MDc5OTM3LCJ1c2VyX2lkIjoiOVgxTjNqUkYzTWRJMnRIOE9ZTzJOYWsyYUloMSIsInN1YiI6IjlYMU4zalJGM01kSTJ0SDhPWU8yTmFrMmFJaDEiLCJpYXQiOjE1ODkwNzk5MzcsImV4cCI6MTU4OTA4MzUzNywiZW1haWwiOiJtaWNrZXkxMDAzQHV3YXRlcmxvby5jYSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJlbWFpbCI6WyJtaWNrZXkxMDAzQHV3YXRlcmxvby5jYSJdfSwic2lnbl9pbl9wcm92aWRlciI6InBhc3N3b3JkIn19.lJ6ZZwjvbegPi-EbZPNSXIh5HHeYatDeuWiO-VzAlmFRX_0yacv-lhY4iGLTtxMYH_eCqH64U_PbZIxxbH6IGCoKYJQSWiiyUxjOJuwu98L20fl1Sz_gBYOAwoRqxEUglxP_1S2_5JngSzzsa1f8ctDWP5_ez4jHgbxE7ON5dRnqVFMBUh31GBjUDN1JHjEIUwJ4tAgZk0ClqVo9j5Sv6iN0BUuZmpEak-zcgwPO5pXDRg3cJcgqxfX8YNhNZou5o2XGBdK7TZPrzc-BOz9-HhCQqaniWY4u3QW4DAO-pyJ3gmnTLV8EtbVE_OZ_vZI6A9XU1hgCUui2QZNWf4nqHw"
+            token: ""
         });
         
         // Redirect to event page
