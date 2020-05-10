@@ -24,30 +24,7 @@ class NavBar extends Component {
     super();
     this.state = {
         isOpen: false,
-        active: true,
-        notifications: [
-          {
-              "event_id": 2,
-              "description": "big YEET",
-              "is_read": true,
-              "_notification_type": 'PEOPLE_MGMT',
-              "created": "2020-05-09T20:58:10.607Z"
-          },
-          {
-              "event_id": 3,
-              "description": "Event Details Have Changed For \"Rock Climbing Meetup\"",
-              "_notification_type": 'EVENT_UPDATE',
-              "is_read": false,
-              "created": "2020-05-09T20:58:10.607Z"
-          },
-          {
-              "event_id": 4,
-              "description": "Event Details Have Changed For \"Rock Climbing Meetup\"",
-              "_notification_type": 'EVENT_COMMUNICATION',
-              "is_read": false,
-              "created": "2020-05-09T20:58:10.607Z"
-          }
-        ]
+        active: true
       }
     };
 
@@ -55,30 +32,7 @@ toggleCollapse = () => {
   this.setState({ isOpen: !this.state.isOpen });
 }
 
-// getNotifications() {
-//   axios({
-//       method: 'get',
-//       url: "http://localhost:8080/login",
-//       params: {
-//       },
-//       headers: {
-//         'Content-Type': 'application/json',
-//         'token': this.props.location.token
-//       },
-//     })
-//     .then(res => {
-//         if(res.status == 200 && res.data.status == 200) {
-//             let notifs = [];
-//             res.data.notifications.forEach(notification => {
-//                 notifs.push(notification);
-//             });
-//             this.setState({notifications: notifs});
-//         }
-//     })
-// }
-
 render() {
-  let active = this.state.active;
   return (
     <Router>
       <MDBNavbar color="blue" dark expand="md" fixed="top" id="nav-bar">
