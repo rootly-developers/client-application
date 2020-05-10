@@ -4,6 +4,7 @@ import './styles/CreateEventPage.css';
 import SubmitButton from './SubmitButton';
 import axios from "axios";
 import TextField from '@material-ui/core/TextField';
+import data from './hackystore.json';
 
 
 import Select from 'react-select'
@@ -43,6 +44,8 @@ class CreateEventPage extends Component {
 
     handleAPICall() {
         return new Promise((resolve, reject) => {
+            let hackystore = require("./hackystore.json");
+
             console.log("start " + this.state.startTime);
             console.log("end " + this.state.endTime);
             console.log("date " + this.state.date);
@@ -53,9 +56,9 @@ class CreateEventPage extends Component {
             let endMoment = new Date(this.state.date.getFullYear(), this.state.date.getMonth(), this.state.date.getDate(), 
                     endTime.getHours(), endTime.getMinutes(), endTime.getSeconds());
             
-
+            
             axios.post('http://localhost:8080/events', {
-                token: "eyJhbGciOiJSUzI1NiIsImtpZCI6ImZjMmM4YmIyNmE3OGM0M2JkODYzNzA1YjNkNzkyMWI0ZTY0MjVkNTQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcm9vdGx5LTExMjM1ODEzIiwiYXVkIjoicm9vdGx5LTExMjM1ODEzIiwiYXV0aF90aW1lIjoxNTg5MDU5MDEzLCJ1c2VyX2lkIjoiZDVid2ZnYnVYa1BPUEpEQjdkaEE5Wk9QUFNwMiIsInN1YiI6ImQ1YndmZ2J1WGtQT1BKREI3ZGhBOVpPUFBTcDIiLCJpYXQiOjE1ODkwNTkwMTMsImV4cCI6MTU4OTA2MjYxMywiZW1haWwiOiJkdGNoZXVuZ0B1d2F0ZXJsb28uY2EiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJlbWFpbCI6WyJkdGNoZXVuZ0B1d2F0ZXJsb28uY2EiXX0sInNpZ25faW5fcHJvdmlkZXIiOiJwYXNzd29yZCJ9fQ.mSqYknfrgVaJQZsD1m1_yj7al2aOFp36QnJyjyyOGRenrC8hyYkSdmwA_L6ZQ9gel1pVmBc6wtWholVA-SRfQGH0uWBHEWar3wmTwADQ_fIJZvPySMOPt0vbbfm5Palp1giGM1ZLd66o56CKJ-3z5m2RJHfo6nvDkAgTiSu48BV1OzklXO8571Z2baLtcVK9AEJrYLdeK7dKNyJ8P0g8BigayypLw8TFdDWHgt8ROhC2odRtK2GwkSWuqyx-MH4HLbFm-6hLJKYUaLTgvHnLbE421Kpl7g1zxlQyQAPTDoiWq7j81NijoRgrzD8h5rt308CJXqVPtI3l4bBW84-EPQ",
+                token: hackystore.token,
                 organizerName: "Darren Cheung",
                 title: this.state.eventName,
                 description: this.state.exDescription,
@@ -69,8 +72,10 @@ class CreateEventPage extends Component {
             .then((res) => {
                 if (res.status == 200) {
                     console.log(res);
-                    let redirectPath = "/" + res.data.eventId;
-                    resolve({redirectPath});
+                    let redirectPath = "/events/" + res.data.eventId;
+                    
+                    let params = { eventId: res.data.eventId, user: hackystore.user, token: hackystore.token };
+                    resolve({redirectPath, params});
                 }
                 else {
                     reject("Error");
