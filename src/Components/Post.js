@@ -7,10 +7,23 @@ import './styles/Post.css'
 
 const Post = (props) => {
     let post = null;
-    const threadType = props.threadType;
-    const { username, date, content } = props;
+    const { username, date, content, 
+            threadType, upvoteCount, id,
+            eventId, token, upvoteUsers, user
+        } = props;
     if (threadType == "BOT_POST" || threadType == "USER_POST") {
-        post = <MessagePost username={username} date={date} content={content} type={threadType} />
+        post = <MessagePost 
+                    postUser={username}
+                    date={date}
+                    content={content}
+                    type={threadType}
+                    id={id}
+                    upvoteCount={upvoteCount}
+                    upvoteUsers={upvoteUsers}
+                    eventId={eventId}
+                    token={token}
+                    user={user}
+               />
     }
     else if (threadType == "EVENT_UPDATE") {
         post = <ActionPost content={content}/>

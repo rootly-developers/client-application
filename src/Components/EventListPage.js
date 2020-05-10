@@ -121,7 +121,7 @@ class EventListPage extends Component {
                                 description={event.description} 
                                 attendees={event.num_attendees}
                                 maxAttendees={event.max_attendees}
-                                type={event.type}
+                                type={event._event_type}
                                 key={i}
                                 eventId={event.id}
                                 isTemplate={event.isTemplate}
