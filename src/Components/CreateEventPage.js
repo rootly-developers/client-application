@@ -3,6 +3,9 @@ import { MDBInput, MDBContainer, MDBRow, MDBCol } from 'mdbreact';
 import './styles/CreateEventPage.css';
 import SubmitButton from './SubmitButton';
 import axios from "axios";
+import TextField from '@material-ui/core/TextField';
+
+
 import Select from 'react-select'
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
@@ -36,22 +39,30 @@ class CreateEventPage extends Component {
         this.handleAPICall = this.handleAPICall.bind(this);
     }
 
-    handleAvatarSelect = (avatar) => {
-        this.setState({avatar: avatar})
-    }
+    handleAvatarSelect = (avatar) => {this.setState({avatar: avatar})}
 
     handleAPICall() {
         return new Promise((resolve, reject) => {
-            console.log(this.props.token);
+            console.log("start " + this.state.startTime);
+            console.log("end " + this.state.endTime);
+            console.log("date " + this.state.date);
+            let startTime = new Date('1970-01-01T' + this.state.startTime + 'Z');
+            let endTime = new Date('1970-01-01T' + this.state.endTime + 'Z');        
+            let startMoment = new Date(this.state.date.getFullYear(), this.state.date.getMonth(), this.state.date.getDate(), 
+                    startTime.getHours(), startTime.getMinutes(), startTime.getSeconds());
+            let endMoment = new Date(this.state.date.getFullYear(), this.state.date.getMonth(), this.state.date.getDate(), 
+                    endTime.getHours(), endTime.getMinutes(), endTime.getSeconds());
+            
+
             axios.post('http://localhost:8080/events', {
-                token: "eyJhbGciOiJSUzI1NiIsImtpZCI6Ijg4ODQ4YjVhZmYyZDUyMDEzMzFhNTQ3ZDE5MDZlNWFhZGY2NTEzYzgiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcm9vdGx5LTExMjM1ODEzIiwiYXVkIjoicm9vdGx5LTExMjM1ODEzIiwiYXV0aF90aW1lIjoxNTg4NjU5NzM4LCJ1c2VyX2lkIjoiZDVid2ZnYnVYa1BPUEpEQjdkaEE5Wk9QUFNwMiIsInN1YiI6ImQ1YndmZ2J1WGtQT1BKREI3ZGhBOVpPUFBTcDIiLCJpYXQiOjE1ODg2NTk3MzgsImV4cCI6MTU4ODY2MzMzOCwiZW1haWwiOiJkdGNoZXVuZ0B1d2F0ZXJsb28uY2EiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJlbWFpbCI6WyJkdGNoZXVuZ0B1d2F0ZXJsb28uY2EiXX0sInNpZ25faW5fcHJvdmlkZXIiOiJwYXNzd29yZCJ9fQ.NlpaoTj4J3piEWqC9fHYG04Bi0GmlyJVTY5RQOB8tvgotu7sD_nMjK1YViEFRpm3TH4BLuAS2M1OTT2hs8mXYTR05lVIF6_yf5WIun4wPmen-BGqVEhIADqhR8p8_y79H4daDRc9q86DsYLObwA50w9VmB821WmwtUDMEdLVRLc-KcKWf4lS7A6u3WXrJ9mbE-3x_dYYzBEopg4ClkkYyVX4XqxPTDETbZSFRwTIfgY8_j1qzHAZC1C3I_bBgrrtftKsVZSAiovqbZsdaMHEVVa64fA1zGDsUbYnqt2G8f5gNsiL3okx-a4qoXAtUCln2PSdlV4Gil_mwLWk3cLxwQ",
+                token: "eyJhbGciOiJSUzI1NiIsImtpZCI6ImZjMmM4YmIyNmE3OGM0M2JkODYzNzA1YjNkNzkyMWI0ZTY0MjVkNTQiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcm9vdGx5LTExMjM1ODEzIiwiYXVkIjoicm9vdGx5LTExMjM1ODEzIiwiYXV0aF90aW1lIjoxNTg5MDU5MDEzLCJ1c2VyX2lkIjoiZDVid2ZnYnVYa1BPUEpEQjdkaEE5Wk9QUFNwMiIsInN1YiI6ImQ1YndmZ2J1WGtQT1BKREI3ZGhBOVpPUFBTcDIiLCJpYXQiOjE1ODkwNTkwMTMsImV4cCI6MTU4OTA2MjYxMywiZW1haWwiOiJkdGNoZXVuZ0B1d2F0ZXJsb28uY2EiLCJlbWFpbF92ZXJpZmllZCI6dHJ1ZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJlbWFpbCI6WyJkdGNoZXVuZ0B1d2F0ZXJsb28uY2EiXX0sInNpZ25faW5fcHJvdmlkZXIiOiJwYXNzd29yZCJ9fQ.mSqYknfrgVaJQZsD1m1_yj7al2aOFp36QnJyjyyOGRenrC8hyYkSdmwA_L6ZQ9gel1pVmBc6wtWholVA-SRfQGH0uWBHEWar3wmTwADQ_fIJZvPySMOPt0vbbfm5Palp1giGM1ZLd66o56CKJ-3z5m2RJHfo6nvDkAgTiSu48BV1OzklXO8571Z2baLtcVK9AEJrYLdeK7dKNyJ8P0g8BigayypLw8TFdDWHgt8ROhC2odRtK2GwkSWuqyx-MH4HLbFm-6hLJKYUaLTgvHnLbE421Kpl7g1zxlQyQAPTDoiWq7j81NijoRgrzD8h5rt308CJXqVPtI3l4bBW84-EPQ",
                 organizerName: "Darren Cheung",
                 title: this.state.eventName,
                 description: this.state.exDescription,
                 address: this.state.address,
                 city: this.state.region,
-                startTime: this.state.startTime,
-                endTime: this.state.endTime,
+                startTime: Math.round(startMoment.getTime()/1000),
+                endTime: Math.round(endMoment.getTime()/1000),
                 maxAttendees: this.state.cap,
                 eventType: this.state.avatar
            })
@@ -180,10 +191,9 @@ class CreateEventPage extends Component {
                                     <h5>Date:</h5>
                                </MDBCol>
                                <MDBCol size="3">
-                                    <DatePicker
-                                        selected={this.state.date}
-                                        onChange={date => this.setState({date: date})}
-                                        className="md-form"
+                                    <TextField
+                                        id="date"
+                                        type="date"
                                     />
                                 </MDBCol>   
                             </MDBRow>
@@ -193,18 +203,26 @@ class CreateEventPage extends Component {
                                     <h5>Start Time:</h5>
                                </MDBCol>
                                <MDBCol size="3">
-                                    <TimePicker
-                                        selected={this.state.startTime}
-                                        onChange={(e) => this.setState({endTime: this.value})}
+                                    <TextField
+                                        id="startTime"
+                                        type="time"
+                                        onChange={(e) => this.setState({startTime: e.target.value})}
+                                        inputProps={{
+                                        step: 300
+                                        }}
                                     />
                                 </MDBCol>   
                                 <MDBCol size="2">
                                     <h5>End Time:</h5>
                                </MDBCol>
                                <MDBCol size="3">
-                                    <TimePicker
-                                        selected={this.state.endTime}
-                                        onChange={(e) => this.setState({startTime: this.value})}
+                                    <TextField
+                                        id="endTime"
+                                        type="time"
+                                        onChange={(e) => this.setState({endTime: e.target.value})}
+                                        inputProps={{
+                                        step: 300
+                                        }}
                                     />
                                 </MDBCol>  
                             </MDBRow>
@@ -235,18 +253,22 @@ class CreateEventPage extends Component {
                                     <h5>Event Avatar: {this.state.avatar}</h5>
                                </MDBCol>
                                <MDBCol size="9">
-                                    <img src="/coffee.svg" className="img-fluid" id="coffee" onClick={(e) => this.handleAvatarSelect("coffee")}></img>
-                                    <img src="/bulb.png" className="img-fluid" id="bulb" onClick={(e) => this.handleAvatarSelect("COFFEE")}></img>
-                                    <img src="/dice.png" className="img-fluid" id="dice" onClick={(e) => this.handleAvatarSelect("dice")}></img>
-                                    <img src="/mask.png" className="img-fluid" id="mask" onClick={(e) => this.handleAvatarSelect("mask")}></img>
-                                    <img src="/football.png" className="img-fluid" id="football" onClick={(e) => this.handleAvatarSelect("football")}></img>
-                                    <img src="/pyramid.png" className="img-fluid" id="pyramid" onClick={(e) => this.handleAvatarSelect("pyramid")}></img>
+                                    <img src="/coffee.svg" className="img-fluid" id="coffee" onClick={(e) => this.handleAvatarSelect("COFFEE")}></img>
+                                    <img src="/bulb.png" className="img-fluid" id="ideas" onClick={(e) => this.handleAvatarSelect("IDEAS")}></img>
+                                    <img src="/dice.png" className="img-fluid" id="games" onClick={(e) => this.handleAvatarSelect("GAMES")}></img>
+                                    <img src="/mask.png" className="img-fluid" id="theatre" onClick={(e) => this.handleAvatarSelect("THEATRE")}></img>
+                                    <img src="/football.png" className="img-fluid" id="sports" onClick={(e) => this.handleAvatarSelect("SPORTS")}></img>
+                                    <img src="/pyramid.png" className="img-fluid" id="adventure" onClick={(e) => this.handleAvatarSelect("ADVENTURE")}></img>
                                 </MDBCol>   
                             </MDBRow>
+<<<<<<< HEAD
 
                             <SubmitButton id="create-event" text="Submit" handleAPICall={this.handleAPICall}
 >>>>>>> add hacky avatar icon select
                             /> 
+=======
+                            <SubmitButton id="create-event" text="Submit" handleAPICall={this.handleAPICall}/> 
+>>>>>>> add datetime
                         </form>
                     </MDBContainer>
                 </div>
