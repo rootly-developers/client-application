@@ -244,10 +244,6 @@ class CreateEventPage extends Component {
                                 </MDBCol>   
                             </MDBRow>
 
-<<<<<<< HEAD
-                            <SubmitButton id="create-event" text="Submit" type={"createEvent"} eventName={this.state.eventName} exDescription={this.state.exDescription} 
-                            inDescription={this.state.inDescription} address={this.state.address} city={this.state.city} link={this.state.link}
-=======
                             <MDBRow>
                                <MDBCol size="3">
                                     <h5>Event Avatar: {this.state.avatar}</h5>
@@ -261,14 +257,8 @@ class CreateEventPage extends Component {
                                     <img src="/pyramid.png" className="img-fluid" id="adventure" onClick={(e) => this.handleAvatarSelect("ADVENTURE")}></img>
                                 </MDBCol>   
                             </MDBRow>
-<<<<<<< HEAD
 
-                            <SubmitButton id="create-event" text="Submit" handleAPICall={this.handleAPICall}
->>>>>>> add hacky avatar icon select
-                            /> 
-=======
                             <SubmitButton id="create-event" text="Submit" handleAPICall={this.handleAPICall}/> 
->>>>>>> add datetime
                         </form>
                     </MDBContainer>
                 </div>
