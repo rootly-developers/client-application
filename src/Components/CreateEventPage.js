@@ -59,7 +59,7 @@ class CreateEventPage extends Component {
             
             axios.post('http://localhost:8080/events', {
                 token: hackystore.token,
-                organizerName: "Darren Cheung",
+                organizerName: hackystore.user.firstName + " " + hackystore.user.lastName,
                 title: this.state.eventName,
                 description: this.state.exDescription,
                 address: this.state.address,
