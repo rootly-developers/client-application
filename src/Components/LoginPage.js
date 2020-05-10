@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { MDBInput, MDBContainer } from 'mdbreact';
 import SubmitButton from './SubmitButton';
 import axios from "axios";
-import './styles/LoginPage.css'
+import './styles/LoginPage.css';
 
 class LoginPage extends Component {
     constructor(){
@@ -19,7 +19,7 @@ class LoginPage extends Component {
         return new Promise((resolve, reject) => {
             axios({
                 method: 'get',
-                url: "http://localhost:8080/users/verify",
+                url: "http://192.168.99.100:8080/users/verify",
                 headers: {
                   'Content-Type': 'application/json',
                   'email': email,
@@ -41,6 +41,10 @@ class LoginPage extends Component {
                                 eventsList: res.data.eventsList,
                                 user: res.data.user
                             }
+                            let hackystore = require("./hackystore.json");
+                            hackystore.token = res.data.token;
+                            hackystore.user = res.data.user;
+
                             resolve({ redirectPath: "/events", params: params});
                         })
                     }
