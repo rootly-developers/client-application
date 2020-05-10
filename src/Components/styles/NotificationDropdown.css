@@ -1,11 +1,11 @@
 .Ripple .is-reppling {
-    display:none;
+    display: none;
 }
 .dropdown-item {
     padding-top: 0.5rem;
 }
 
-#app-container .btn {
+.dropdown .notifdropdown {
     background-color: var(--darkpurple) !important;
     margin: 0;
     padding-left: 1rem;
@@ -14,4 +14,8 @@
 
 i {
     padding-right: 1rem;
+}
+
+.btn-primary.dropdown-toggle {
+    background-color: none;
 }

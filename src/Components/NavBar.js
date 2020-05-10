@@ -15,6 +15,7 @@ import SignUpPage from '../Components/SignUpPage'
 import VerifyPage from '../Components/VerifyPage'
 import NotificationDropdown from './NotificationDropdown.js'
 import Images from "../images.js"
+import axios from "axios";
 import './styles/NavBar.css'
 
 class NavBar extends Component {
