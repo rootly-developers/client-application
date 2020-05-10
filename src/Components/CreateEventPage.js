@@ -6,14 +6,6 @@ import axios from "axios";
 import TextField from '@material-ui/core/TextField';
 import data from './hackystore.json';
 
-
-import Select from 'react-select'
-import DatePicker from "react-datepicker";
-import "react-datepicker/dist/react-datepicker.css";
-import TimePicker from 'rc-time-picker';
-import ReactDOM from 'react-dom';
-import 'rc-time-picker/assets/index.css';
-
 const options = [
     { value: 'San Francisco', label: 'San Francisco' },
     { value: 'Toronto', label: 'Toronto' },
@@ -71,7 +63,6 @@ class CreateEventPage extends Component {
            })
             .then((res) => {
                 if (res.status == 200) {
-                    console.log(res);
                     let redirectPath = "/events/" + res.data.eventId;
                     
                     let params = { eventId: res.data.eventId, user: hackystore.user, token: hackystore.token };
