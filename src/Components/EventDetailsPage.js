@@ -9,7 +9,7 @@ import axios from "axios";
 
 /* TODOS: 
     - add timestamp and other fields for new posts 
-    - add comments to threads functionality
+    - add date to comments
     - what is user_id and how do i get it?
 */
 
@@ -99,8 +99,6 @@ class EventDetailsPage extends Component {
     }
 
     toggleShowComments(threadId) {
-        console.log("SHOWING COMMENTS");
-        console.log(threadId);
         let newShowComments = {};
         newShowComments = Object.assign(newShowComments, this.state.showComments);
         newShowComments[threadId] = !newShowComments[threadId];
