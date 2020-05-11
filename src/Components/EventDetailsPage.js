@@ -142,7 +142,7 @@ class EventDetailsPage extends Component {
         const { title, description, numAttendees, maxAttendees, address, startTime, endTime } = this.state;
         let { eventId, token } = this.props.location;
         const posts = this.state.posts;
-        let postCards = posts.map((post, i) => {
+        let threads = posts.map((post, i) => {
             const postHtml = 
                         <MDBRow>
                             <MDBCol size="12">
@@ -228,7 +228,7 @@ class EventDetailsPage extends Component {
 
                         <h2 id="discussion-header">Discussion</h2>
 
-                        {postCards}
+                        {threads}
 
                         <MDBRow id="post-message-bar">
                             <MDBCol size="10">
