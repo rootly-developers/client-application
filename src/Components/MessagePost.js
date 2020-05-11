@@ -12,6 +12,7 @@ class MessagePost extends Component {
             isToggleOn: true,
         };
         this.toggleThumbsUp = this.toggleThumbsUp.bind(this);
+        this.handleShowCommentsClick = this.handleShowCommentsClick.bind(this);
     }
 
     componentDidMount() {
@@ -31,13 +32,16 @@ class MessagePost extends Component {
         })
         .then(res => {
             if(res.status == 200) {
-                console.log("UPVOTED");
                 const isToggleOn = !this.state.isToggleOn;
                 const thumbCount = this.state.thumbCount;
                 const newThumbCount = isToggleOn ? (thumbCount + 1):(thumbCount - 1);
                 this.setState({thumbCount: newThumbCount, isToggleOn});
             }
         });
+    }
+
+    handleShowCommentsClick() {
+        this.props.toggleShowComments(this.props.id);
     }
 
     render() {
@@ -49,10 +53,10 @@ class MessagePost extends Component {
                     <img src="/default-avatar.jpg" className="message-post-img"></img>
                 </MDBCol>
 
-                <MDBCol size="7" className="message-post-main-section">
+                <MDBCol size="9" className="message-post-main-section">
                     <MDBRow>
                         <MDBCol size="12" className="message-post-top-row">
-                            <h5 className="message-post-user">{this.props.postUser}</h5>
+                            <h5 className="message-post-user">{this.props.username}</h5>
                             <MDBIcon far icon={userIcon} size="lg" className={iconClass} />
                             <p className="message-post-date">{this.props.date}</p>
                         </MDBCol>
@@ -63,12 +67,19 @@ class MessagePost extends Component {
                             <p className="message-post-message">{this.props.content}</p>
                         </MDBCol>
                     </MDBRow>
+
+                    <MDBRow>
+                        <MDBCol size="12">
+                            <MDBIcon 
+                                icon="reply"
+                                onClick={this.handleShowCommentsClick} 
+                                className="grey-text message-show-comments-btn"
+                            />
+                        </MDBCol>
+                    </MDBRow>
                 </MDBCol>
 
-                <MDBCol size="4" className="message-post-right-bar">
-                    <img src="/default-avatar.jpg" className="message-icon"></img>
-                    <img src="/default-avatar.jpg" className="message-icon"></img>
-                    <img src="/default-avatar.jpg" className="message-icon"></img>
+                <MDBCol size="2" className="message-post-right-bar">
                     <p className="thumb-count">{this.state.thumbCount}</p>
                     <MDBIcon far icon="thumbs-up" size="lg" className="deep-purple-text thumb-icon" onClick={this.toggleThumbsUp}/>
                 </MDBCol>

@@ -1,6 +1,6 @@
 .message-post {
     font-family: "Roboto";
-    margin-bottom: 2rem;
+    margin-bottom: 1.5rem;
 }
 
 .message-post-img {
@@ -43,6 +43,7 @@
 .message-post-right-bar {
     display: flex;
     flex-direction: row;
+    justify-content: flex-end;
     align-items: center;
 }
 
@@ -69,4 +70,8 @@
     cursor: pointer;
     font-size: 2em;
     padding: 0;
+}
+
+.message-show-comments-btn:hover {
+    cursor: pointer;
 }
