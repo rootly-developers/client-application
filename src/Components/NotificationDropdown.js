@@ -5,15 +5,15 @@ import axios from "axios";
 import './styles/NotificationDropdown.css'
 
 function NotifIcon(props) {
-    const notiftype = props.value._notification_type;
-    const isread = props.value.is_read ? 'var(--medgray)' : 'var(--saturatedpurple)';
-    switch(notiftype) {
+    const notifType = props.value._notification_type;
+    const isRead = props.value.is_read ? 'var(--medgray)' : 'var(--saturatedpurple)';
+    switch(notifType) {
         case 'EVENT_COMMUNICATION':
-            return <i class="fas fa-comment fa-2x" style={{color: isread}}></i>;
+            return <i class="fas fa-comment fa-2x" style={{color: isRead}}></i>;
         case 'EVENT_UPDATE':
-            return <i class="fas fa-calendar-day fa-2x" style={{color: isread}}></i>;   
+            return <i class="fas fa-calendar-day fa-2x" style={{color: isRead}}></i>;   
         case 'PEOPLE_MGMT':
-            return <i class="fas fa-users fa-2x" style={{color: isread}}></i>;
+            return <i class="fas fa-users fa-2x" style={{color: isRead}}></i>;
         default:
             return "";
     }
@@ -27,16 +27,16 @@ class Notification extends Component {
             allRead: false,
             notifications: []
         };
-        this.isAllRead = this.isAllRead.bind(this);
-        this.isRead = this.isRead.bind(this);
+        this.handleisAllRead = this.handleisAllRead.bind(this);
+        this.handleRead = this.handleRead.bind(this);
     }
 
     componentDidMount() {
         this.getNotifications();
     }
 
-    isAllRead(){
-        let read = this.state.notifications.slice(0, 10).filter(e => e.is_read == false).length > 0 ? false : true;
+    handleisAllRead(){
+        let read = !(this.state.notifications.slice(0, 10).filter(e => e.is_read == false).length > 0);
         if ( read != this.state.allRead){
             this.setState({
                 allRead: !this.state.allRead
@@ -68,7 +68,7 @@ class Notification extends Component {
           })
     }
 
-    isRead(id, event_id) {
+    handleRead(id, event_id) {
         axios.post(`http://localhost:8080/notification/${id}/read`, {
             token: ""
         });
@@ -78,10 +78,10 @@ class Notification extends Component {
     }
 
     render(){
-        this.isAllRead();
-        const notification = this.state.notifications;
-        let notif = notification.slice(0, 10).map((notification, i) => {
-            return  <MDBDropdownItem onClick={() => this.isRead(notification.id, notification.event_id)} style={notification.is_read ? {fontWeight: '400'} : {fontWeight: '900'}}> 
+        this.handleisAllRead();
+        const notifications = this.state.notifications;
+        let notif = notifications.slice(0, 10).map((notification, i) => {
+            return  <MDBDropdownItem onClick={() => this.handleRead(notification.id, notification.event_id)} style={notification.is_read ? {fontWeight: '400'} : {fontWeight: '900'}}> 
                         <div className="contents">
                             <NotifIcon value={notification}/>
                             <div className="description">{notification.description}</div>
@@ -93,7 +93,7 @@ class Notification extends Component {
         return (
             <Fragment>
             <MDBDropdown>
-                <MDBDropdownToggle caret color="primary" className="notifdropdown" style={this.state.allRead ? {backgroundColor : 'yellow'} : {backgroundColor: 'yellow'}}>
+                <MDBDropdownToggle caret color="primary" className="notifdropdown">
                     {this.state.allRead ? <i class="far fa-bell fa-2x"></i> : <i class="fas fa-bell fa-2x" style={{color: "var(--white)"}}></i>}
                 </MDBDropdownToggle>
                 <MDBDropdownMenu basic>
