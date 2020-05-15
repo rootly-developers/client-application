@@ -6,14 +6,14 @@ import './styles/NotificationDropdown.css'
 
 function NotifIcon(props) {
     const notifType = props.value._notification_type;
-    const isRead = props.value.is_read ? 'var(--medgray)' : 'var(--saturatedpurple)';
+    const commentColour = props.value.is_read ? 'var(--medgray)' : 'var(--saturatedpurple)';
     switch(notifType) {
         case 'EVENT_COMMUNICATION':
-            return <i class="fas fa-comment fa-2x" style={{color: isRead}}></i>;
+            return <i class="fas fa-comment fa-2x" style={{color: commentColour}}></i>;
         case 'EVENT_UPDATE':
-            return <i class="fas fa-calendar-day fa-2x" style={{color: isRead}}></i>;   
+            return <i class="fas fa-calendar-day fa-2x" style={{color: commentColour}}></i>;   
         case 'PEOPLE_MGMT':
-            return <i class="fas fa-users fa-2x" style={{color: isRead}}></i>;
+            return <i class="fas fa-users fa-2x" style={{color: commentColour}}></i>;
         default:
             return "";
     }
@@ -94,7 +94,7 @@ class Notification extends Component {
             <Fragment>
             <MDBDropdown>
                 <MDBDropdownToggle caret color="primary" className="notifdropdown">
-                    {this.state.allRead ? <i class="far fa-bell fa-2x"></i> : <i class="fas fa-bell fa-2x" style={{color: "var(--white)"}}></i>}
+                    <i class={this.state.allRead ? "far fa-bell fa-2x" : "fas fa-bell fa-2x"} style={{color: "var(--white)"}}></i>
                 </MDBDropdownToggle>
                 <MDBDropdownMenu basic>
                 { notif }
