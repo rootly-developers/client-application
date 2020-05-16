@@ -41,6 +41,7 @@ class LoginPage extends Component {
                                 eventsList: res.data.eventsList,
                                 user: res.data.user
                             }
+                            this.props.userCallback(res.data);
                             resolve({ redirectPath: "/events", params: params});
                         })
                     }

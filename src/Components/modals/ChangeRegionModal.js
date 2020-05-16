@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { MDBContainer, MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter, MDBRow, MDBCard } from 'mdbreact';
-import './styles/ChangeRegionModal.css'
-const locations = require('../commons/locations.json');
+import '../styles/ChangeRegionModal.css'
+const locations = require('../../commons/locations.json');
 
 class ChangeRegionModal extends Component {
   constructor(){

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBBtn, MDBIcon } from "mdbreact";
 import EventCard from './EventCard.js'
-import ChangeRegionModal from './ChangeRegionModal.js'
+import ChangeRegionModal from './modals/ChangeRegionModal.js'
 import axios from "axios";
 import './styles/EventListPage.css'
 const locations = require('../commons/locations.json')

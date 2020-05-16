@@ -2,6 +2,10 @@
     text-align: center;
 }
 
+#profile-page .btn{
+    background-color: var(--saturatedpurple) !important;
+}
+
 #profile-page h2 {
     font-weight: 500;
     font-size: 3rem;
@@ -40,4 +44,13 @@
 #profile-page .row{
     display: flex;
     justify-content: center;
+}
+
+#profile-page .editProfile{
+    width: 12rem;
+}
+
+#profile-page .modal-content{
+    border-radius: 1rem;
+    padding: 2rem;
 }
