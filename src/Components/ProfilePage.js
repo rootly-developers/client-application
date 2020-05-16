@@ -63,7 +63,7 @@ class ProfilePage extends Component {
                     <div className="page-body">
                         <MDBRow>
                                 <div className="description">
-                                    <h2><b>{this.state.user.firstName} {this.state.user.lastName}.</b></h2>
+                                    <h2><b>{this.state.user.firstName} {this.state.user.lastName ? this.state.user.lastName[0]:this.state.user.lastName}.</b></h2>
                                     <h4>{this.state.user.programName} - {this.state.user.term}</h4>
                                     <h4>{this.state.user.socialLink}</h4>
                                     <p>{this.state.user.biography}</p>
