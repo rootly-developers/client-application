@@ -27,7 +27,7 @@ class Notification extends Component {
             allRead: false,
             notifications: []
         };
-        this.handleisAllRead = this.handleisAllRead.bind(this);
+        this.handleisAllRead = this.handleIsAllRead.bind(this);
         this.handleRead = this.handleRead.bind(this);
     }
 
@@ -35,9 +35,9 @@ class Notification extends Component {
         this.getNotifications();
     }
 
-    handleisAllRead(){
+    handleIsAllRead(){
         let read = !(this.state.notifications.slice(0, 10).filter(e => e.is_read == false).length > 0);
-        if ( read != this.state.allRead){
+        if (read != this.state.allRead){
             this.setState({
                 allRead: !this.state.allRead
               });
@@ -60,8 +60,8 @@ class Notification extends Component {
           .then(res => {
               if(res.status == 200) {
                   let notifs = [];
-                  res.data.forEach(notification => {
-                      notifs.push(notification);
+                  res.data.forEach(notifItem => {
+                      notifs.push(notifItem);
                   });
                   this.setState({notifications: notifs});
               }
@@ -69,7 +69,7 @@ class Notification extends Component {
     }
 
     handleRead(id, event_id) {
-        axios.post(`http://localhost:8080/notification/${id}/read`, {
+        axios.post(`http://localhost:8080/notifications/${id}/read`, {
             token: ""
         });
         
@@ -78,7 +78,7 @@ class Notification extends Component {
     }
 
     render(){
-        this.handleisAllRead();
+        this.handleIsAllRead();
         const notifications = this.state.notifications;
         let notif = notifications.slice(0, 10).map((notification, i) => {
             return  <MDBDropdownItem onClick={() => this.handleRead(notification.id, notification.event_id)} style={notification.is_read ? {fontWeight: '400'} : {fontWeight: '900'}}> 
