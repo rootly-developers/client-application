@@ -80,11 +80,11 @@ class Notification extends Component {
     render(){
         this.handleIsAllRead();
         const notifications = this.state.notifications;
-        let notif = notifications.slice(0, 10).map((notification, i) => {
-            return  <MDBDropdownItem onClick={() => this.handleRead(notification.id, notification.event_id)} style={notification.is_read ? {fontWeight: '400'} : {fontWeight: '900'}}> 
+        let notif = notifications.slice(0, 10).map((notifItem, i) => {
+            return  <MDBDropdownItem onClick={() => this.handleRead(notifItem.id, notifItem.event_id)} style={notifItem.is_read ? {fontWeight: '400'} : {fontWeight: '900'}}> 
                         <div className="contents">
-                            <NotifIcon value={notification}/>
-                            <div className="description">{notification.description}</div>
+                            <NotifIcon value={notifItem}/>
+                            <div className="description">{notifItem.description}</div>
                         </div>
                         <MDBDropdownItem divider />
                     </MDBDropdownItem>
