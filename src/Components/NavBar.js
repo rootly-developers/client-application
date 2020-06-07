@@ -21,8 +21,20 @@ class NavBar extends Component {
   constructor (){
     super();
     this.state = {
-      user : {},
-      token : ""
+      user : {
+        "isVerified": false,
+        "displayName": null,
+        "email": "mickey1003@uwaterloo.ca",
+        "firstName": "Mickey",
+        "lastName": "Dang",
+        "programName": "SYDE",
+        "location": null,
+        "term": "3A",
+        "socialLink": "@mickeymdang",
+        "avatar": null,
+        "bio": null
+    },
+      token : "eyJhbGciOiJSUzI1NiIsImtpZCI6Ijc0Mzg3ZGUyMDUxMWNkNDgzYTIwZDIyOGQ5OTI4ZTU0YjNlZTBlMDgiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcm9vdGx5LTExMjM1ODEzIiwiYXVkIjoicm9vdGx5LTExMjM1ODEzIiwiYXV0aF90aW1lIjoxNTkxNTcxMDAyLCJ1c2VyX2lkIjoiOVgxTjNqUkYzTWRJMnRIOE9ZTzJOYWsyYUloMSIsInN1YiI6IjlYMU4zalJGM01kSTJ0SDhPWU8yTmFrMmFJaDEiLCJpYXQiOjE1OTE1NzEwMDIsImV4cCI6MTU5MTU3NDYwMiwiZW1haWwiOiJtaWNrZXkxMDAzQHV3YXRlcmxvby5jYSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJlbWFpbCI6WyJtaWNrZXkxMDAzQHV3YXRlcmxvby5jYSJdfSwic2lnbl9pbl9wcm92aWRlciI6InBhc3N3b3JkIn19.TADWMXiUsufeAYqoXiWpeZ8i9In2LnuDM6wpF--23evpPM7LWqGjHnZ9-jnO9SK2WtHEAwsmWg-y6T66_uafB2gwyP1xJLv3_mM84FrPTX7RBnMuIBzfdFiBkIxQQndYKMNPiJE53Qn1-IpUN2RevGv09tyY6OckqLl_HoE3JjUiYhAChqQO7oqPV6d2RXbjaNAKVR589jLmibiMhFTWCU9wQkx_yrzTYaP0D5FYbiCkWdNz7q3ZBrY3DMUCzZnQ_M84Yy9xIT03MMtLcMVLSSM10eMGlrvOs3UZSLQh2rrKPvKLV2GK2AXLWnPh0WLOQnOIGfpGlw0er8cjhipaIg"
     }
     this.getUser = this.getUser.bind(this);
   }
@@ -31,6 +43,7 @@ class NavBar extends Component {
     this.setState({ isOpen: !this.state.isOpen });
   }
 
+  // TODO: Add token to get user from header.
   getUser = (data)  => {
     console.log(data);
     this.setState({

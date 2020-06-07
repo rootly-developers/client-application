@@ -4,6 +4,7 @@ import axios from "axios";
 import {MDBRow, MDBBtn} from "mdbreact";
 import './styles/ProfilePage.css'
 import ProfileForm from './modals/ProfileForm.js'
+import ResetPasswordForm from './modals/ResetPasswordForm.js'
 
 class ProfilePage extends Component {
     constructor(props){
@@ -72,7 +73,7 @@ class ProfilePage extends Component {
                         <MDBRow>
                             <div className="utilities">
                                 <ProfileForm className="btn editProfile" userInfo={this.state.user} formCallback={this.handleProfileUpdate}></ProfileForm>
-                                <MDBBtn onClick={this.handleProfileUpdate} type="" className="btn changePassword">Change Password</MDBBtn>
+                                <ResetPasswordForm formCallback={this.handleResetPassword} type="" className="btn changePassword">Change Password</ResetPasswordForm>
                                 <MDBBtn onClick={this.handleLogout} type="" className="btn logout">logout</MDBBtn>
                             </div>
                         </MDBRow>

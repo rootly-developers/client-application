@@ -48,6 +48,7 @@
 
 #profile-page .editProfile{
     width: 12rem;
+    padding: 0;
 }
 
 #profile-page .modal-content{
