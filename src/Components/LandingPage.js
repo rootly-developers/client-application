@@ -20,6 +20,7 @@ class LandingPage extends Component {
             axios.get(`http://localhost:8080/users/exists?email=${email}`)
             .then((res) => {    
                 if (res.status == 200) {
+                    console.log(res);
                     let redirectPath = res.data.exists ? "/login":"/signup";
                     resolve({redirectPath, params: { 'email': email } });
                 } 
@@ -71,7 +72,7 @@ class LandingPage extends Component {
                 <MDBRow className="section-margin">
                     <MDBCol size={CARD_COL_SIZE}>
                         <EventCard title="Rockclimbing at Phil's" description="No one has made this event yet...It could be you!" sample={true} location="landing-page" 
-                                   src="https://images.unsplash.com/photo-1564769662533-4f00a87b4056?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80"/>
+                                   type="SPORTS"/>
                     </MDBCol>
                 </MDBRow>
 
@@ -87,7 +88,7 @@ class LandingPage extends Component {
                 <MDBRow className="section-margin">
                     <MDBCol size={CARD_COL_SIZE}>
                         <EventCard title="Hunt a Goose with Matlab" description="No one has made this event yet...It could be you!" sample={true} location="landing-page"
-                                   src="https://www.independent.org/images/article_featured/2019/coding_laptop_1200x675.jpg"/>
+                                   type="ADVENTURE"/>
                     </MDBCol>
                 </MDBRow>
 
@@ -103,7 +104,7 @@ class LandingPage extends Component {
                 <MDBRow className="section-margin">
                     <MDBCol size={CARD_COL_SIZE}>
                         <EventCard title="Bubble Tea at Icon" description="No one has made this event yet...It could be you!" sample={true} location="landing-page"
-                                   src="https://assets.epicurious.com/photos/5953ca064919e41593325d97/6:4/w_620%2Ch_413/bubble_tea_recipe_062817.jpg"/>
+                                   type="COFFEE"/>
                     </MDBCol>
                 </MDBRow>
 

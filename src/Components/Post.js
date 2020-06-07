@@ -7,13 +7,26 @@ import './styles/Post.css'
 
 const Post = (props) => {
     let post = null;
-    const threadType = props.threadType;
-    if (threadType == "message") {
-        const { user, date, message } = props;
-        post = <MessagePost user={user} date={date} message={message} />
-    } 
-    else if (threadType == "action") {
-        post = <ActionPost action={props.action}/>
+    const { username, date, content, 
+            threadType, upvoteCount, id,
+            eventId, token, upvoteUsers, user
+        } = props;
+    if (threadType == "BOT_POST" || threadType == "USER_POST") {
+        post = <MessagePost 
+                    postUser={username}
+                    date={date}
+                    content={content}
+                    type={threadType}
+                    id={id}
+                    upvoteCount={upvoteCount}
+                    upvoteUsers={upvoteUsers}
+                    eventId={eventId}
+                    token={token}
+                    user={user}
+               />
+    }
+    else if (threadType == "EVENT_UPDATE") {
+        post = <ActionPost content={content}/>
     }
     else {
         console.error("Not a valid thread type")
