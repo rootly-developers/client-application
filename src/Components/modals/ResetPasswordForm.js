@@ -7,8 +7,8 @@ class ResetPasswordForm extends Component {
         super(props);
         this.state = 
         {
-            email: "mickey1003@uwaterloo.ca",
-            token: "eyJhbGciOiJSUzI1NiIsImtpZCI6Ijc0Mzg3ZGUyMDUxMWNkNDgzYTIwZDIyOGQ5OTI4ZTU0YjNlZTBlMDgiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vcm9vdGx5LTExMjM1ODEzIiwiYXVkIjoicm9vdGx5LTExMjM1ODEzIiwiYXV0aF90aW1lIjoxNTkxNTcxODM3LCJ1c2VyX2lkIjoiOVgxTjNqUkYzTWRJMnRIOE9ZTzJOYWsyYUloMSIsInN1YiI6IjlYMU4zalJGM01kSTJ0SDhPWU8yTmFrMmFJaDEiLCJpYXQiOjE1OTE1NzE4MzcsImV4cCI6MTU5MTU3NTQzNywiZW1haWwiOiJtaWNrZXkxMDAzQHV3YXRlcmxvby5jYSIsImVtYWlsX3ZlcmlmaWVkIjpmYWxzZSwiZmlyZWJhc2UiOnsiaWRlbnRpdGllcyI6eyJlbWFpbCI6WyJtaWNrZXkxMDAzQHV3YXRlcmxvby5jYSJdfSwic2lnbl9pbl9wcm92aWRlciI6InBhc3N3b3JkIn19.iNxqX-cu3NcU3O00GvaeQgL7OqUxcjLrxnjOqfYCao9ZcmS4j8ejGYkhvEExebkgljV5aOInXY5jO3pzM872RjDqvqG_LReN9Mmq7yvwIBgkuSZkv2Oe3IvC78_E0Uyz5J7zPdHWEKSvkgx474M0pgv0RGkGyHj9yx_zDxBfsiAySoPkA-kn3cdq89H2xnLPSD0M_g6Q8hKKTXZTI6famSVWZF88hp7Swm2kOr2oZaTwrw9dBfKv3KlL6GcfnPK0wL2LhT4lAraptp2f9VXKZrylG0UhDlV5wtIUAZJVpxckHbkoJNvIqsr3WqWw5nwUQx5KKlCfkwkp4xhiXZKd6A",
+            email: "",
+            token: "",
             currentPass: "",
             newPass: "",
             confirmNewPass: "",
@@ -34,16 +34,13 @@ class ResetPasswordForm extends Component {
                 token : token,
                 password : currentPass,
                 newPassword : newPass,
-            })
-            .then(res => {
+            }).then(res => {
                 console.log(res);
-                if(!res.status == 200) {
-                    this.setState({checkMessage: "Not good"});
-                }
-                else {
+                if(res.status == 200) {
                     this.setState({checkMessage: "Your password has been changed."});
                 }
-            });
+            }).catch(err => { this.setState({checkMessage: err.message} );
+            })
         } else {
             this.setState({checkMessage: "Your passwords don't match"});
         }
