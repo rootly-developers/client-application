@@ -18,9 +18,9 @@ class ProfileForm extends Component {
     }
 
     toggle = () => {
-    this.setState({
-        modal: !this.state.modal
-    });
+        this.setState({
+            modal: !this.state.modal
+        });
     }
 
     render() {
@@ -58,7 +58,7 @@ class ProfileForm extends Component {
                         <label htmlFor="" className="grey-text">
                         Bio
                         </label>
-                        <input type="text" onChange={(e) => {this.handleChange(e,"biography")}} className="form-control" defaultValue={this.state.content.biography}/>
+                        <input type="text" onChange={(e) => {this.handleChange(e,"bio")}} className="form-control" defaultValue={this.state.content.bio}/>
                         <br />
                     </form>
                 </MDBModalBody>

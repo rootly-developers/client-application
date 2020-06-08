@@ -18,8 +18,7 @@ class ProfilePage extends Component {
     }
 
     handleProfileUpdate = (content)  => {
-        this.setState({user : content});
-        const {firstName, lastName, programName, location, term, socialLink, avatar} = this.state.user;
+        const {firstName, lastName, programName, location, term, socialLink, avatar} = content;
         axios.put(`http://localhost:8080/users`, {
              firstName : firstName,
              lastName : lastName,
@@ -33,7 +32,7 @@ class ProfilePage extends Component {
           .then(res => {
               console.log(res.status);
               if(res.status == 200) {
-                console.log("Update Successful");
+                this.setState({user : content});
               }
           })
     }
@@ -45,7 +44,6 @@ class ProfilePage extends Component {
                 })
             .then(res => {
                 if(res.status == 200) {
-                    console.log("Logout Successful");
                     resolve({ redirectPath: "/", params: {}});
                 }
             })
@@ -67,7 +65,7 @@ class ProfilePage extends Component {
                                     <h2><b>{this.state.user.firstName} {this.state.user.lastName ? this.state.user.lastName[0]:this.state.user.lastName}.</b></h2>
                                     <h4>{this.state.user.programName} - {this.state.user.term}</h4>
                                     <h4>{this.state.user.socialLink}</h4>
-                                    <p>{this.state.user.biography}</p>
+                                    <p>{this.state.user.bio}</p>
                                 </div>
                         </MDBRow>
                         <MDBRow>

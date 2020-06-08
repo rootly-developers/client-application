@@ -34,7 +34,6 @@ class NavBar extends Component {
 
   // TODO: Add token to get user from header.
   getUser = (data)  => {
-    console.log(data);
     this.setState({
       user: data.user,
       token: data.token
