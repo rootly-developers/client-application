@@ -27,21 +27,11 @@ class Notification extends Component {
             allRead: false,
             notifications: []
         };
-        this.handleisAllRead = this.handleIsAllRead.bind(this);
         this.handleRead = this.handleRead.bind(this);
     }
 
     componentDidMount() {
         this.getNotifications();
-    }
-
-    handleIsAllRead(){
-        let read = !(this.state.notifications.slice(0, 10).filter(e => e.is_read == false).length > 0);
-        if (read != this.state.allRead){
-            this.setState({
-                allRead: !this.state.allRead
-              });
-        }
     }
 
     getNotifications() {
@@ -54,8 +44,7 @@ class Notification extends Component {
             },
             headers: {
               'Content-Type': 'application/json',
-              'token': ""
-            },
+              'token': ""},
           })
           .then(res => {
               if(res.status == 200) {
@@ -65,20 +54,23 @@ class Notification extends Component {
                   });
                   this.setState({notifications: notifs});
               }
+              let read = (this.state.notifications.slice(0, 10).filter(e => e.is_read == false).length > 0);
+              console.log(read)
+              this.setState({
+                allRead: !read
+              });
           })
     }
 
     handleRead(id, event_id) {
         axios.post(`http://localhost:8080/notifications/${id}/read`, {
-            token: ""
-        });
+            token: ""});
         
-        // Redirect to event page
+        // TODO:Redirect to event page
         // this.props.history.push('/events/' + event_id);
     }
 
     render(){
-        this.handleIsAllRead();
         const notifications = this.state.notifications;
         let notif = notifications.slice(0, 10).map((notifItem, i) => {
             return  <MDBDropdownItem onClick={() => this.handleRead(notifItem.id, notifItem.event_id)} style={notifItem.is_read ? {fontWeight: '400'} : {fontWeight: '900'}}> 
