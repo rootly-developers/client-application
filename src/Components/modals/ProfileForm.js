@@ -63,6 +63,9 @@ class ProfileForm extends Component {
                     </form>
                 </MDBModalBody>
                 <MDBModalFooter>
+                    <label htmlFor="" className="grey-text">
+                        {this.props.checkMessage}
+                    </label>
                     <MDBBtn color="primary" onClick={() => this.props.formCallback(this.state.content)}>Save changes</MDBBtn>
                 </MDBModalFooter>
                 </MDBModal>

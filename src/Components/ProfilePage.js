@@ -7,15 +7,22 @@ import ProfileForm from './modals/ProfileForm.js'
 import ResetPasswordForm from './modals/ResetPasswordForm.js'
 
 class ProfilePage extends Component {
-    constructor(props){
-        super(props);
+    constructor(){
+        super();
         this.state = {
-            user : this.props.userInfo,
-            token : this.props.userToken
+            checkMessage: "",
+            user : {},
+            token : ""
         }
         this.handleLogout = this.handleLogout.bind(this);
         this.handleProfileUpdate = this.handleProfileUpdate.bind(this);
     }
+
+    componentDidMount(){
+        this.setState({user : this.props.data},() => {
+            console.log(this.props);
+        });
+    }    
 
     handleProfileUpdate = (content)  => {
         const {firstName, lastName, programName, location, term, socialLink, avatar} = content;
@@ -30,11 +37,12 @@ class ProfilePage extends Component {
              token: this.state.token
             })
           .then(res => {
-              console.log(res.status);
               if(res.status == 200) {
-                this.setState({user : content});
+                this.setState({user : content, checkMessage: 'Update success'});
               }
-          })
+          }).catch(err => { 
+            this.setState({checkMessage: 'Error'});
+        })
     }
 
     handleLogout(){
@@ -70,7 +78,7 @@ class ProfilePage extends Component {
                         </MDBRow>
                         <MDBRow>
                             <div className="utilities">
-                                <ProfileForm className="btn editProfile" userInfo={this.state.user} formCallback={this.handleProfileUpdate}></ProfileForm>
+                                <ProfileForm checkMessage={this.state.checkMessage} className="btn editProfile" userInfo={this.state.user} formCallback={this.handleProfileUpdate}></ProfileForm>
                                 <ResetPasswordForm formCallback={this.handleResetPassword} type="" className="btn changePassword">Change Password</ResetPasswordForm>
                                 <MDBBtn onClick={this.handleLogout} type="" className="btn logout">logout</MDBBtn>
                             </div>

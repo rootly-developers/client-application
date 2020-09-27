@@ -26,7 +26,7 @@ class ResetPasswordForm extends Component {
 
     handleSubmit() {
         const {email, token, currentPass, newPass, confirmNewPass} = this.state;
-        if (currentPass == undefined || newPass == undefined  || confirmNewPass == undefined ) {
+        if (!currentPass|| !newPass|| !confirmNewPass) {
             this.setState({checkMessage: "Fill out the fields"});
         } else if (newPass == confirmNewPass) {
             axios.put(`http://localhost:8080/password/reset`, {
@@ -35,11 +35,14 @@ class ResetPasswordForm extends Component {
                 password : currentPass,
                 newPassword : newPass,
             }).then(res => {
-                console.log(res);
-                if(res.status == 200) {
+                if(res.status === 200) {
                     this.setState({checkMessage: "Your password has been changed."});
                 }
-            }).catch(err => { this.setState({checkMessage: err.message} );
+                if(res.status === 400) {
+                    this.setState({checkMessage: "Password is incorrect"});
+                }
+            }).catch(err => { 
+                this.setState({checkMessage: err.response.data.cause});
             })
         } else {
             this.setState({checkMessage: "Your passwords don't match"});

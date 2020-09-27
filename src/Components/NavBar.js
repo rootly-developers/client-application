@@ -14,6 +14,7 @@ import MyEventPage from '../Components/MyEventPage'
 import SignUpPage from '../Components/SignUpPage'
 import VerifyPage from '../Components/VerifyPage'
 import Images from "../images.js"
+import axios from "axios";
 import './styles/NavBar.css'
 
 class NavBar extends Component {
@@ -21,11 +22,17 @@ class NavBar extends Component {
   constructor (){
     super();
     this.state = {
-      user : {
-      },
+      user : {},
       token : ""
     }
     this.getUser = this.getUser.bind(this);
+  }
+
+  componentDidMount(){
+    this.getUser()
+    this.setState({
+      token: "",
+    });
   }
 
   toggleCollapse = () => {
@@ -33,15 +40,36 @@ class NavBar extends Component {
   }
 
   // TODO: Add token to get user from header.
-  getUser = (data)  => {
-    this.setState({
-      user: data.user,
-      token: data.token
-    });
+  getUser = ()  => {
+    return new Promise((resolve, reject) => { axios({
+      method: 'get',
+      url: "http://localhost:8080/users",
+      headers: {
+        'uid': '',
+        'token': ""},
+    })
+    .then(res => {
+        let userData = {};
+        const reqData = JSON.parse(res.request.response).data[0]
+        console.log(res.request.response)
+        if(res.status == 200) {
+          userData.firstName = reqData.first_name
+          userData.lastName = reqData.last_name
+          userData.programName = reqData.program_name
+          userData.location = reqData.location
+          userData.term = reqData.term
+          userData.socialLink = reqData.social_link
+          userData.avatar = reqData.avatar
+          this.setState({
+            user: userData,
+          }, () => console.log(this.state.user));
+        }
+    })
+    })
   }
 
   render() {
-    let active = this.state.active;
+    console.log(this.state.user);
     return (
       <Router>
         <MDBNavbar color="blue" dark expand="md" fixed="top" id="nav-bar">
@@ -86,7 +114,7 @@ class NavBar extends Component {
           <Route exact path='/' component={LandingPage} />
           <Route exact path='/login' render = {() => < LoginPage userCallback={this.getUser} />}/>
           <Route exact path='/events' component={EventListPage} />
-          <Route exact path='/profile' render = {(props) => < ProfilePage userInfo={this.state.user} userToken={this.state.token} />}/>
+          <Route exact path='/profile' render = {(props) => < ProfilePage data={this.state.user} userToken={this.state.token} />}/>
           <Route exact path='/events/new' component={CreateEventPage} />
           <Route exact path='/eventDetails' component={EventDetailsPage} />
           <Route exact path='/events/:eventId' component={EventDetailsPage} />
