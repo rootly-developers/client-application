@@ -13,22 +13,26 @@ import EventDetailsPage from '../Components/EventDetailsPage'
 import MyEventPage from '../Components/MyEventPage'
 import SignUpPage from '../Components/SignUpPage'
 import VerifyPage from '../Components/VerifyPage'
+import NotificationDropdown from './NotificationDropdown.js'
 import Images from "../images.js"
+import axios from "axios";
 import './styles/NavBar.css'
 
 class NavBar extends Component {
-  
-state = {
-  isOpen: false,
-  active: true
-};
+
+  constructor() {
+    super();
+    this.state = {
+        isOpen: false,
+        active: true
+      }
+    };
 
 toggleCollapse = () => {
   this.setState({ isOpen: !this.state.isOpen });
 }
 
 render() {
-  let active = this.state.active;
   return (
     <Router>
       <MDBNavbar color="blue" dark expand="md" fixed="top" id="nav-bar">
@@ -44,6 +48,7 @@ render() {
             <MDBNavItem>
               <MDBNavLink to="/login">Login</MDBNavLink>
             </MDBNavItem>
+            <NotificationDropdown value={this.state.notifications}></NotificationDropdown>
             <MDBNavItem>
               <MDBNavLink to="/events/new"><i class="fas fa-plus fa-2x"></i></MDBNavLink>
             </MDBNavItem>
@@ -52,19 +57,6 @@ render() {
             </MDBNavItem>
             <MDBNavItem>
               <MDBNavLink to="/profile"><i class="fas fa-user-circle fa-2x"></i></MDBNavLink>
-            </MDBNavItem>
-            <MDBNavItem>
-              <MDBDropdown>
-                <MDBDropdownToggle nav caret>
-                  <span className="mr-2">Dropdown</span>
-                </MDBDropdownToggle>
-                <MDBDropdownMenu>
-                  <MDBDropdownItem href="#!">Action</MDBDropdownItem>
-                  <MDBDropdownItem href="#!">Another Action</MDBDropdownItem>
-                  <MDBDropdownItem href="#!">Something else here</MDBDropdownItem>
-                  <MDBDropdownItem href="#!">Something else here</MDBDropdownItem>
-                </MDBDropdownMenu>
-              </MDBDropdown>
             </MDBNavItem>
           </MDBNavbarNav>
         </MDBCollapse>
