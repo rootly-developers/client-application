@@ -5,6 +5,8 @@ import SubmitButton from './SubmitButton';
 import axios from "axios";
 import TextField from '@material-ui/core/TextField';
 import data from './hackystore.json';
+import ChangeRegionModal from './ChangeRegionModal.js';
+const locations = require('../commons/locations.json')
 
 const options = [
     { value: 'San Francisco', label: 'San Francisco' },
@@ -21,7 +23,7 @@ class CreateEventPage extends Component {
             inDescription: '',
             code: '',
             address: '',
-            region: '',
+            location: '',
             cap: 1,
             date: new Date(),
             startTime: '',
@@ -33,6 +35,12 @@ class CreateEventPage extends Component {
     }
 
     handleAvatarSelect = (avatar) => {this.setState({avatar: avatar})}
+
+    handleChangeRegion(e) {
+        this.setState({ 
+            location: this.convertPrettyToCanon(e.target.children[1].innerText)
+        }, this.setNewEvents);
+    }
 
     handleAPICall() {
         return new Promise((resolve, reject) => {
@@ -165,8 +173,10 @@ class CreateEventPage extends Component {
                                     <h5>Region:</h5>
                                </MDBCol>
                                <MDBCol size={INPUT_SIZE}>
-                                    <Select className="md-form" options={options} onChange={(e) => this.setState({region: this.value})}/>
-                               </MDBCol>   
+                                   <div>
+                                        <ChangeRegionModal className="app-page-header" value={this.state.location} onclick={this.handleChangeRegion}/>
+                                   </div>
+                                </MDBCol>   
                             </MDBRow>
 
                             <MDBRow>
