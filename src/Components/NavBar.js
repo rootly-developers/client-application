@@ -41,13 +41,13 @@ export default function NavBar() {
             </MDBNavItem>
             {/* <NotificationDropdown value={this.state.notifications}></NotificationDropdown> */}
             <MDBNavItem>
-              <MDBNavLink to="/events/new"><i class="fas fa-plus fa-2x"></i></MDBNavLink>
+              <MDBNavLink to="/events/new"><i className="fas fa-plus fa-2x"></i></MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
-              <MDBNavLink to="/myevents"><i class="far fa-calendar fa-2x"></i></MDBNavLink>
+              <MDBNavLink to="/myevents"><i className="far fa-calendar fa-2x"></i></MDBNavLink>
             </MDBNavItem>
             <MDBNavItem>
-              <MDBNavLink to="/profile"><i class="fas fa-user-circle fa-2x"></i></MDBNavLink>
+              <MDBNavLink to="/profile"><i className="fas fa-user-circle fa-2x"></i></MDBNavLink>
             </MDBNavItem>
           </MDBNavbarNav>
         </MDBCollapse>

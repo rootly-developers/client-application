@@ -229,7 +229,7 @@ export default function EventDetailsPage(props) {
                             <MDBInput 
                                 label="Some text..."
                                 value={state.messageInput}
-                                onChange={(e) => setState({messageInput: e.target.value})}
+                                onChange={(e) => setState({...state, messageInput: e.target.value})}
                             />
                         </MDBCol>
 
