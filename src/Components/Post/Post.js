@@ -8,10 +8,10 @@ const Post = (props) => {
     let post = null;
     const { threadType, content } = props;
 
-    if (threadType == "BOT_POST" || threadType == "USER_POST") {
+    if (threadType === "BOT_POST" || threadType === "USER_POST") {
         post = <MessagePost {...props} />
     }
-    else if (threadType == "EVENT_UPDATE") {
+    else if (threadType === "EVENT_UPDATE") {
         post = <ActionPost content={content}/>
     }
     else {
