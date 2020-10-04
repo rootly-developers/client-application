@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { MDBRow, MDBCol, MDBCardBody, MDBInput, MDBBtn } from "mdbreact";
-import Post from './Post.js';
+import Post from './Post/Post.js';
 import Comment from './Comment.js';
 import CommentBar from './CommentBar.js';
 import './styles/EventDetailsPage.css';
