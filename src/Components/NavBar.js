@@ -1,7 +1,6 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import {
-MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse, MDBFormInline,
-MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem
+MDBNavbar, MDBNavbarBrand, MDBNavbarNav, MDBNavItem, MDBNavLink, MDBNavbarToggler, MDBCollapse,
 } from "mdbreact";
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import LandingPage from '../Components/LandingPage'
@@ -15,32 +14,24 @@ import SignUpPage from '../Components/SignUpPage'
 import VerifyPage from '../Components/VerifyPage'
 import NotificationDropdown from './NotificationDropdown.js'
 import Images from "../images.js"
-import axios from "axios";
 import './styles/NavBar.css'
 
-class NavBar extends Component {
+export default function NavBar() {
 
-  constructor() {
-    super();
-    this.state = {
-        isOpen: false,
-        active: true
-      }
-    };
+  const [isOpen, setIsOpen] = useState(false);
 
-toggleCollapse = () => {
-  this.setState({ isOpen: !this.state.isOpen });
-}
+  const toggleCollapse = () => {
+    setIsOpen(!isOpen);
+  }
 
-render() {
   return (
     <Router>
       <MDBNavbar color="blue" dark expand="md" fixed="top" id="nav-bar">
         <MDBNavbarBrand>
           <MDBNavLink to="/events"><img id="logo" src={Images.logos.light}></img></MDBNavLink>
         </MDBNavbarBrand>
-        <MDBNavbarToggler onClick={this.toggleCollapse} />
-        <MDBCollapse id="navbarCollapse3" isOpen={this.state.isOpen} navbar>
+        <MDBNavbarToggler onClick={toggleCollapse} />
+        <MDBCollapse id="navbarCollapse3" isOpen={isOpen} navbar>
           <MDBNavbarNav left>
           <MDBNavItem>
               <MDBNavLink to="/">Home</MDBNavLink>
@@ -48,7 +39,7 @@ render() {
             <MDBNavItem>
               <MDBNavLink to="/login">Login</MDBNavLink>
             </MDBNavItem>
-            <NotificationDropdown value={this.state.notifications}></NotificationDropdown>
+            {/* <NotificationDropdown value={this.state.notifications}></NotificationDropdown> */}
             <MDBNavItem>
               <MDBNavLink to="/events/new"><i class="fas fa-plus fa-2x"></i></MDBNavLink>
             </MDBNavItem>
@@ -75,7 +66,4 @@ render() {
       </Switch>
     </Router>
     );
-  }
 }
-
-export default NavBar;

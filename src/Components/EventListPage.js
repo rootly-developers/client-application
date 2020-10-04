@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { MDBContainer, MDBRow, MDBCol, MDBCard, MDBCardBody, MDBBtn, MDBIcon } from "mdbreact";
+import React, { useState, useEffect} from 'react';
+import { MDBRow, MDBCol, MDBCardBody, MDBBtn, } from "mdbreact";
 import EventCard from './EventCard.js'
 import ChangeRegionModal from './ChangeRegionModal.js'
 import axios from "axios";
@@ -41,31 +41,22 @@ const eventTemplates = [
     }
 ];
 
-class EventListPage extends Component {
-    constructor(){
-        super();
-        this.state = {
-            location: locations.SEA.canonical,
-            sort: true,
-            events: []    
-        }
-        this.handleChangeRegion = this.handleChangeRegion.bind(this);
-        this.setNewEvents = this.setNewEvents.bind(this);
-        this.convertPrettyToCanon = this.convertPrettyToCanon.bind(this);
-    }
+export default function EventListPage(props) {
+    const [location, setLocation] = useState(locations.SEA.canonical);
+    const [sort, setSort] = useState(true);
+    const [events, setEvents] = useState([]);
 
-    componentDidMount() {
-        this.setNewEvents();
-    }
+    useEffect(() => {
+        setNewEvents();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [location]);
 
-    handleChangeRegion(e) {
-        this.setState({ 
-            location: this.convertPrettyToCanon(e.target.children[1].innerText)
-        }, this.setNewEvents);
+    function handleChangeRegion(e) {
+        setLocation(convertPrettyToCanon(e.target.children[1].innerText));
     }
 
     // TODO: Ideally we should find a way to not use innerText and somehow get the id of the child.
-    convertPrettyToCanon(prettyText) {
+    function convertPrettyToCanon(prettyText) {
         for (var key in locations) {
             if (locations[key].pretty === prettyText) {
                 return locations[key].canonical;
@@ -73,111 +64,101 @@ class EventListPage extends Component {
         }
     }
 
-    setNewEvents() {
-        console.log(this.props.location.token);
-        console.log("LOCATION");
-        console.log(locations[this.state.location].pretty);
+    function setNewEvents() {
+        console.log(locations[location].pretty);
         axios({
             method: 'get',
             url: "http://localhost:8080/home",
             params: {
                 pageId: 0,
                 limit: 10,
-                location: locations[this.state.location].pretty
+                location: locations[location].pretty
             },
             headers: {
               'Content-Type': 'application/json',
-              'token': this.props.location.token
+              'token': props.location.token
             },
           })
           .then(res => {
               if(res.status == 200) {
-                  let events = eventTemplates.slice();
+                  let newEvents = eventTemplates.slice();
                   res.data.data.forEach(event => {
-                      events.push(event);
+                      newEvents.push(event);
                   });
-                  this.setState({events: events});
+                  console.log(res.data);
+                  setEvents(newEvents);
               }
           })
     }
 
-    toggle = id => e => {
-        if ((id == "Newest" && this.state.sort == false) || (id == "Upcoming" && this.state.sort == true) ){
-            this.setState({
-                sort: !this.state.sort
-              });
+    const toggle = id => e => {
+        if ((id === "Newest" && sort === false) || (id === "Upcoming" && sort === true) ){
+            setSort(!sort);
         }
-      }
+    }
 
-    render() {
-        const events = this.state.events;
-        console.log("ALL EVENTS");
-        console.log(events);
-        let eventCards = events.map((event, i) => {
-            return  <MDBRow>
+    let eventCards = events.map((event, i) => {
+        return  <MDBRow>
+                    <MDBCol size="12">
+                        <EventCard 
+                            title={event.title} 
+                            description={event.description} 
+                            attendees={event.num_attendees}
+                            maxAttendees={event.max_attendees}
+                            type={event._event_type}
+                            key={i}
+                            eventId={event.id}
+                            isTemplate={event.isTemplate}
+                            token={props.location.token}
+                            eventsList={props.location.eventsList}
+                            user={props.location.user}
+                        />
+                    </MDBCol>
+                 </MDBRow>
+    });
+    return(
+        <div className="app-page" id="eventlist-page">
+            <div className="app-page-fill"></div>
+            <div className="app-main-section">
+                <div className="app-page-header">
+                    <ChangeRegionModal className="app-page-header" value={location} onclick={(e) => handleChangeRegion(e)}/>
+                </div>
+                <MDBCardBody className="page-body">
+                    <MDBRow>
                         <MDBCol size="12">
-                            <EventCard 
-                                title={event.title} 
-                                description={event.description} 
-                                attendees={event.num_attendees}
-                                maxAttendees={event.max_attendees}
-                                type={event._event_type}
-                                key={i}
-                                eventId={event.id}
-                                isTemplate={event.isTemplate}
-                                token={this.props.location.token}
-                                eventsList={this.props.location.eventsList}
-                                user={this.props.location.user}
+                            <div id="eventlist-toolbar">
+                                <div id="eventlist-right-btns">
+                                    <i class="fas fa-sort fa-2x"></i>
+                                    <MDBBtn id="Newest" className="sort" onClick={toggle("Newest")} active={sort}>
+                                         Newest
+                                    </MDBBtn>
+                                    <MDBBtn id="Upcoming" className="sort" onClick={toggle("Upcoming")} active={!sort}>
+                                         Upcoming
+                                    </MDBBtn>
+                                </div>
+                            </div>
+                        </MDBCol>
+                    </MDBRow>
+
+                    <MDBRow>
+                        <MDBCol size="12">
+                            <EventCard title="Rockclimbing at Phil's" description="No one has made this event yet...It could be you!"  sample={true}
+                                        type="SPORTS"
                             />
                         </MDBCol>
-                     </MDBRow>
-        });
-        return(
-            <div className="app-page" id="eventlist-page">
-                <div className="app-page-fill"></div>
-                <div className="app-main-section">
-                    <div className="app-page-header">
-                        <ChangeRegionModal className="app-page-header" value={this.state.location} onclick={this.handleChangeRegion}/>
-                    </div>
-                    <MDBCardBody className="page-body">
-                        <MDBRow>
-                            <MDBCol size="12">
-                                <div id="eventlist-toolbar">
-                                    <div id="eventlist-right-btns">
-                                        <i class="fas fa-sort fa-2x"></i>
-                                        <MDBBtn id="Newest" className="sort" onClick={this.toggle("Newest")} active={this.state.sort}>
-                                             Newest
-                                        </MDBBtn>
-                                        <MDBBtn id="Upcoming" className="sort" onClick={this.toggle("Upcoming")} active={!this.state.sort}>
-                                             Upcoming
-                                        </MDBBtn>
-                                    </div>
-                                </div>
-                            </MDBCol>
-                        </MDBRow>
+                    </MDBRow>
 
-                        <MDBRow>
-                            <MDBCol size="12">
-                                <EventCard title="Rockclimbing at Phil's" description="No one has made this event yet...It could be you!"  sample={true}
-                                            type="SPORTS"
-                                />
-                            </MDBCol>
-                        </MDBRow>
+                    <MDBRow>
+                        <MDBCol size="12">
+                            <EventCard title="Bubble Tea at Icon" description="No one has made this event yet...It could be you!" sample={true}
+                                        type="ADVENTURE"
+                            />
+                        </MDBCol>
+                    </MDBRow>
 
-                        <MDBRow>
-                            <MDBCol size="12">
-                                <EventCard title="Bubble Tea at Icon" description="No one has made this event yet...It could be you!" sample={true}
-                                            type="ADVENTURE"
-                                />
-                            </MDBCol>
-                        </MDBRow>
-
-                        { eventCards }
-                    </MDBCardBody>
-                    </div>
-            </div>
-        );
-    }
+                    { eventCards }
+                </MDBCardBody>
+                </div>
+        </div>
+    );
 }
-
-export default EventListPage
