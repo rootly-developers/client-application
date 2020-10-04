@@ -37,7 +37,7 @@ export default function EventDetailsPage(props) {
             },
             })
             .then(res => {
-                if(res.status == 200) {
+                if(res.status === 200) {
                     const event = res.data.event;
                     const eventDetails = event.event;
                     const threads = event.threads;
@@ -64,7 +64,8 @@ export default function EventDetailsPage(props) {
                     });
                 }
             })
-    }, []);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [props.location]);
 
     function handlePostClick() {
         const { eventId, token, user } = props.location;
@@ -107,12 +108,12 @@ export default function EventDetailsPage(props) {
             token, content: comment, username
         })
         .then(res => {
-            if(res.status == 200) {
+            if(res.status === 200) {
                 let newPosts = state.posts.slice();
                 let matchingThread = {};
                 let matchingThreadIndex = 0;
                 for(let i = 0; i < newPosts.length; i++) {
-                    if(threadId == newPosts[i].id) {
+                    if(threadId === newPosts[i].id) {
                         Object.assign(matchingThread, newPosts[i]);
                         matchingThreadIndex = i;
                         break
@@ -201,15 +202,15 @@ export default function EventDetailsPage(props) {
                     <MDBRow>
                         <MDBCol size="2">
                             <h3>Host:</h3>
-                            <img src="/default-avatar.jpg" className="event-details-user-icons"></img>
+                            <img src="/default-avatar.jpg" className="event-details-user-icons" alt='avatar'></img>
                         </MDBCol>
 
                         <MDBCol size="5">
                             <h3>Attendees: {numAttendees}/{maxAttendees}</h3>
-                            <img src="/default-avatar.jpg" className="event-details-user-icons"></img>
-                            <img src="/default-avatar.jpg" className="event-details-user-icons"></img>
-                            <img src="/default-avatar.jpg" className="event-details-user-icons"></img>
-                            <img src="/default-avatar.jpg" className="event-details-user-icons"></img>
+                            <img src="/default-avatar.jpg" className="event-details-user-icons" alt='avatar'></img>
+                            <img src="/default-avatar.jpg" className="event-details-user-icons" alt='avatar'></img>
+                            <img src="/default-avatar.jpg" className="event-details-user-icons" alt='avatar'></img>
+                            <img src="/default-avatar.jpg" className="event-details-user-icons" alt='avatar'></img>
                         </MDBCol>
 
                         <MDBCol size="2"></MDBCol>

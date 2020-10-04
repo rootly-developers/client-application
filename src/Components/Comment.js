@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { MDBRow, MDBCol, MDBIcon } from 'mdbreact';
+import React from 'react';
+import { MDBRow, MDBCol } from 'mdbreact';
 import './styles/Comment.css'
 
 
@@ -9,7 +9,7 @@ const Comment = (props) => {
             <MDBCol size="1" className="comment-margin"></MDBCol>
 
             <MDBCol size="1">
-                <img src="/default-avatar.jpg" className="comment-img"></img>
+                <img src="/default-avatar.jpg" className="comment-img" alt='avatar'></img>
             </MDBCol>
 
             <MDBCol size="10" className="comment-main">

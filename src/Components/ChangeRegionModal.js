@@ -16,7 +16,7 @@ export default function ChangeRegionModal(props) {
   }
 
   const change = (newId) => e => {
-    if (newId != id){
+    if (newId !== id){
       setId(newId);
     }
     toggle();

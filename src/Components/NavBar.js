@@ -12,7 +12,6 @@ import EventDetailsPage from '../Components/EventDetailsPage'
 import MyEventPage from '../Components/MyEventPage'
 import SignUpPage from '../Components/SignUpPage'
 import VerifyPage from '../Components/VerifyPage'
-import NotificationDropdown from './NotificationDropdown.js'
 import Images from "../images.js"
 import './styles/NavBar.css'
 
@@ -28,7 +27,7 @@ export default function NavBar() {
     <Router>
       <MDBNavbar color="blue" dark expand="md" fixed="top" id="nav-bar">
         <MDBNavbarBrand>
-          <MDBNavLink to="/events"><img id="logo" src={Images.logos.light}></img></MDBNavLink>
+          <MDBNavLink to="/events"><img id="logo" src={Images.logos.light} alt='logo'></img></MDBNavLink>
         </MDBNavbarBrand>
         <MDBNavbarToggler onClick={toggleCollapse} />
         <MDBCollapse id="navbarCollapse3" isOpen={isOpen} navbar>

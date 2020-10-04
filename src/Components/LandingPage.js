@@ -1,5 +1,5 @@
-import React, { useState, Component } from 'react';
-import { MDBInputGroup, MDBBtn, MDBRow, MDBCol, MDBContainer } from "mdbreact";
+import React, { useState } from 'react';
+import { MDBInputGroup, MDBRow, MDBCol, MDBContainer } from "mdbreact";
 import SubmitButton from './SubmitButton.js';
 import EventCard from './EventCard.js';
 import axios from 'axios';
@@ -13,7 +13,7 @@ export default function LandingPage() {
         return new Promise((resolve, reject) => {
             axios.get(`http://localhost:8080/users/exists?email=${fullEmail}`)
             .then((res) => {    
-                if (res.status == 200) {
+                if (res.status === 200) {
                     console.log(res);
                     let redirectPath = res.data.exists ? "/login":"/signup";
                     resolve({redirectPath, params: { 'email': fullEmail } });
@@ -58,7 +58,7 @@ export default function LandingPage() {
                     <h2 id="text-section-2" className="text-section">In a new city? Explore it with fellow students!</h2>
                 </MDBCol>
                 <MDBCol size={IMG_COL_SIZE}>
-                    <img src="section-2-image.jpg" className="img-fluid" id="section-2-img"></img>
+                    <img src="section-2-image.jpg" className="img-fluid" id="section-2-img" alt='section-2-img'></img>
                 </MDBCol>
             </MDBRow>
 
@@ -71,7 +71,7 @@ export default function LandingPage() {
 
             <MDBRow className="section-margin">
                 <MDBCol size={IMG_COL_SIZE}>
-                    <img src="section-3-image.jpg" className="img-fluid" id="section-3-img"></img>
+                    <img src="section-3-image.jpg" className="img-fluid" id="section-3-img" alt='section-3-img'></img>
                 </MDBCol>
                 <MDBCol size={TEXT_COL_SIZE}>
                     <h2 id="text-section-3" className="text-section">Discover a cool event? Find someone with similar interests!</h2>
@@ -90,7 +90,7 @@ export default function LandingPage() {
                     <h2 id="text-section-4" className="text-section">Want to throw a board game night? Invite someone new!</h2>
                 </MDBCol>
                 <MDBCol size={IMG_COL_SIZE}>
-                    <img src="section-4-image.jpg" className="img-fluid" id="section-4-img"></img>
+                    <img src="section-4-image.jpg" className="img-fluid" id="section-4-img" alt='section-4-img'></img>
                 </MDBCol>
             </MDBRow>
 
