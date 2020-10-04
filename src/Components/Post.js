@@ -1,5 +1,4 @@
-import React, { Component } from 'react';
-import { MDBRow, MDBCol, MDBIcon } from 'mdbreact';
+import React from 'react';
 import MessagePost from './MessagePost.js'
 import ActionPost from './ActionPost.js'
 import './styles/Post.css'
