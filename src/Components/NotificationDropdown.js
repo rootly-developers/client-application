@@ -1,4 +1,4 @@
-import React, { Fragment, Component } from "react";
+import React, { useState, useEffect } from "react";
 import { withRouter } from 'react-router';
 import { MDBDropdown, MDBDropdownToggle, MDBDropdownMenu, MDBDropdownItem } from "mdbreact";
 import axios from "axios";
@@ -19,22 +19,16 @@ function NotifIcon(props) {
     }
 }
 
-class Notification extends Component {
+export default function Notification() {
 
-    constructor(props){
-        super(props);
-        this.state = {
-            allRead: false,
-            notifications: []
-        };
-        this.handleRead = this.handleRead.bind(this);
-    }
+    const [isisAllRead, setIsisAllRead] = useState(false);
+    const [notifications, setNotifications] = useState([]);
 
-    componentDidMount() {
-        this.getNotifications();
-    }
+    useEffect(() => {
+        getNotifications();
+    }, []);
 
-    getNotifications() {
+    const getNotifications = () => {
         axios({
             method: 'get',
             url: "http://localhost:8080/notifications",
@@ -52,28 +46,25 @@ class Notification extends Component {
                   res.data.forEach(notifItem => {
                       notifs.push(notifItem);
                   });
-                  this.setState({notifications: notifs});
+                  setNotifications(notifs)
               }
-              let read = (this.state.notifications.slice(0, 10).filter(e => e.is_read == false).length > 0);
-              console.log(read)
-              this.setState({
-                allRead: !read
-              });
+              let read = (notifications.slice(0, 10).filter(e => e.is_read == false).length > 0);
+              setIsisAllRead(!read)
           })
     }
 
-    handleRead(id, event_id) {
+    const handleRead = (id, event_id) => {
         axios.post(`http://localhost:8080/notifications/${id}/read`, {
             token: ""});
         
         // TODO:Redirect to event page
-        // this.props.history.push('/events/' + event_id);
+        // props.history.push('/events/' + event_id);
     }
 
     render(){
-        const notifications = this.state.notifications;
-        let notif = notifications.slice(0, 10).map((notifItem, i) => {
-            return  <MDBDropdownItem onClick={() => this.handleRead(notifItem.id, notifItem.event_id)} style={notifItem.is_read ? {fontWeight: '400'} : {fontWeight: '900'}}> 
+        const notifications = notifications;
+        notifications.slice(0, 10).map((notifItem, i) => {
+            return  <MDBDropdownItem onClick={() => handleRead(notifItem.id, notifItem.event_id)} style={notifItem.is_read ? {fontWeight: '400'} : {fontWeight: '900'}}> 
                         <div className="contents">
                             <NotifIcon value={notifItem}/>
                             <div className="description">{notifItem.description}</div>
@@ -86,7 +77,7 @@ class Notification extends Component {
             <Fragment>
             <MDBDropdown>
                 <MDBDropdownToggle caret color="primary" className="notifdropdown">
-                    <i class={this.state.allRead ? "far fa-bell fa-2x" : "fas fa-bell fa-2x"} style={{color: "var(--white)"}}></i>
+                    <i class={isAllRead ? "far fa-bell fa-2x" : "fas fa-bell fa-2x"} style={{color: "var(--white)"}}></i>
                 </MDBDropdownToggle>
                 <MDBDropdownMenu basic>
                 { notif }

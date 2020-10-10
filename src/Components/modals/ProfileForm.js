@@ -4,7 +4,7 @@ import { MDBContainer, MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalF
 
 const ProfileForm = ({checkMessage:message, user:incomingUser, formCallback}) => {
 
-    const [user, setUser] = useState(incomingUser);
+    const [user, setUser] = useState(incomingUser? incomingUser: {});
     const [modal, setModal] = useState(false);
 
     const handleChange = (event, id) => {

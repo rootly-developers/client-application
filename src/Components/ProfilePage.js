@@ -19,13 +19,13 @@ export default function ProfilePage() {
         url: "http://localhost:8080/users",
         headers: {
             'uid': '',
-            'token': ""},
+            'token': ''},
         })
         .then(res => {
             let userData = {};
             const reqData = JSON.parse(res.request.response).data[0]
             console.log(res.request.response)
-            if(res.status == 200) {
+            if(res.status === 200) {
             userData.firstName = reqData.first_name
             userData.lastName = reqData.last_name
             userData.programName = reqData.program_name
@@ -56,7 +56,8 @@ export default function ProfilePage() {
              token: token
             })
           .then(res => {
-              if(res.status == 200) {
+              if(res.status === 200) {
+                  console.log(content)
                   setUser(content)
                   setMessage('Update success')
               }
@@ -88,7 +89,7 @@ export default function ProfilePage() {
                     <div className="page-body">
                         <MDBRow>
                                 <div className="description">
-                                    <h2><b>{user.firstName} {user.lastName ? user.lastName[0]:user.lastName}.</b></h2>
+                                    <h2><b>{user.firstName} {user.lastName ? user.lastName[0]:""}.</b></h2>
                                     <h4>{user.programName} - {user.term}</h4>
                                     <h4>{user.socialLink}</h4>
                                     <p>{user.bio}</p>
