@@ -1,10 +1,11 @@
-import React, { useState, useEffect} from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { MDBRow, MDBCol, MDBCardBody, MDBBtn, } from "mdbreact";
 import EventCard from './EventCard.js'
 import ChangeRegionModal from './ChangeRegionModal.js'
 import axios from "axios";
 import './styles/EventListPage.css'
-const locations = require('../commons/locations.json')
+import  { UserContext } from '../contexts/UserContext';
+const locations = require('../commons/locations.json');
 
 const eventTemplates = [
     {
@@ -45,6 +46,7 @@ export default function EventListPage(props) {
     const [location, setLocation] = useState(locations.SEA.canonical);
     const [sort, setSort] = useState(true);
     const [events, setEvents] = useState([]);
+    const { token } = useContext(UserContext).userData;
 
     useEffect(() => {
         setNewEvents();
@@ -76,7 +78,7 @@ export default function EventListPage(props) {
             },
             headers: {
               'Content-Type': 'application/json',
-              'token': props.location.token
+              'token': token
             },
           })
           .then(res => {
@@ -109,9 +111,6 @@ export default function EventListPage(props) {
                             key={i}
                             eventId={event.id}
                             isTemplate={event.isTemplate}
-                            token={props.location.token}
-                            eventsList={props.location.eventsList}
-                            user={props.location.user}
                         />
                     </MDBCol>
                  </MDBRow>

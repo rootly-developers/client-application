@@ -1,9 +1,10 @@
-import React, { Component } from 'react';
-import { MDBRow, MDBCol, MDBBtn } from 'mdbreact';
+import React, { useContext} from 'react';
+import { MDBRow, MDBCol } from 'mdbreact';
 import Images from "../images.js"
 import SubmitButton from './SubmitButton';
 import './styles/EventCard.css';
 import axios from 'axios';
+import { UserContext } from '../contexts/UserContext';
 
 // TODO: handle join vs not join state
 
@@ -11,6 +12,8 @@ const EventCard = (props) => {
     let btnMsg = props.isTemplate ? "MAKE EVENT":"JOIN";
     let attendeesMsg = props.attendees ? (props.attendees + "/" + props.maxAttendees):""; 
     let eventCardClass = "event-card " + props.location;
+    const { user, token, eventsList } = useContext(UserContext).userData;
+    const { eventId } = props;
 
     const getImgSrcForType = type => {
         if(type) {
@@ -35,11 +38,9 @@ const EventCard = (props) => {
     }
 
     const handleJoinClick = e => {
-        console.log("JOINING");
-        let { eventId, eventsList, user } = props;
         let redirectPath = `/events/${eventId}`;
-        let params = { eventId, user, token: props.token };
-        
+        let params = { eventId };
+    
         // redirect to eventdetails if user already joined
         if (eventsList && eventsList.includes(eventId)) {
             return new Promise( (resolve, reject) => {
@@ -49,9 +50,9 @@ const EventCard = (props) => {
 
         return new Promise((resolve, reject) => {
             axios.put(`http://localhost:8080/events/${eventId}/user`, {
-                token: props.token, 
-                firstName: props.user.firstName, 
-                lastName: props.user.lastName, 
+                token: token, 
+                firstName: user.firstName, 
+                lastName: user.lastName, 
                 isAdd: true
             })
             .then(res => {
@@ -67,7 +68,7 @@ const EventCard = (props) => {
     return (
         <MDBRow className={eventCardClass}>
             <MDBCol size="3">
-                <img className="img-fluid" src={getImgSrcForType(props.type)}></img>
+                <img className="img-fluid" src={getImgSrcForType(props.type)} alt="event-icon"></img>
             </MDBCol>
             
             <MDBCol size="5" className="eventcard-content-col">

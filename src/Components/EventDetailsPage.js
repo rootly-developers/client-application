@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { MDBRow, MDBCol, MDBCardBody, MDBInput, MDBBtn } from "mdbreact";
 import Post from './Post/Post.js';
 import Comment from './Comment.js';
@@ -6,6 +6,7 @@ import CommentBar from './CommentBar.js';
 import './styles/EventDetailsPage.css';
 import { formatTime } from '../helpers.js';
 import axios from "axios";
+import { UserContext } from '../contexts/UserContext';
 
 /* TODOS: 
     - add timestamp and other fields for new posts 
@@ -25,9 +26,10 @@ export default function EventDetailsPage(props) {
         posts: [],
         showComments: {} // store threadIds as keys, values are true/false
     });
+    const { user, token } = useContext(UserContext).userData;
+    const { eventId } = props.location;
 
     useEffect(() => {
-        const { eventId, token } = props.location;
         axios({
             method: 'get',
             url: `http://localhost:8080/events/${eventId}`,
@@ -68,7 +70,6 @@ export default function EventDetailsPage(props) {
     }, [props.location]);
 
     function handlePostClick() {
-        const { eventId, token, user } = props.location;
         let newPosts = state.posts.slice();
         const content = state.messageInput;
         const username = `${user.firstName} ${user.lastName}`;
@@ -102,7 +103,6 @@ export default function EventDetailsPage(props) {
     }
 
     function handleSendComment(threadId, comment) {
-        const { eventId, token, user } = props.location;
         const username = `${user.firstName} ${user.lastName}`;
         axios.post(`http://localhost:8080/events/${eventId}/threads/${threadId}/comments`, {
             token, content: comment, username
@@ -135,7 +135,6 @@ export default function EventDetailsPage(props) {
     }
 
     const { title, description, numAttendees, maxAttendees, address, startTime, endTime } = state;
-    let { eventId, token } = props.location;
     const posts = state.posts;
     let threads = posts.map((post, i) => {
         const postHtml = 
@@ -150,9 +149,7 @@ export default function EventDetailsPage(props) {
                                 upvoteCount={post.upvote_count}
                                 upvoteUsers={post.upvote_usernames}
                                 id={post.id}
-                                token={token}
                                 eventId={eventId}
-                                user={props.location.user}
                                 toggleShowComments={toggleShowComments}
                             />
                         </MDBCol>
