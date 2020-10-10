@@ -48,6 +48,7 @@
 #post-btn {
     background-color: var(--saturatedpurple) !important;
     border-radius: 2rem;
+    margin-top: 1rem;
 }
 
 #post-message-bar {

@@ -1,4 +1,4 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Can view mockup of design in Figma prototype [here](https://www.figma.com/proto/KFFDD35MsNiZCO75ZZmHL9/Wireframing?node-id=222%3A3923&scaling=min-zoom).
 
 ## Available Scripts
 

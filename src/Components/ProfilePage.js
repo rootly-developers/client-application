@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState, useEffect } from 'react';
 import Images from "../images.js"
 import axios from "axios";
 import {MDBRow, MDBBtn} from "mdbreact";
@@ -6,25 +6,44 @@ import './styles/ProfilePage.css'
 import ProfileForm from './modals/ProfileForm.js'
 import ResetPasswordForm from './modals/ResetPasswordForm.js'
 
-class ProfilePage extends Component {
-    constructor(){
-        super();
-        this.state = {
-            checkMessage: "",
-            user : {},
-            token : ""
-        }
-        this.handleLogout = this.handleLogout.bind(this);
-        this.handleProfileUpdate = this.handleProfileUpdate.bind(this);
+export default function ProfilePage() {
+
+    const [message, setMessage] = useState("");
+    const [user, setUser] = useState({});
+    const [token, setToken] = useState("");
+
+    // TODO: Add token to get user from header.
+    const getUser = ()  => {
+        return new Promise((resolve, reject) => { axios({
+        method: 'get',
+        url: "http://localhost:8080/users",
+        headers: {
+            'uid': '',
+            'token': ""},
+        })
+        .then(res => {
+            let userData = {};
+            const reqData = JSON.parse(res.request.response).data[0]
+            console.log(res.request.response)
+            if(res.status == 200) {
+            userData.firstName = reqData.first_name
+            userData.lastName = reqData.last_name
+            userData.programName = reqData.program_name
+            userData.location = reqData.location
+            userData.term = reqData.term
+            userData.socialLink = reqData.social_link
+            userData.avatar = reqData.avatar
+            setUser(userData)
+            }
+        })
+        })
     }
 
-    componentDidMount(){
-        this.setState({user : this.props.data},() => {
-            console.log(this.props);
-        });
-    }    
+    useEffect(() => {
+        getUser()
+    }, []);
 
-    handleProfileUpdate = (content)  => {
+    const handleProfileUpdate = (content)  => {
         const {firstName, lastName, programName, location, term, socialLink, avatar} = content;
         axios.put(`http://localhost:8080/users`, {
              firstName : firstName,
@@ -34,60 +53,56 @@ class ProfilePage extends Component {
              term : term,
              socialLink : socialLink,
              avatar : avatar,
-             token: this.state.token
+             token: token
             })
           .then(res => {
               if(res.status == 200) {
-                this.setState({user : content, checkMessage: 'Update success'});
+                  setUser(content)
+                  setMessage('Update success')
               }
           }).catch(err => { 
-            this.setState({checkMessage: 'Error'});
+            setMessage(err.message)
         })
     }
 
-    handleLogout(){
+    const handleLogout = () => {
         return new Promise((resolve, reject) => {
             axios.post(`http://localhost:8080/logout`, {
-                    token: this.state.token
+                    token: token
                 })
             .then(res => {
-                if(res.status == 200) {
+                if(res.status === 200) {
                     resolve({ redirectPath: "/", params: {}});
                 }
             })
         })
     }
 
-    render() {
-
-        return(
+    return(
             <div className="app-page" id="profile-page">
                 <div className="app-page-fill"></div>
                     <MDBRow>
-                        <img className="avatar" src ={this.state.user.avatar? Images.avatar[this.state.user.avatar.toLowerCase()] : Images.avatar.goose}></img>
+                        <img className="avatar" alt="" src ={user.avatar? Images.avatar[user.avatar.toLowerCase()] : Images.avatar.goose}></img>
                     </MDBRow>
                 <div className="app-main-section">
                     <div className="page-body">
                         <MDBRow>
                                 <div className="description">
-                                    <h2><b>{this.state.user.firstName} {this.state.user.lastName ? this.state.user.lastName[0]:this.state.user.lastName}.</b></h2>
-                                    <h4>{this.state.user.programName} - {this.state.user.term}</h4>
-                                    <h4>{this.state.user.socialLink}</h4>
-                                    <p>{this.state.user.bio}</p>
+                                    <h2><b>{user.firstName} {user.lastName ? user.lastName[0]:user.lastName}.</b></h2>
+                                    <h4>{user.programName} - {user.term}</h4>
+                                    <h4>{user.socialLink}</h4>
+                                    <p>{user.bio}</p>
                                 </div>
                         </MDBRow>
                         <MDBRow>
                             <div className="utilities">
-                                <ProfileForm checkMessage={this.state.checkMessage} className="btn editProfile" userInfo={this.state.user} formCallback={this.handleProfileUpdate}></ProfileForm>
-                                <ResetPasswordForm formCallback={this.handleResetPassword} type="" className="btn changePassword">Change Password</ResetPasswordForm>
-                                <MDBBtn onClick={this.handleLogout} type="" className="btn logout">logout</MDBBtn>
+                                <ProfileForm checkMessage={message} className="btn editProfile" userInfo={user} formCallback={handleProfileUpdate}></ProfileForm>
+                                <ResetPasswordForm type="" className="btn changePassword">Change Password</ResetPasswordForm>
+                                <MDBBtn onClick={handleLogout} type="" className="btn logout">logout</MDBBtn>
                             </div>
                         </MDBRow>
                     </div>
                     </div>
             </div>
         );
-    }
 }
-
-export default ProfilePage
