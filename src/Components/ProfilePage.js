@@ -14,6 +14,7 @@ class ProfilePage extends Component {
             avatar: Images.avatar.chicken
             }
     }
+
     render() {
         return(
             <div className="app-page" id="profile-page">
