@@ -46,8 +46,11 @@
 #create-event {
     background-color: #6202EE !important;
     border-radius: 200px;
+<<<<<<< HEAD
 }
 
 #create-page .app-page-header:hover {
     text-decoration: none;
+=======
+>>>>>>> 6ead224ff3946d67883b6ed4f8b8f4ecc74cbef4
 }
