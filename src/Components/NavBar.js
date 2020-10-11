@@ -12,8 +12,8 @@ import EventDetailsPage from '../Components/EventDetailsPage'
 import MyEventPage from '../Components/MyEventPage'
 import SignUpPage from '../Components/SignUpPage'
 import VerifyPage from '../Components/VerifyPage'
+import NotificationDropdown from '../Components/NotificationDropdown'
 import Images from "../images.js"
-import axios from "axios";
 import './styles/NavBar.css'
 
 export default function NavBar() {
@@ -39,7 +39,7 @@ export default function NavBar() {
             <MDBNavItem>
               <MDBNavLink to="/login">Login</MDBNavLink>
             </MDBNavItem>
-            {/* <NotificationDropdown value={this.state.notifications}></NotificationDropdown> */}
+            <NotificationDropdown></NotificationDropdown>
             <MDBNavItem>
               <MDBNavLink to="/events/new"><i className="fas fa-plus fa-2x"></i></MDBNavLink>
             </MDBNavItem>

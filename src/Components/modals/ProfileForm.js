@@ -2,15 +2,15 @@ import React, { useState} from 'react';
 import PropTypes from 'prop-types'
 import { MDBContainer, MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBModalFooter } from 'mdbreact';
 
-const ProfileForm = ({checkMessage:message, user:incomingUser, formCallback}) => {
+const ProfileForm = ({checkMessage, userInfo, formCallback}) => {
 
-    const [user, setUser] = useState(incomingUser? incomingUser: {});
+    const [newuser, setNewUser] = useState(userInfo? userInfo: {});
     const [modal, setModal] = useState(false);
 
     const handleChange = (event, id) => {
-        var stateCopy = Object.assign({}, user);
+        var stateCopy = Object.assign({}, newuser);
         stateCopy[id] = event.target.value;
-        setUser(stateCopy);
+        setNewUser(stateCopy);
     }
 
     const toggle = () => {
@@ -27,39 +27,39 @@ const ProfileForm = ({checkMessage:message, user:incomingUser, formCallback}) =>
                     <label htmlFor="" className="grey-text">
                     First Name
                     </label>
-                    <input type="text" onChange={(e) => {handleChange(e,"firstName")}} className="form-control" defaultValue={user.firstName}/>
+                    <input type="text" onChange={(e) => {handleChange(e,"firstName")}} className="form-control" defaultValue={newuser.firstName}/>
                     <br />
                     <label htmlFor="" className="grey-text">
                     Last Name
                     </label>
-                    <input type="text" onChange={(e) => {handleChange(e,"lastName")}} className="form-control" defaultValue={user.lastName}/>
+                    <input type="text" onChange={(e) => {handleChange(e,"lastName")}} className="form-control" defaultValue={newuser.lastName}/>
                     <br />
                     <label htmlFor="" className="grey-text">
                     Social Media
                     </label>
-                    <input type="text" onChange={(e) => {handleChange(e,"socialLink")}} className="form-control" defaultValue={user.socialLink}/>
+                    <input type="text" onChange={(e) => {handleChange(e,"socialLink")}} className="form-control" defaultValue={newuser.socialLink}/>
                     <br />
                     <label htmlFor="" className="grey-text">
                     Program
                     </label>
-                    <input type="text" onChange={(e) => {handleChange(e,"programName")}} className="form-control" defaultValue={user.programName}/>
+                    <input type="text" onChange={(e) => {handleChange(e,"programName")}} className="form-control" defaultValue={newuser.programName}/>
                     <label htmlFor="" className="grey-text">
                     Term
                     </label>
-                    <input type="email" onChange={(e) => {handleChange(e,"term")}} className="form-control" defaultValue={user.term}/>
+                    <input type="email" onChange={(e) => {handleChange(e,"term")}} className="form-control" defaultValue={newuser.term}/>
                     <br />
                     <label htmlFor="" className="grey-text">
                     Bio
                     </label>
-                    <input type="text" onChange={(e) => {handleChange(e,"bio")}} className="form-control" defaultValue={user.bio}/>
+                    <input type="text" onChange={(e) => {handleChange(e,"bio")}} className="form-control" defaultValue={newuser.bio}/>
                     <br />
                 </form>
             </MDBModalBody>
             <MDBModalFooter>
                 <label htmlFor="" className="grey-text">
-                    {message}
+                    {checkMessage}
                 </label>
-                <MDBBtn color="primary" onClick={() => formCallback(user)}>Save changes</MDBBtn>
+                <MDBBtn color="primary" onClick={() => formCallback(newuser)}>Save changes</MDBBtn>
             </MDBModalFooter>
             </MDBModal>
         </MDBContainer>
@@ -68,7 +68,7 @@ const ProfileForm = ({checkMessage:message, user:incomingUser, formCallback}) =>
 
 ProfileForm.propTypes = {
     checkMessage: PropTypes.string.isRequired,
-    user: PropTypes.object.isRequired,
+    userInfo: PropTypes.object.isRequired,
     formCallback: PropTypes.func.isRequired,
 }
 

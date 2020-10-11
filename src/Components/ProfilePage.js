@@ -1,50 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext} from 'react';
+import { useHistory } from "react-router-dom";
 import Images from "../images.js"
 import axios from "axios";
 import {MDBRow, MDBBtn} from "mdbreact";
 import './styles/ProfilePage.css'
 import ProfileForm from './modals/ProfileForm.js'
+import { UserContext } from '../contexts/UserContext';
 import ResetPasswordForm from './modals/ResetPasswordForm.js'
 
 export default function ProfilePage() {
-
+    const { user, token} = useContext(UserContext).userData;
+    const { setUserData } = useContext(UserContext);
     const [message, setMessage] = useState("");
-    const [user, setUser] = useState({});
-    const [token, setToken] = useState("");
+    const [profileUser, setProfileUser] = useState({...user});
 
-    // TODO: Add token to get user from header.
-    const getUser = ()  => {
-        return new Promise((resolve, reject) => { axios({
-        method: 'get',
-        url: "http://localhost:8080/users",
-        headers: {
-            'uid': '',
-            'token': ''},
-        })
-        .then(res => {
-            let userData = {};
-            const reqData = JSON.parse(res.request.response).data[0]
-            console.log(res.request.response)
-            if(res.status === 200) {
-            userData.firstName = reqData.first_name
-            userData.lastName = reqData.last_name
-            userData.programName = reqData.program_name
-            userData.location = reqData.location
-            userData.term = reqData.term
-            userData.socialLink = reqData.social_link
-            userData.avatar = reqData.avatar
-            setUser(userData)
-            }
-        })
-        })
-    }
-
-    useEffect(() => {
-        getUser()
-    }, []);
+    let history = useHistory();
 
     const handleProfileUpdate = (content)  => {
         const {firstName, lastName, programName, location, term, socialLink, avatar} = content;
+        setProfileUser(content)
+        setUserData({...content})
         axios.put(`http://localhost:8080/users`, {
              firstName : firstName,
              lastName : lastName,
@@ -57,8 +32,6 @@ export default function ProfilePage() {
             })
           .then(res => {
               if(res.status === 200) {
-                  console.log(content)
-                  setUser(content)
                   setMessage('Update success')
               }
           }).catch(err => { 
@@ -73,7 +46,7 @@ export default function ProfilePage() {
                 })
             .then(res => {
                 if(res.status === 200) {
-                    resolve({ redirectPath: "/", params: {}});
+                    history.push('/')
                 }
             })
         })
@@ -83,21 +56,21 @@ export default function ProfilePage() {
             <div className="app-page" id="profile-page">
                 <div className="app-page-fill"></div>
                     <MDBRow>
-                        <img className="avatar" alt="" src ={user.avatar? Images.avatar[user.avatar.toLowerCase()] : Images.avatar.goose}></img>
+                        <img className="avatar" alt="" src ={profileUser && profileUser.avatar? Images.avatar[profileUser.avatar.toLowerCase()] : Images.avatar.goose}></img>
                     </MDBRow>
                 <div className="app-main-section">
                     <div className="page-body">
                         <MDBRow>
                                 <div className="description">
-                                    <h2><b>{user.firstName} {user.lastName ? user.lastName[0]:""}.</b></h2>
-                                    <h4>{user.programName} - {user.term}</h4>
-                                    <h4>{user.socialLink}</h4>
-                                    <p>{user.bio}</p>
+                                    <h2><b>{profileUser.firstName} {profileUser.lastName ? profileUser.lastName[0]:""}.</b></h2>
+                                    <h4>{profileUser.programName} - {profileUser.term}</h4>
+                                    <h4>{profileUser.socialLink}</h4>
+                                    <p>{profileUser.bio}</p>
                                 </div>
                         </MDBRow>
                         <MDBRow>
                             <div className="utilities">
-                                <ProfileForm checkMessage={message} className="btn editProfile" userInfo={user} formCallback={handleProfileUpdate}></ProfileForm>
+                                <ProfileForm checkMessage={message} className="btn editProfile" userInfo={profileUser} formCallback={handleProfileUpdate}></ProfileForm>
                                 <ResetPasswordForm type="" className="btn changePassword">Change Password</ResetPasswordForm>
                                 <MDBBtn onClick={handleLogout} type="" className="btn logout">logout</MDBBtn>
                             </div>
