@@ -1,14 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { MDBInput, MDBContainer } from 'mdbreact';
 import SubmitButton from './SubmitButton';
 import axios from "axios";
 import './styles/LoginPage.css';
+import { UserContext } from '../contexts/UserContext';
+
 
 
 export default function LoginPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
-
+    const { setUserData } = useContext(UserContext);
     function handleLoginRequest() {
         return new Promise((resolve, reject) => {
             axios({
@@ -26,20 +28,18 @@ export default function LoginPage() {
                         axios.post('http://localhost:8080/login', {
                             email: email,
                             password: password
-                        })  
+                        })
                         .then((res) => {
                             console.log("user data")
                             console.log(res.data);
                             let params = {
                                 token: res.data.token,
                                 eventsList: res.data.eventsList,
-                                user: res.data.user
+                                user: res.data.user,
+                                notifications: res.data.notifcations,
                             }
-                            let hackystore = require("./hackystore.json");
-                            hackystore.token = res.data.token;
-                            hackystore.user = res.data.user;
-
-                            resolve({ redirectPath: "/events", params: params});
+                            setUserData({...params});
+                            resolve({ redirectPath: "/events"});
                         })
                     }
                     else {

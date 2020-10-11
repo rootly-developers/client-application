@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import { MDBRow, MDBCol, MDBIcon } from 'mdbreact';
 import './styles/MessagePost.css'
 import axios from "axios";
+import { UserContext } from '../../contexts/UserContext';
 
 
 export default function MessagePost(props) {
     const [thumbCount, setThumbCount] = useState(0);
     const [isToggleOn, setIsToggleOn] = useState(true);
+    const { user, token } = useContext(UserContext).userData;
+    const { eventId, id, upvoteUsers } = props;
 
     useEffect(() => {
-        const { user, upvoteUsers } = props;
         const userName = `${user.firstName} ${user.lastName}`;
         setThumbCount(Number(props.upvoteCount));
         setIsToggleOn(userName in upvoteUsers);
@@ -17,7 +19,6 @@ export default function MessagePost(props) {
     }, []);
 
     function toggleThumbsUp() {
-        const {eventId, token, id, user} = props;
         const userName = `${user.firstName} ${user.lastName}`;
         axios.put(`http://localhost:8080/events/${eventId}/threads/${id}/upvotes`, {
             token, isAdd: !isToggleOn, username: userName
