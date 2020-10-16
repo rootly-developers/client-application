@@ -23,6 +23,7 @@ export default function LoginPage() {
               })
               .then((res) => {
                 if (res.status === 200) {
+                    console.log(res.data.isVerified)
                     if(res.data.isVerified) {
                         axios.post('http://localhost:8080/login', {
                             email: email,

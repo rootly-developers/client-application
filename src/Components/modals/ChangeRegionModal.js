@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { MDBContainer, MDBBtn, MDBModal, MDBModalBody, MDBModalHeader, MDBRow,} from 'mdbreact';
-import './styles/ChangeRegionModal.css'
-const locations = require('../commons/locations.json');
+import '../styles/ChangeRegionModal.css'
+const locations = require('../../commons/locations.json');
 
 export default function ChangeRegionModal(props) {
   const [modal, setModal] = useState(false);

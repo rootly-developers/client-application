@@ -1,49 +1,82 @@
-import React, { Component } from 'react';
+import React, { useState, useContext} from 'react';
+import { useHistory } from "react-router-dom";
 import Images from "../images.js"
-import { MDBContainer, MDBRow, MDBCol, MDBBtn, MDBIcon, MDBCardBody } from "mdbreact";
+import axios from "axios";
+import {MDBRow, MDBBtn} from "mdbreact";
 import './styles/ProfilePage.css'
+import ProfileForm from './modals/ProfileForm.js'
+import { UserContext } from '../contexts/UserContext';
+import ResetPasswordForm from './modals/ResetPasswordForm.js'
 
-class ProfilePage extends Component {
-    constructor(){
-        super();
-        this.state = {
-            name: "Lulu L.",
-            biography: "Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat. ",
-            program: "SYDE - 3A",
-            socialMedia: "@LuluLiu",
-            avatar: Images.avatar.chicken
-            }
+export default function ProfilePage() {
+    const { user, token} = useContext(UserContext).userData;
+    const { setUserData } = useContext(UserContext);
+    const [message, setMessage] = useState("");
+    const [profileUser, setProfileUser] = useState({...user});
+
+    let history = useHistory();
+
+    const handleProfileUpdate = (content)  => {
+        const {firstName, lastName, programName, location, term, socialLink, avatar} = content;
+        setProfileUser(content)
+        setUserData({...content})
+        axios.put(`http://localhost:8080/users`, {
+             firstName : firstName,
+             lastName : lastName,
+             programName : programName,
+             location : location,
+             term : term,
+             socialLink : socialLink,
+             avatar : avatar,
+             token: token
+            })
+          .then(res => {
+              if(res.status === 200) {
+                  setMessage('Update success')
+              }
+          }).catch(err => { 
+            setMessage(err.message)
+        })
     }
 
-    render() {
-        return(
+    const handleLogout = () => {
+        return new Promise((resolve, reject) => {
+            axios.post(`http://localhost:8080/logout`, {
+                    token: token
+                })
+            .then(res => {
+                if(res.status === 200) {
+                    history.push('/')
+                }
+            })
+        })
+    }
+
+    return(
             <div className="app-page" id="profile-page">
                 <div className="app-page-fill"></div>
                     <MDBRow>
-                        <img className="avatar" src ={this.state.avatar}></img>
+                        <img className="avatar" alt="" src ={profileUser && profileUser.avatar? Images.avatar[profileUser.avatar.toLowerCase()] : Images.avatar.goose}></img>
                     </MDBRow>
                 <div className="app-main-section">
                     <div className="page-body">
                         <MDBRow>
                                 <div className="description">
-                                    <h2><b>{this.state.name}</b></h2>
-                                    <h4>{this.state.program}</h4>
-                                    <h4>{this.state.socialMedia}</h4>
-                                    <p>{this.state.biography}</p>
+                                    <h2><b>{profileUser.firstName} {profileUser.lastName ? profileUser.lastName[0]:""}.</b></h2>
+                                    <h4>{profileUser.programName} - {profileUser.term}</h4>
+                                    <h4>{profileUser.socialLink}</h4>
+                                    <p>{profileUser.bio}</p>
                                 </div>
                         </MDBRow>
                         <MDBRow>
                             <div className="utilities">
-                                <MDBBtn type="" className="btn editProfile">Edit Profile</MDBBtn>
-                                <MDBBtn type="" className="btn changePassword">Change Password</MDBBtn>
-                                <MDBBtn type="" className="btn logout">logout</MDBBtn>
+                                <ProfileForm checkMessage={message} className="btn editProfile" userInfo={profileUser} formCallback={handleProfileUpdate}></ProfileForm>
+                                <ResetPasswordForm type="" className="btn changePassword">Change Password</ResetPasswordForm>
+                                <MDBBtn onClick={handleLogout} type="" className="btn logout">logout</MDBBtn>
                             </div>
                         </MDBRow>
                     </div>
                     </div>
             </div>
         );
-    }
 }
-
-export default ProfilePage

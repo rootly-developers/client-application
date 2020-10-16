@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from 'react';
 import { MDBRow, MDBCol, MDBCardBody, MDBBtn, } from "mdbreact";
 import EventCard from './EventCard.js'
-import ChangeRegionModal from './ChangeRegionModal.js'
+import ChangeRegionModal from './modals/ChangeRegionModal.js'
 import axios from "axios";
 import './styles/EventListPage.css'
 import  { UserContext } from '../contexts/UserContext';
