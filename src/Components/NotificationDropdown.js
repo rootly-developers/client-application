@@ -48,7 +48,7 @@ export default function NotificationList() {
                   });
                   setNotifications(notifs)
               }
-              let read = (notifications.slice(0, 10).filter(e => e.is_read === false).length > 0);
+              let read = (notifications.slice(0, 10).filter(e => e.is_read == false).length > 0);
               setIsAllRead(!read)
           })
     }
