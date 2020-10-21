@@ -15,12 +15,14 @@ const EventCard = (props) => {
     const { user, token, eventsList } = useContext(UserContext).userData;
     const { eventId } = props;
 
-    const getImgSrcForType = lowerType => {
-        let type = ""
-
-        if(lowerType) {
-            type = lowerType.toUpperCase();
+    const getImgSrcForType = type => {
+        if (!type){
+            return Images.events.coffee
+        } else if (type.includes("/")){
+            return type;
         }
+
+        type = type.toUpperCase();
 
         switch(type) {
             case "ADVENTURE":
@@ -35,10 +37,8 @@ const EventCard = (props) => {
                 return Images.events.sports;    
             case "THEATRE":
                 return Images.events.theatre;
-            case "":
-                return Images.events.coffee;
             default:
-                return lowerType;
+                return Images.events.coffee;
         }
     }
 
