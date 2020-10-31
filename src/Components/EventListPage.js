@@ -3,11 +3,28 @@ import { MDBRow, MDBCol, MDBCardBody, MDBBtn, } from "mdbreact";
 import EventCard from './EventCard.js'
 import ChangeRegionModal from './modals/ChangeRegionModal.js'
 import axios from "axios";
+import moment from 'moment'
 import './styles/EventListPage.css'
 import  { UserContext } from '../contexts/UserContext';
 const locations = require('../commons/locations.json');
 
 const eventTemplates = [
+    {
+        "id": 3,
+        "organizerid": "yewrNHUjMTa7IAfbXsObfQJOzJB3",
+        "status": "ACTIVE",
+        "title": "JACKSON IS BAD",
+        "description": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident et accusamus iusto odio dignissimos et dolorum fuga.",
+        "address": "Splunk @ SF",
+        "city": "boston",
+        "start_time": "2020-03-01T03:12:20.337Z",
+        "end_time": "2020-03-04T03:12:20.337Z",
+        "num_attendees": 4,
+        "max_attendees": 9,
+        "created": "2020-03-01T03:12:20.337Z",
+        "lastupdated": "2020-03-16T03:12:20.337Z",
+        "imgSrc": "https://undark.org/wp-content/uploads/2020/02/GettyImages-1199242002-1-scaled.jpg"
+    },
     {
         "id": 2,
         "organizerid": "yewrNHUjMTa7IAfbXsObfQJOzJB3",
@@ -16,11 +33,11 @@ const eventTemplates = [
         "description": "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident et accusamus iusto odio dignissimos et dolorum fuga.",
         "address": "Splunk @ SF",
         "city": "boston",
-        "start_time": "+158365-11-11T08:00:00.000Z",
-        "end_time": "+158375-11-11T08:00:00.000Z",
+        "start_time": "2020-03-02T03:12:20.337Z",
+        "end_time": "2020-03-04T03:12:20.337Z",
         "num_attendees": 4,
         "max_attendees": 9,
-        "created": "2020-03-16T03:12:20.337Z",
+        "created": "2020-03-02T03:12:20.337Z",
         "lastupdated": "2020-03-16T03:12:20.337Z",
         "imgSrc": "https://mdbootstrap.com/img/Photos/Others/images/34.jpg"
     },
@@ -32,24 +49,25 @@ const eventTemplates = [
         "description": "Avalon at Games on Tap",
         "address": "Google @ SF",
         "city": "boston",
-        "start_time": "+158365-11-11T08:00:00.000Z",
-        "end_time": "+158375-11-11T08:00:00.000Z",
+        "start_time": "2020-03-03T03:12:20.337Z",
+        "end_time": "2020-03-04T03:12:20.337Z",
         "num_attendees": 7,
         "max_attendees": 9,
-        "created": "2020-03-16T03:11:52.198Z",
+        "created": "2020-03-03T03:11:52.198Z",
         "lastupdated": "2020-03-16T03:11:52.198Z",
-        "imgSrc": "https://mk0peerspacerest2v8e.kinstacdn.com/wp-content/uploads/play-3978841_1280-1200x600.jpg"
+        "imgSrc": "https://img.webmd.com/dtmcms/live/webmd/consumer_assets/site_images/article_thumbnails/other/cat_relaxing_on_patio_other/1800x1200_cat_relaxing_on_patio_other.jpg"
     }
 ];
 
 export default function EventListPage(props) {
     const [location, setLocation] = useState(locations.SEA.canonical);
     const [sort, setSort] = useState(true);
-    const [events, setEvents] = useState([]);
+    const [events, setEvents] = useState({'ACTIVE':[],'TEMPLATE':[]});
     const { token } = useContext(UserContext).userData;
 
     useEffect(() => {
         setNewEvents();
+        handleNewest();
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [location]);
 
@@ -65,6 +83,20 @@ export default function EventListPage(props) {
             }
         }
     }
+
+    function handleNewest () {
+        let active = [...events.ACTIVE]
+        active = active.sort((a, b) => moment(b.created).diff(moment(a.created).valueOf()))
+        toggle("Newest")
+        setEvents({...events, ACTIVE: active})
+    };
+
+    function handleUpcoming () {
+        let active = [...events.ACTIVE]
+        active = active.sort((a, b) => moment(a.start_time).diff(moment(b.start_time).valueOf()))
+        toggle("Upcoming")
+        setEvents({...events, ACTIVE: active})
+    };
 
     function setNewEvents() {
         console.log(locations[location].pretty);
@@ -83,23 +115,40 @@ export default function EventListPage(props) {
           })
           .then(res => {
               if(res.status == 200) {
-                  let newEvents = eventTemplates.slice();
-                  res.data.data.forEach(event => {
-                      newEvents.push(event);
-                  });
-                  console.log(res.data);
-                  setEvents(newEvents);
+                const active=[...events.ACTIVE]
+                const template=[]
+                res.data.data.forEach(event => {
+                    if (event.status === "ACTIVE"){
+                        active.push(event)
+                    } else {
+                        template.push(event)
+                    }
+                });
+                eventTemplates.forEach(event => {
+                    if (event.status === "ACTIVE"){
+                        active.push(event)
+                    } else {
+                        template.push(event)
+                    }
+                });
+
+                setEvents({
+                    ...events,
+                    'ACTIVE': active.sort((a, b) => moment(b.created).diff(moment(a.created).valueOf())),
+                    'TEMPLATE':[...events.TEMPLATE, ...template],
+                })
               }
           })
     }
 
-    const toggle = id => e => {
+    const toggle = id => {
+        console.log(id, sort)
         if ((id === "Newest" && sort === false) || (id === "Upcoming" && sort === true) ){
             setSort(!sort);
         }
     }
 
-    let eventCards = events.map((event, i) => {
+    let templates = events.TEMPLATE.map((event, i) => {
         return  <MDBRow>
                     <MDBCol size="12">
                         <EventCard 
@@ -107,7 +156,24 @@ export default function EventListPage(props) {
                             description={event.description} 
                             attendees={event.num_attendees}
                             maxAttendees={event.max_attendees}
-                            type={event._event_type}
+                            type={event._event_type || event.type || event.imgSrc }
+                            key={i}
+                            eventId={event.id}
+                            isTemplate={event.isTemplate}
+                        />
+                    </MDBCol>
+                 </MDBRow>
+    });
+
+    let eventCards = events.ACTIVE.map((event, i) => {
+        return  <MDBRow>
+                    <MDBCol size="12">
+                        <EventCard 
+                            title={event.title} 
+                            description={event.description} 
+                            attendees={event.num_attendees}
+                            maxAttendees={event.max_attendees}
+                            type={event._event_type || event.type || event.imgSrc }
                             key={i}
                             eventId={event.id}
                             isTemplate={event.isTemplate}
@@ -128,34 +194,18 @@ export default function EventListPage(props) {
                             <div id="eventlist-toolbar">
                                 <div id="eventlist-right-btns">
                                     <i class="fas fa-sort fa-2x"></i>
-                                    <MDBBtn id="Newest" className="sort" onClick={toggle("Newest")} active={sort}>
+                                    <MDBBtn id="Newest" className="sort" onClick={handleNewest} active={sort}>
                                          Newest
                                     </MDBBtn>
-                                    <MDBBtn id="Upcoming" className="sort" onClick={toggle("Upcoming")} active={!sort}>
+                                    <MDBBtn id="Upcoming" className="sort" onClick={handleUpcoming} active={!sort}>
                                          Upcoming
                                     </MDBBtn>
                                 </div>
                             </div>
                         </MDBCol>
                     </MDBRow>
-
-                    <MDBRow>
-                        <MDBCol size="12">
-                            <EventCard title="Rockclimbing at Phil's" description="No one has made this event yet...It could be you!"  sample={true}
-                                        type="SPORTS"
-                            />
-                        </MDBCol>
-                    </MDBRow>
-
-                    <MDBRow>
-                        <MDBCol size="12">
-                            <EventCard title="Bubble Tea at Icon" description="No one has made this event yet...It could be you!" sample={true}
-                                        type="ADVENTURE"
-                            />
-                        </MDBCol>
-                    </MDBRow>
-
                     { eventCards }
+                    { templates }
                 </MDBCardBody>
                 </div>
         </div>

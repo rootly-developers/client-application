@@ -16,9 +16,14 @@ const EventCard = (props) => {
     const { eventId } = props;
 
     const getImgSrcForType = type => {
-        if(type) {
-            type = type.toUpperCase();
+        if (!type){
+            return Images.events.coffee
+        } else if (type.includes("/")){
+            return type;
         }
+
+        type = type.toUpperCase();
+
         switch(type) {
             case "ADVENTURE":
                 return Images.events.adventure;
