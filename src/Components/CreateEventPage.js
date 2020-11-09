@@ -46,9 +46,6 @@ class CreateEventPage extends Component {
         return new Promise((resolve, reject) => {
             let hackystore = require("./hackystore.json");
 
-            console.log("start " + this.state.startTime);
-            console.log("end " + this.state.endTime);
-            console.log("date " + this.state.date);
             let startTime = new Date('1970-01-01T' + this.state.startTime + 'Z');
             let endTime = new Date('1970-01-01T' + this.state.endTime + 'Z');        
             let startMoment = new Date(this.state.date.getFullYear(), this.state.date.getMonth(), this.state.date.getDate(), 
