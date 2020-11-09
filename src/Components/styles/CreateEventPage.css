@@ -1,0 +1,53 @@
+#create-page-container #create-form {
+    background: #fafcfe;
+    padding: 1rem 3rem;
+    box-shadow: 0 0 20px #B9B9B9, 4px 4px #FF6584;
+    border-radius: 1rem;
+    margin-top: 2rem;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    /* vertical-align: middle; */
+    /* align-items: center; */
+}
+
+#create-form .md-form {
+    /* width: 80%; */
+}
+
+.textField {
+    font-family: Roboto;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 24px;
+    /* identical to box height, or 171% */
+
+    letter-spacing: 0.15px;
+
+    color: #190078;
+
+    mix-blend-mode: normal;
+
+    /* copied from figma */
+}
+
+#create-page-container {
+    margin-top: 1em;
+    width: 80%;
+}
+
+#create-page h1 {
+    font-weight: 600;
+    font-size: 3.5rem;
+    margin-left: 12rem;
+}
+
+#create-event {
+    background-color: #6202EE !important;
+    border-radius: 200px;
+}
+
+#create-page .app-page-header:hover {
+    text-decoration: none;
+}

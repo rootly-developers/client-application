@@ -6,6 +6,7 @@ import './styles/LoginPage.css';
 import { UserContext } from '../contexts/UserContext';
 
 
+
 export default function LoginPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -26,8 +27,8 @@ export default function LoginPage() {
                     console.log(res.data.isVerified)
                     if(res.data.isVerified) {
                         axios.post('http://localhost:8080/login', {
-                            email: email,
-                            password: password
+                            email: this.state.email,
+                            password: this.state.password
                         })
                         .then((res) => {
                             console.log("user data")
